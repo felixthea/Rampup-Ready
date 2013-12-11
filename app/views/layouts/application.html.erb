@@ -11,7 +11,7 @@
     Hi, <%= current_user.email %>!
     <%= button_to "Log Out", session_url, method: :delete %>
   <% else %>
-    No user logged in.
+    <%= link_to "Log In", new_session_url %>
   <% end %>
 <%= flash[:errors] if flash[:errors] %>
 <%= yield %>
