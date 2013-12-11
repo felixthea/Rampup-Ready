@@ -2,6 +2,7 @@ SubdivisionManagements#New
 <br>
 Assign a user as the manager of a subdivision.
 <form action="<%= subdivision_managements_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   Subdivision
   <select name="subdivisionmanagement[subdivision_id]">
     <% @subdivisions.each do |subdivision| %>

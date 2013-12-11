@@ -1,4 +1,6 @@
 class SubdivisionManagementsController < ApplicationController
+  before_filter :require_current_user!, only: [:new, :create]
+  before_filter :require_admin!, only: [:new, :create]
   def new
     @users = User.all
     @subdivisions = Subdivision.all
