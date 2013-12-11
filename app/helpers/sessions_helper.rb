@@ -17,7 +17,9 @@ module SessionsHelper
   end
 
   def require_current_user!
-    redirect_to new_session_url if user_logged_in == false
+    if user_logged_in == false
+      flash[:errors] = "You must be logged in."
+      redirect_to new_session_url
+    end
   end
-
 end

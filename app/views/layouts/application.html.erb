@@ -13,11 +13,7 @@
   <% else %>
     No user logged in.
   <% end %>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
+<%= flash[:errors] if flash[:errors] %>
 <%= yield %>
 
 </body>
