@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
 
+  belongs_to(
+    :subdivision,
+    class_name: "Subdivision",
+    foreign_key: :subdivision_id,
+    primary_key: :id
+  )
+
   def self.find_by_credentials(email, secret)
     user = User.find_by_email(email)
 
