@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211210830) do
+ActiveRecord::Schema.define(:version => 20131211213025) do
+
+  create_table "definitions", :force => true do |t|
+    t.integer  "word_id",        :null => false
+    t.integer  "user_id",        :null => false
+    t.string   "body",           :null => false
+    t.integer  "subdivision_id", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "definitions", ["subdivision_id"], :name => "index_definitions_on_subdivision_id"
+  add_index "definitions", ["user_id"], :name => "index_definitions_on_user_id"
+  add_index "definitions", ["word_id"], :name => "index_definitions_on_word_id"
 
   create_table "subdivision_managements", :force => true do |t|
     t.integer  "user_id",        :null => false

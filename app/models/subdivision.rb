@@ -9,4 +9,11 @@ class Subdivision < ActiveRecord::Base
     foreign_key: :subdivision_id,
     primary_key: :id
   )
+
+  has_many(
+    :definitions,
+    class_name: "Definition",
+    foreign_key: :subdivision_id,
+    primary_key: :id
+  )
 end

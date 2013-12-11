@@ -3,7 +3,11 @@ Workwiki::Application.routes.draw do
   resource :session
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]
-  resources :words
+  resources :words do
+    resources :definitions, only: [:create, :index]
+  end
+
+  resources :definitions, only: [:show]
 
   root to: "words#index"
 end

@@ -10,6 +10,8 @@ class WordsController < ApplicationController
 
   def show
     @word = Word.find(params[:id])
+    @definitions = @word.definitions
+    @subdivisions = Subdivision.all
     render :show
   end
 
