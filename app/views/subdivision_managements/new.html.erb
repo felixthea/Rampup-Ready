@@ -1,0 +1,20 @@
+SubdivisionManagements#New
+<br>
+Assign a user as the manager of a subdivision.
+<form action="<%= subdivision_managements_url %>" method="post">
+  Subdivision
+  <select name="subdivisionmanagement[subdivision_id]">
+    <% @subdivisions.each do |subdivision| %>
+      <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+    <% end %>
+  </select>
+  <br>
+  Manager
+  <select name="subdivisionmanagement[user_id]">
+    <% @users.each do |user| %>
+      <option value="<%= user.id %>"><%= user.email %></option>
+    <% end %>
+  </select>
+  <br>
+  <input type="Submit" value="Assign Manager">
+</form>

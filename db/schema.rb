@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211193959) do
+ActiveRecord::Schema.define(:version => 20131211202000) do
+
+  create_table "subdivision_managements", :force => true do |t|
+    t.integer  "user_id",        :null => false
+    t.integer  "subdivision_id", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "subdivision_managements", ["subdivision_id"], :name => "index_subdivision_managements_on_subdivision_id"
+  add_index "subdivision_managements", ["user_id"], :name => "index_subdivision_managements_on_user_id"
 
   create_table "subdivisions", :force => true do |t|
     t.string   "name",       :null => false
@@ -20,12 +30,13 @@ ActiveRecord::Schema.define(:version => 20131211193959) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",           :null => false
-    t.string   "password_digest", :null => false
-    t.integer  "subdivision_id",  :null => false
-    t.string   "session_token",   :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "email",                              :null => false
+    t.string   "password_digest",                    :null => false
+    t.integer  "subdivision_id",                     :null => false
+    t.string   "session_token",                      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "admin",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

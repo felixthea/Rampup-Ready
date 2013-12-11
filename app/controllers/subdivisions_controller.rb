@@ -1,5 +1,5 @@
 class SubdivisionsController < ApplicationController
-  before_filter :require_current_user!, except: [:index]
+  before_filter :require_current_user!, except: [:index, :show]
 
   def index
     @subdivisions = Subdivision.all

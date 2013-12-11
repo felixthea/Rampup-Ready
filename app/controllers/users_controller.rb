@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
     if @user.save
       log_user_in!(@user)
       redirect_to @user
