@@ -1,0 +1,8 @@
+<form action="<%= definition_url(params[:id]) %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="definition_body">Definition:</label>
+  <input type="text" name="definition[body]" value="<%= @definition.body %>" id="definition_body">
+  <input type="Submit" value="Update Definition">
+</form>
+

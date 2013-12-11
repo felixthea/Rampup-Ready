@@ -29,4 +29,18 @@ module SessionsHelper
       redirect_to :root
     end
   end
+
+  def require_author!
+    if current_user.id != Definition.find(params[:id])
+      flash[:errors] = "You must be the author."
+      redirect_to new_session_url
+    end
+  end
+
+  def require_author_or_admin!
+    unless (current_user.id == Definition.find(params[:id]).user_id || current_user.admin == true)
+      flash[:errors] = "You must be the author or admin."
+      redirect_to new_session_url
+    end
+  end
 end

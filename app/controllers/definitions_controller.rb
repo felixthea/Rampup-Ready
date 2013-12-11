@@ -1,6 +1,7 @@
 class DefinitionsController < ApplicationController
 
   before_filter :require_current_user!, only: [:new, :create]
+  before_filter :require_author_or_admin!, only: [:edit, :update, :destroy]
 
   def show
     @definition = Definition.find(params[:id])
@@ -26,4 +27,29 @@ class DefinitionsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @definition = Definition.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @definition = Definition.find(params[:id])
+    if @definition.update_attributes(params[:definition])
+      flash[:notice] = "Definitition updated for #{@definition.word.name}"
+      redirect_to word_url(@definition.word.id)
+    else
+      flash.now[:errors] = @definition.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    definition = Definition.find(params[:id])
+    word = definition.word
+    definition.destroy
+    flash[:notice] = "Definition deleted from #{word.name}."
+    redirect_to word_url(word)
+  end
+
 end

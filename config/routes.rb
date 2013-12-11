@@ -7,7 +7,7 @@ Workwiki::Application.routes.draw do
     resources :definitions, only: [:create, :index]
   end
 
-  resources :definitions, only: [:show]
+  resources :definitions, only: [:show, :edit, :destroy, :update]
 
   root to: "words#index"
 end
