@@ -3,4 +3,5 @@ Workwiki::Application.routes.draw do
   resource :session
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]
+  resources :words
 end
