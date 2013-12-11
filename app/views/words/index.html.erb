@@ -1,7 +1,7 @@
 <ul>
   <% @words.each do |word| %>
   <li>
-    <%= word.name %>
+    <%= word.name %> <%= button_to "Delete", word_url(word), method: :delete if current_user.admin == true %>
   </li>
   <% end %>
 </ul>

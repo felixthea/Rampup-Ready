@@ -26,7 +26,7 @@ module SessionsHelper
   def require_admin!
     if current_user.admin == false || user_logged_in == false
       flash[:errors] = "You must be an admin."
-      redirect_to subdivisions_url
+      redirect_to :root
     end
   end
 end

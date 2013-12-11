@@ -1,6 +1,7 @@
 class WordsController < ApplicationController
 
   before_filter :require_current_user!, only: [:new, :create, :destroy, :update, :edit]
+  before_filter :require_admin!, only: [:destroy]
 
   def index
     @words = Word.all
