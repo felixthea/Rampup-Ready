@@ -1,0 +1,6 @@
+<form action="<%= subdivisions_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="subdivision_name">Subdivision Name</label>
+  <input type="text" name="subdivision[name]" value="<%= @subdivision.name %>" id="subdivision_name">
+  <input type="Submit" value="Create Subdivision">
+</form>
