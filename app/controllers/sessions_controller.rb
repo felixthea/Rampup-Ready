@@ -12,7 +12,12 @@ class SessionsController < ApplicationController
       render :new
     else
       log_user_in!(user)
-      redirect_to users_url(user)
+      redirect_to user_url(user)
     end
+  end
+
+  def destroy
+    log_user_out!
+    render :new
   end
 end
