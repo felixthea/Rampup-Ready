@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212143546) do
+ActiveRecord::Schema.define(:version => 20131212165337) do
 
   create_table "definitions", :force => true do |t|
     t.integer  "word_id",        :null => false
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(:version => 20131212143546) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                              :null => false

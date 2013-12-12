@@ -17,6 +17,7 @@ Workwiki::Application.routes.draw do
   end
 
   resources :votes, only: [:upvote, :downvote]
+  resources :tags
 
   root to: "words#index"
 end
