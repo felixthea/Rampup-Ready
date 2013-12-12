@@ -7,9 +7,9 @@
   <input type="text" id="curriculum_description" name="curriculum[description]" value="<%= @curriculum.description %>">
   <ul>
     <% @definitions.each do |definition| %>
-      <% selected = @curriculum.definition_ids.include?(definition.id) ? "selected" : "" %>
+      <% checked = @curriculum.definitions.include?(definition) ? "checked" : "" %>
       <li>
-        <input type="checkbox" name="curriculum[definition_ids][]" value="<%= definition.id %>" <%= selected %>><%= definition.word.name %>: <%= definition.body %></input>
+        <input type="checkbox" name="curriculum[definition_ids][]" value="<%= definition.id %>" <%= checked.html_safe %>><%= definition.word.name %>: <%= definition.body %></input>
       </li>
     <% end %>
   </ul>
