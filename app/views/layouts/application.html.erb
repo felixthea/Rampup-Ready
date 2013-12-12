@@ -13,17 +13,9 @@
   <% else %>
     <%= link_to "Log In", new_session_url %>
   <% end %>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
 
-<% if flash[:notice] %>
-  <% flash[:notice].each do |msg| %>
-    <%= msg %>
-  <% end %>
-<% end %>
+<%= render 'shared/errors' %>
+<%= render 'shared/notices' %>
 
 <%= yield %>
 
