@@ -34,6 +34,7 @@ class DefinitionsController < ApplicationController
     @definition = Definition.find(params[:id])
     @subdivisions = Subdivision.all
     @example = @definition.examples[0]
+    @tags = Tag.all
     render :edit
   end
 

@@ -3,14 +3,23 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="definition_body">Definition:</label>
   <input type="text" name="definition[body]" value="<%= @definition.body %>" id="definition_body">
+  <br>
   <label for="example_body">Example:</label>
   <input type="text" name="example[body]" value="<%= @example.body %>" id="example_body">
+  <Br>
   <select name="definition[subdivision_id]">
 	  <% @subdivisions.each do |subdivision| %>
-	  <% selected = subdivision.id == @definition.subdivision_id ? "selected" : "" %>
+	    <% selected = subdivision.id == @definition.subdivision_id ? "selected" : "" %>
 	  	<option value="<%= subdivision.id %>" <%= selected.html_safe %>><%= subdivision.name %></option>
 	  <% end %>
   </select>
+  <br>
+    <input type="hidden" name="definition[tag_ids][]" value="">
+  <% @tags.each do |tag| %>
+    <% checked = @definition.tag_ids.include?(tag.id) ? "checked" : "" %>
+    <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>" <%= checked.html_safe %>><%= tag.name %></input>
+  <% end %>
+  <br>
   <input type="Submit" value="Update Definition">
 </form>
 
