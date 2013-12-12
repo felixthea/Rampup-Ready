@@ -10,8 +10,10 @@ class WordsController < ApplicationController
 
   def show
     @word = Word.find(params[:id])
-    @definitions = @word.definitions
     @subdivisions = Subdivision.all
+    @definitions = @word.definitions
+
+    # @definitions.sort! { |defA, defB| defA
     render :show
   end
 
