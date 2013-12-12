@@ -28,7 +28,7 @@ class WordsController < ApplicationController
       flash[:notice] = ["#{@word.name} created successfully."]
       redirect_to @word
     else
-      flash[:errors] = [@word.errors.full_messages]
+      flash[:errors] = @word.errors.full_messages
       render :new
     end
   end

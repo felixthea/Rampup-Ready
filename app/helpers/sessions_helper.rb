@@ -19,28 +19,28 @@ module SessionsHelper
 
   def require_current_user!
     if user_logged_in == false
-      flash[:errors] = "You must be logged in."
+      flash[:errors] = ["You must be logged in."]
       redirect_to new_session_url
     end
   end
 
   def require_admin!
     if current_user.admin == false || user_logged_in == false
-      flash[:errors] = "You must be an admin."
+      flash[:errors] = ["You must be an admin."]
       redirect_to :root
     end
   end
 
   def require_author!
     if current_user.id != Definition.find(params[:id])
-      flash[:errors] = "You must be the author."
+      flash[:errors] = ["You must be the author."]
       redirect_to new_session_url
     end
   end
 
   def require_author_or_admin!
     unless (current_user.id == Definition.find(params[:id]).user_id || current_user.admin == true)
-      flash[:errors] = "You must be the author or admin."
+      flash[:errors] = ["You must be the author or admin."]
       redirect_to new_session_url
     end
   end

@@ -51,8 +51,8 @@ class DefinitionsController < ApplicationController
       redirect_to word_url(@definition.word.id)
     else
       flash.now[:errors] ||= []
-      flash.now[:errors] << @definition.errors.full_messages
-      flash.now[:errors] << @example.errors.full_messages
+      flash.now[:errors] += @definition.errors.full_messages
+      flash.now[:errors] += @example.errors.full_messages
       render :edit
     end
 

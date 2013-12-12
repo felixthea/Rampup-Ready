@@ -2,6 +2,7 @@
   <% @tags.each do |tag| %>
     <li>
       <%= tag.name %>
+      <%= button_to "Delete", tag_url(tag.id), method: :delete %>
     </li>
   <% end %>
 </ul>

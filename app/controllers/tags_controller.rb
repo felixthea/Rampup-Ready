@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
 
+  before_filter :require_admin!, only: [:destroy]
+
   def index
     @tags = Tag.all
     render :index
@@ -21,8 +23,7 @@ class TagsController < ApplicationController
       flash[:notice] = ["Tag created!"]
       redirect_to tag_url(@tag)
     else
-      flash[:errors] ||= []
-      flash[:errors] << @tag.errors.full_messages
+      flash[:errors] = @tag.errors.full_messages
       render :new
     end
   end
@@ -34,5 +35,13 @@ class TagsController < ApplicationController
   end
 
   def destroy
+    @tag = Tag.find(params[:id])
+    if @tag.destroy
+      flash[:notice] = ["Tag deleted."]
+    else
+      flash[:errors] = @tag.errors.full_messages
+    end
+
+    redirect_to tags_url
   end
 end
