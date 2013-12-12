@@ -2,7 +2,7 @@ class Vote < ActiveRecord::Base
   attr_accessible :vote, :user_id, :definition_id
 
   validates :vote, :user_id, :definition_id, presence: true
-  validates_uniqueness_of :user_id, :scope => :vote
+  validates_uniqueness_of :user_id, :scope => :vote, message: "already voted."
 
   belongs_to(
     :user,
@@ -18,13 +18,6 @@ class Vote < ActiveRecord::Base
     primary_key: :id
   )
 
-  def self.user_has_voted?(user_id, definition_id)
-    if Vote.find_by_user_id_and_definition_id(user_id, definition_id)
-      return true
-    else
-      return false
-    end
-  end
 
   def self.user_has_upvote?(user_id, definition_id)
     vote = Vote.find_by_user_id_and_definition_id(user_id, definition_id)
