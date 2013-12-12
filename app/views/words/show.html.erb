@@ -17,7 +17,9 @@ Words#show
 </form>
 <ul>
   <% @definitions.each do |definition| %>
-    <% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
+    <% if user_logged_in %>
+		<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
+	<% end %>
     <li>
       <%= link_to definition.body, definition_url(definition.id) %>
       <%= link_to "Edit", edit_definition_url(definition.id) if have_permission %>

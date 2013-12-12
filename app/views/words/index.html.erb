@@ -2,7 +2,7 @@
   <% @words.each do |word| %>
   <li>
     <%= link_to word.name, word_url(word) %>
-    <%= button_to "Delete", word_url(word), method: :delete if current_user.admin == true %>
+    <%= button_to "Delete", word_url(word), method: :delete unless (current_user == nil || current_user.admin == false)  %>
   </li>
   <% end %>
 </ul>
