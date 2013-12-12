@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <%= @sender.email %> sent you a curriculum.
+    <br>
+    <ul>
+      <% @curriculum.definitions.each do |definition| %>
+        <li>
+          <%= definition.word.name %>: <%= definition.body %>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to "Click here to see curriculum", curriculum_url(@curriculum.id) %>
+  </body>
+
+</html>
+</html>

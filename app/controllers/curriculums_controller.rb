@@ -51,4 +51,14 @@ class CurriculumsController < ApplicationController
       render :edit
     end
   end
+
+  def email
+    @curriculum = Curriculum.find(params[:id])
+    recipient = User.find_by_email(params[:recipient][:email])
+    msg = CurriculumMailer.curriculum_email(recipient, current_user, @curriculum)
+    msg.deliver!
+    flash.now[:notice] = ["Curriculum emailed successfully."]
+
+    render :show
+  end
 end

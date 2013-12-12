@@ -18,7 +18,11 @@ Workwiki::Application.routes.draw do
 
   resources :votes, only: [:upvote, :downvote]
   resources :tags
-  resources :curriculums
+  resources :curriculums do
+    member do
+      post 'email', to: 'curriculums#email'
+    end
+  end
   resources :curriculum_definitions, only: [:create, :destroy, :new]
 
   root to: "words#index"
