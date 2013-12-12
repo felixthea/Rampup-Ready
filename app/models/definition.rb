@@ -23,4 +23,12 @@ class Definition < ActiveRecord::Base
     foreign_key: :subdivision_id,
     primary_key: :id
   )
+  
+  has_many(
+    :examples,
+    class_name: "Example",
+    foreign_key: :definition_id,
+    primary_key: :id,
+    inverse_of: :definition
+  )
 end
