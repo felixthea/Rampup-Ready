@@ -7,7 +7,14 @@ Workwiki::Application.routes.draw do
     resources :definitions, only: [:create, :index]
   end
 
-  resources :definitions, only: [:show, :edit, :destroy, :update]
+  resources :definitions, only: [:show, :edit, :destroy, :update] do
+    member do
+      post 'upvote', :to => 'votes#upvote'
+      post 'downvote', :to => 'votes#downvote'
+    end
+  end
+
+  resources :votes, only: [:upvote, :downvote]
 
   root to: "words#index"
 end

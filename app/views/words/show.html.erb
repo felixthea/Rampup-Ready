@@ -26,7 +26,9 @@ Words#show
 		<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
 	<% end %>
     <li>
-      <%= definition.body %>
+      <%= button_to "Upvote", upvote_definition_url(definition.id) %>
+      <%= button_to "Downvote", downvote_definition_url(definition.id) %>
+      <%= definition.body %> (#<%= definition.id %>)
 	  <ul>
 		  <% definition.examples.each do |example| %>
 			  <li>

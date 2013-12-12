@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :votes,
+    class_name: "Votes",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def self.find_by_credentials(email, secret)
     user = User.find_by_email(email)
 

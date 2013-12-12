@@ -7,11 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'shared/header' %>
-<%= render 'shared/errors' %>
-<%= render 'shared/notices' %>
-
-<%= yield %>
-
+  <%= render 'shared/header' %>
+  <%= render 'shared/errors' %>
+  <%= render 'shared/notices' %>
+  <%= yield %>
 </body>
 </html>
