@@ -14,7 +14,7 @@
 	  <% end %>
   </select>
   <br>
-    <input type="hidden" name="definition[tag_ids][]" value="">
+  <input type="hidden" name="definition[tag_ids][]" value="">
   <% @tags.each do |tag| %>
     <% checked = @definition.tag_ids.include?(tag.id) ? "checked" : "" %>
     <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>" <%= checked.html_safe %>><%= tag.name %></input>

@@ -1,4 +1,4 @@
-<ul>
+<ol>
   <% @definitions.each do |definition| %>
     <% if user_logged_in %>
   	<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
@@ -9,6 +9,7 @@
       Total: <%= definition.total_score %> (Up: <%= definition.sum_upvotes %> | Down: <%= definition.sum_downvotes %>)
       <%= button_to "Upvote", upvote_definition_url(definition.id) %>
       <%= button_to "Downvote", downvote_definition_url(definition.id) %>
+      Examples:
       <ul>
     	  <% definition.examples.each do |example| %>
     		  <li>
@@ -18,11 +19,12 @@
       </ul>
 
       <% definition.tags.each do |tag| %>
-        <%= tag.name %>,
+        <%= tag.name %>
+        <%= ",".html_safe if tag != definition.tags.last %>
       <% end %>
 
       <%= link_to "Edit", edit_definition_url(definition.id) if have_permission %>
       <%= button_to "Delete", definition_url(definition.id), method: :delete if have_permission %>
     </li>
   <% end %>
-</ul>
+</ol>
