@@ -1,10 +1,9 @@
 development:
   adapter: postgresql
   database: db/workwiki_development
-  pool: 5
+  host: localhost
 
 test:
   adapter: postgresql
   database: db/workwiki
-  pool: 5
-
+  host: localhost
