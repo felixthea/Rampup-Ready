@@ -1,4 +1,7 @@
 class CurriculumsController < ApplicationController
+
+  before_filter :require_curriculum_creator_or_admin!, only: [:edit, :update, :destroy]
+
   def index
     @curriculums = Curriculum.all
     render :index
@@ -27,6 +30,25 @@ class CurriculumsController < ApplicationController
       flash[:errors] += @curriculum.errors.full_messages
       @definitions = Definition.all
       render :new
+    end
+  end
+
+  def edit
+    @curriculum = Curriculum.find(params[:id])
+    @definitions = Definition.all
+    render :edit
+  end
+
+  def update
+    @curriculum = Curriculum.find(params[:id])
+    if @curriculum.update_attributes(params[:curriculum])
+      flash[:notice] = ["Curriculum updated successfully."]
+      redirect_to curriculum_url(@curriculum.id)
+    else
+      flash.now[:errors] ||= []
+      flash.now[:errors] += @curriculum.errors.full_messages
+      @definitions = Definition.all
+      render :edit
     end
   end
 end

@@ -38,6 +38,13 @@ module SessionsHelper
     end
   end
 
+  def require_curriculum_creator_or_admin!
+    unless (current_user.id == Curriculum.find(params[:id]).user_id || current_user.admin == true)
+      flash[:errors] = ["You must be the curriculum creator or admin."]
+      redirect_to new_session_url
+    end
+  end
+
   def require_author_or_admin!
     unless (current_user.id == Definition.find(params[:id]).user_id || current_user.admin == true)
       flash[:errors] = ["You must be the author or admin."]

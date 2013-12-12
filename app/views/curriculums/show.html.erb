@@ -1,10 +1,14 @@
-<%= @curriculum.name %>
+Curriculum: <%= @curriculum.name %>
 <br>
-<%= @curriculum.description %>
+Description: <%= @curriculum.description %>
+<br>
+<br>
+Definitions
 <ul>
   <% @curriculum.definitions.each do |definition| %>
     <li>
-      <%= definition.word.name %>: <%= definition.body %>
+      <%= link_to definition.word.name, word_url(definition.word.id) %>: <%= definition.body %>
     </li>
   <% end %>
 </ul>
+<%= link_to "Edit", edit_curriculum_url(@curriculum.id) if (current_user.id == @curriculum.user_id || current_user.admin == true)%>

@@ -1,0 +1,7 @@
+<ul>
+  <% @curriculums.each do |curriculum| %>
+    <li>
+      <%= link_to curriculum.name, curriculum_url(curriculum.id) %> (<%= pluralize(curriculum.definitions.length, "definition") %>)
+    </li>
+  <% end %>
+</ul>
