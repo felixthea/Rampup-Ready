@@ -18,7 +18,6 @@ class Vote < ActiveRecord::Base
     primary_key: :id
   )
 
-
   def self.user_has_upvote?(user_id, definition_id)
     vote = Vote.find_by_user_id_and_definition_id(user_id, definition_id)
     return false if vote.nil?

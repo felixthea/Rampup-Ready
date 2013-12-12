@@ -1,5 +1,5 @@
 class Definition < ActiveRecord::Base
-  attr_accessible :word_id, :user_id, :body, :subdivision_id
+  attr_accessible :word_id, :user_id, :body, :subdivision_id, :tag_ids
 
   validates :word_id, :user_id, :body, :subdivision_id, presence: true
 
@@ -57,8 +57,17 @@ class Definition < ActiveRecord::Base
 
   has_many(
     :votes,
-    class_name: "Votes",
+    class_name: "Vote",
     foreign_key: :definition_id,
     primary_key: :id
   )
+
+  has_many(
+    :taggings,
+    class_name: "Tagging",
+    foreign_key: :definition_id,
+    primary_key: :id
+  )
+
+  has_many :tags, through: :taggings, source: :tag
 end

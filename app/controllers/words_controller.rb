@@ -13,6 +13,7 @@ class WordsController < ApplicationController
     @word = Word.find(params[:id])
     @subdivisions = Subdivision.all
     @definitions = @word.definitions
+    @tags = Tag.all
 
     @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
     render :show

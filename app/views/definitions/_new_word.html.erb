@@ -1,0 +1,20 @@
+<form action="<%= word_definitions_url(params[:id]) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="definition_body">Definition</label>
+  <input type="text" name="definition[body]" id="definition_body">
+  <br>
+  <label for="example_body">Example</label>
+  <input type="text" name="example[body]" id="example_body">
+  <br>
+  <select name="definition[subdivision_id]">
+    <%= @subdivisions.each do |subdivision| %>
+      <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+    <% end %>
+  </select>
+  <br>
+  <% @tags.each do |tag| %>
+    <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>"><%= tag.name %></input>
+  <% end %>
+  <br>
+  <input type="Submit" value="Add Definition">
+</form>

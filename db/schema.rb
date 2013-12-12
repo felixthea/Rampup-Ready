@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212165337) do
+ActiveRecord::Schema.define(:version => 20131212175835) do
 
   create_table "definitions", :force => true do |t|
     t.integer  "word_id",        :null => false
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(:version => 20131212165337) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id",        :null => false
+    t.integer  "definition_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "taggings", ["definition_id"], :name => "index_taggings_on_definition_id"
+  add_index "taggings", ["tag_id", "definition_id"], :name => "index_taggings_on_tag_id_and_definition_id", :unique => true
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name",       :null => false
