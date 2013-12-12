@@ -14,7 +14,7 @@ Words#show
   <br>
   <select name="definition[subdivision_id]">
     <%= @subdivisions.each do |subdivision| %>
-      <option id="<%= subdivision.id %>"><%= subdivision.name %></option>
+      <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
     <% end %>
   </select>
   <br>

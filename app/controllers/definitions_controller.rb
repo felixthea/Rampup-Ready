@@ -31,12 +31,15 @@ class DefinitionsController < ApplicationController
 
   def edit
     @definition = Definition.find(params[:id])
+    @subdivisions = Subdivision.all
+    @example = @definition.examples[0]
     render :edit
   end
 
   def update
     @definition = Definition.find(params[:id])
-    if @definition.update_attributes(params[:definition])
+    @example = @definition.examples[0]
+    if @definition.update_attributes(params[:definition]) && @example.update_attributes(params[:example])
       flash[:notice] = "Definitition updated for #{@definition.word.name}"
       redirect_to word_url(@definition.word.id)
     else
