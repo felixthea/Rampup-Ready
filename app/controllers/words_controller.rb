@@ -5,6 +5,7 @@ class WordsController < ApplicationController
 
   def index
     @words = Word.all
+    @word = Word.new
     render :index
   end
 
