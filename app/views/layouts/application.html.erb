@@ -13,8 +13,18 @@
   <% else %>
     <%= link_to "Log In", new_session_url %>
   <% end %>
-<%= flash[:errors] if flash[:errors] %>
-<%= flash[:notice] if flash[:notice] %>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+<% if flash[:notice] %>
+  <% flash[:notice].each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
 <%= yield %>
 
 </body>

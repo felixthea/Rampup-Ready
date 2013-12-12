@@ -21,7 +21,7 @@ class DefinitionsController < ApplicationController
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id)
     @definition.examples.new(params[:example])
     if @definition.save
-      flash[:notice] = "Thanks! Your definition was added!"
+      flash[:notice] = ["Thanks! Your definition was added!"]
       redirect_to word_url(word_id)
     else
       flash[:errors] = @definition.errors.full_mesages
@@ -39,20 +39,30 @@ class DefinitionsController < ApplicationController
   def update
     @definition = Definition.find(params[:id])
     @example = @definition.examples[0]
-    if @definition.update_attributes(params[:definition]) && @example.update_attributes(params[:example])
-      flash[:notice] = "Definitition updated for #{@definition.word.name}"
+    @subdivisions = Subdivision.all
+
+    ActiveRecord::Base.transaction do
+      @definition.update_attributes(params[:definition])
+      @example.update_attributes(params[:example])
+    end
+
+    if @definition.valid? && @example.valid?
+      flash[:notice] = ["Definitition updated for #{@definition.word.name}"]
       redirect_to word_url(@definition.word.id)
     else
-      flash.now[:errors] = @definition.errors.full_messages
+      flash.now[:errors] ||= []
+      flash.now[:errors] << @definition.errors.full_messages
+      flash.now[:errors] << @example.errors.full_messages
       render :edit
     end
+
   end
 
   def destroy
     definition = Definition.find(params[:id])
     word = definition.word
     definition.destroy
-    flash[:notice] = "Definition deleted from #{word.name}."
+    flash[:notice] = ["Definition deleted from #{word.name}."]
     redirect_to word_url(word)
   end
 

@@ -13,10 +13,10 @@ class SubdivisionsController < ApplicationController
   def create
     @subdivision = Subdivision.new(params[:subdivision])
     if @subdivision.save
-      flash[:notice] = "Subdivision created!"
+      flash[:notice] = ["Subdivision created!"]
       redirect_to subdivision_url(@subdivision)
     else
-      flash[:errors] = @subdivision.errors.full_messages
+      flash[:errors] = [@subdivision.errors.full_messages]
       @subdivision = Subdivision.new
       render :new
     end
