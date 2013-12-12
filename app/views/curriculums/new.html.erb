@@ -1,0 +1,17 @@
+<form action="<%= curriculums_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="curriculum_name">Curriculum:</label>
+  <input type="text" id="curriculum_name" name="curriculum[name]" value="<%= @curriculum.name %>">
+  <br>
+  <label for="curriculum_description">Description:</label>
+  <input type="text" id="curriculum_description" name="curriculum[description]" value="<%= @curriculum.description %>">
+  <ul>
+    <% @definitions.each do |definition| %>
+      <% selected = @curriculum.definition_ids.include?(definition.id) ? "selected" : "" %>
+      <li>
+        <input type="checkbox" name="curriculum[definition_ids][]" value="<%= definition.id %>" <%= selected %>><%= definition.word.name %>: <%= definition.body %></input>
+      </li>
+    <% end %>
+  </ul>
+  <input type="Submit" value="Create Curriculum">
+</form>

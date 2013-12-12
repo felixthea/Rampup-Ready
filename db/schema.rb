@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212175835) do
+ActiveRecord::Schema.define(:version => 20131212193945) do
+
+  create_table "curriculum_definitions", :force => true do |t|
+    t.integer  "definition_id"
+    t.integer  "curriculum_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "curriculum_definitions", ["curriculum_id"], :name => "index_curriculum_definitions_on_curriculum_id"
+  add_index "curriculum_definitions", ["definition_id", "curriculum_id"], :name => "index_curriculum_definitions_on_definition_id_and_curriculum_id", :unique => true
+  add_index "curriculum_definitions", ["definition_id"], :name => "index_curriculum_definitions_on_definition_id"
+
+  create_table "curriculums", :force => true do |t|
+    t.integer  "user_id",                  :null => false
+    t.string   "name",                     :null => false
+    t.integer  "curriculum_definition_id"
+    t.string   "description",              :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "curriculums", ["curriculum_definition_id"], :name => "index_curriculums_on_curriculum_definition_id"
+  add_index "curriculums", ["user_id"], :name => "index_curriculums_on_user_id"
 
   create_table "definitions", :force => true do |t|
     t.integer  "word_id",        :null => false

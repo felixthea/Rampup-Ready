@@ -18,6 +18,8 @@ Workwiki::Application.routes.draw do
 
   resources :votes, only: [:upvote, :downvote]
   resources :tags
+  resources :curriculums
+  resources :curriculum_definitions, only: [:create, :destroy, :new]
 
   root to: "words#index"
 end

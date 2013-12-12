@@ -1,0 +1,10 @@
+<%= @curriculum.name %>
+<br>
+<%= @curriculum.description %>
+<ul>
+  <% @curriculum.definitions.each do |definition| %>
+    <li>
+      <%= definition.word.name %>: <%= definition.body %>
+    </li>
+  <% end %>
+</ul>

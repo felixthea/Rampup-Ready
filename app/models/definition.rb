@@ -70,4 +70,7 @@ class Definition < ActiveRecord::Base
   )
 
   has_many :tags, through: :taggings, source: :tag
+
+  has_many :curriculum_definitions
+  has_many :curriculums, through: :curriculum_definitions, source: :curriculum
 end
