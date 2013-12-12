@@ -25,4 +25,26 @@ class Vote < ActiveRecord::Base
       return false
     end
   end
+
+  def self.user_has_upvote?(user_id, definition_id)
+    vote = Vote.find_by_user_id_and_definition_id(user_id, definition_id)
+    return false if vote.nil?
+
+    if vote.vote == 1
+      return vote
+    else
+      return false
+    end
+  end
+
+  def self.user_has_downvote?(user_id, definition_id)
+    vote = Vote.find_by_user_id_and_definition_id(user_id, definition_id)
+    return false if vote.nil?
+
+    if vote.vote == -1
+      return vote
+    else
+      return false
+    end
+  end
 end

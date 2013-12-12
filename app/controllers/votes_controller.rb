@@ -2,13 +2,12 @@ class VotesController < ApplicationController
 
   before_filter :require_current_user!
 
-  def upvote
+  def create_upvote
     user_id = current_user.id
     definition_id = params[:id]
 
-    if Vote.user_has_voted?(user_id, definition_id)
-      Vote.find_by_user_id_and_definition_id(user_id, definition_id).destroy
-    end
+    possible_downvote = Vote.user_has_downvote?(user_id, definition_id)
+    possible_downvote.destroy if possible_downvote
 
     word = Definition.find(definition_id).word
     vote = Vote.new(user_id: user_id, definition_id: definition_id, vote: 1)
@@ -23,13 +22,16 @@ class VotesController < ApplicationController
     redirect_to word_url(word)
   end
 
-  def downvote
+  def destroy_upvote
+    # delete vote
+  end
+
+  def create_downvote
     user_id = current_user.id
     definition_id = params[:id]
 
-    if Vote.user_has_voted?(user_id, definition_id)
-      Vote.find_by_user_id_and_definition_id(user_id, definition_id).destroy
-    end
+    possible_upvote = Vote.user_has_upvote?(user_id, definition_id)
+    possible_upvote.destroy if possible_upvote
 
     word = Definition.find(definition_id).word
     vote = Vote.new(user_id: user_id, definition_id: definition_id, vote: -1)
@@ -43,4 +45,9 @@ class VotesController < ApplicationController
 
     redirect_to word_url(word)
   end
+
+  def destroy_downvote
+    # delete vote
+  end
+
 end

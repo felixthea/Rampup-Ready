@@ -26,6 +26,7 @@ Words#show
 		<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
 	<% end %>
     <li>
+      Total Score: <%= total_score(definition.id) %>
       <%= button_to "Upvote", upvote_definition_url(definition.id) %> <%= sum_upvotes(definition.id) %>
       <%= button_to "Downvote", downvote_definition_url(definition.id) %> <%= sum_downvotes(definition.id) %>
       <%= definition.body %> (#<%= definition.id %>)

@@ -18,4 +18,8 @@ module DefinitionsHelper
     return votes
   end
 
+  def total_score(definition_id)
+    total_score = sum_upvotes(definition_id) + sum_downvotes(definition_id)
+    return total_score
+  end
 end

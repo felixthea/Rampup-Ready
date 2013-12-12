@@ -9,8 +9,10 @@ Workwiki::Application.routes.draw do
 
   resources :definitions, only: [:show, :edit, :destroy, :update] do
     member do
-      post 'upvote', :to => 'votes#upvote'
-      post 'downvote', :to => 'votes#downvote'
+      post 'upvote', :to => 'votes#create_upvote'
+      post 'downvote', :to => 'votes#create_downvote'
+      delete 'upvote', :to => 'votes#destroy_upvote'
+      delete 'downvote', :to => 'votes#destroy_downvote'
     end
   end
 
