@@ -24,8 +24,8 @@ class DefinitionsController < ApplicationController
       flash[:notice] = ["Thanks! Your definition was added!"]
       redirect_to word_url(word_id)
     else
-      flash[:errors] = @definition.errors.full_mesages
-      render :new
+      flash[:errors] = @definition.errors.full_messages
+      redirect_to word_url(word_id) # will want to render word show page without losing user input
     end
   end
 

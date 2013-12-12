@@ -2,7 +2,7 @@ class Vote < ActiveRecord::Base
   attr_accessible :vote, :user_id, :definition_id
 
   validates :vote, :user_id, :definition_id, presence: true
-  validates_uniqueness_of :user_id, :scope => :vote, message: "already voted."
+  validates_uniqueness_of :user_id, :scope => :definition_id, message: "already voted."
 
   belongs_to(
     :user,

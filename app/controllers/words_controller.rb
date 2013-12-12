@@ -13,7 +13,7 @@ class WordsController < ApplicationController
     @subdivisions = Subdivision.all
     @definitions = @word.definitions
 
-    # @definitions.sort! { |defA, defB| defA
+    @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
     render :show
   end
 
