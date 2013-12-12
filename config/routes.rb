@@ -1,6 +1,6 @@
 Workwiki::Application.routes.draw do
   resources :users
-  resource :session
+  resource :session, only: [:new, :create, :destroy]
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]
   resources :words do
