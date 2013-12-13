@@ -1,7 +1,13 @@
 <h1><%= @word.name %></h1>
+<div class="related-words">
+  <%= render 'related_words' %>
+</div>
 <div class="new-word-form">
   <%= render '/definitions/new_word' %>
 </div>
 <div class="word-defs">
   <%= render '/definitions/word_defs' %>
+</div>
+<div class="tags">
+  <%= render '/tags/all_word_tags' %>
 </div>
