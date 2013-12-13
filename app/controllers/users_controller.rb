@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @subdivisions = Subdivision.all
     render :new
   end
 
@@ -25,12 +26,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render :show
   end
-  
+
   def bulk_new
     @subdivisions = Subdivision.all
     render :bulk_new
   end
-  
+
   def bulk_add
     password = User.generate_random_password
     email = params[:user][:email]
