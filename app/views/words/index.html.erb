@@ -1,16 +1,21 @@
-<h2>Add Word</h2>
-<form action="<%= words_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="word_name">
-  <input type="text" name="word[name]" id="word_name" value="<%= @word.name %>">
-  <input type="Submit" value="Add Word">
-</form>
-<h2>Words</h2>
-<ul>
-  <% @words.each do |word| %>
-  <li>
-    <%= link_to word.name, word_url(word) %>
-    <%= button_to "Delete", word_url(word), method: :delete unless (current_user == nil || current_user.admin == false)  %>
-  </li>
-  <% end %>
-</ul>
+<div class="add_words_form">
+  <h2>Add Word</h2>
+  <form action="<%= words_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="word_name">Word:</label>
+    <input type="text" name="word[name]" id="word_name" value="<%= @word.name %>">
+    <input type="Submit" value="Add Word">
+  </form>
+</div>
+
+<div class="words_list">
+  <h2>Words</h2>
+  <ul>
+    <% @words.each do |word| %>
+    <li>
+      <%= link_to word.name, word_url(word) %>
+      <%= button_to "Delete", word_url(word), method: :delete unless (current_user == nil || current_user.admin == false)  %>
+    </li>
+    <% end %>
+  </ul>
+</div>

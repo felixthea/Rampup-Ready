@@ -8,9 +8,10 @@
 </head>
 <body>
   <%= render 'shared/header' %>
-  <%= render 'shared/errors' %>
-  <%= render 'shared/notices' %>
-  <br>
-  <%= yield %>
+  <div class="container">
+    <%= render 'shared/errors' %>
+    <%= render 'shared/notices' %>
+    <%= yield %>
+  </div>
 </body>
 </html>

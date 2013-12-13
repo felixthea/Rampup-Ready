@@ -1,9 +1,35 @@
-<% if user_logged_in %>
-  Hi, <%= current_user.email %>!
-  <%= button_to "Log Out", session_url, method: :delete %>
-  <%= link_to "Words", words_url %> | <%= link_to "Subdivisions", subdivisions_url %> |
-  <%= link_to "Curriculums", curriculums_url %> | <%= link_to "Tags", tags_url %> |
-  <%= link_to "Add Users", bulk_new_users_url %> | <%= link_to "Inbox" + unread_messages, messages_url %>
-<% else %>
-  <%= link_to "Log In", new_session_url %>
-<% end %>
+<header>
+  <div class="top-header group">
+    <div class="top-header-left">
+      <div class="logo">
+        LOGO
+      </div>
+    </div>
+    <div class="top-header-right">
+      <div class="sign-in-up-out">
+        <% if user_logged_in %>
+          Hi, <%= current_user.email %>!
+          <%= button_to "Log Out", session_url, method: :delete %>
+        <% else %>
+          <%= link_to "Log In", new_session_url %>
+        <% end %>
+      </div>
+      <div class="search">
+        <input type="text">
+        <input type="Submit" value="Search">
+      </div>
+    </div>
+  </div>
+  <div class="bottom-header group">
+    <nav>
+      <ul class="group">
+        <li><%= link_to "Words", words_url %></li>
+        <li><%= link_to "Subdivisions", subdivisions_url %></li>
+        <li><%= link_to "Curriculums", curriculums_url %></li>
+        <li><%= link_to "Tags", tags_url %></li>
+        <li><%= link_to "Add Users", bulk_new_users_url %></li>
+        <li><%= link_to "Inbox" + unread_messages, messages_url %></li>
+      </ul>
+    </nav>
+  </div>
+</header>

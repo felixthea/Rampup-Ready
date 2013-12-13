@@ -1,8 +1,7 @@
-<br>
-Words#show
-<br>
 <h1><%= @word.name %></h1>
-<h2>Definitions</h2>
-<h3>Add New Definition</h3>
-<%= render '/definitions/new_word' %>
-<%= render '/definitions/word_defs' %>
+<div class="new-word-form">
+  <%= render '/definitions/new_word' %>
+</div>
+<div class="word-defs">
+  <%= render '/definitions/word_defs' %>
+</div>
