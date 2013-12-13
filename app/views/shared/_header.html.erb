@@ -3,7 +3,7 @@
   <%= button_to "Log Out", session_url, method: :delete %>
   <%= link_to "Words", words_url %> | <%= link_to "Subdivisions", subdivisions_url %> |
   <%= link_to "Curriculums", curriculums_url %> | <%= link_to "Tags", tags_url %> |
-  <%= link_to "Add Users", bulk_new_users_url %>
+  <%= link_to "Add Users", bulk_new_users_url %> | <%= link_to "Inbox" + unread_messages, messages_url %>
 <% else %>
   <%= link_to "Log In", new_session_url %>
 <% end %>

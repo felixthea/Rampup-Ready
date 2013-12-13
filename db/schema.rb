@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212193945) do
+ActiveRecord::Schema.define(:version => 20131213142321) do
 
   create_table "curriculum_definitions", :force => true do |t|
     t.integer  "definition_id"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(:version => 20131212193945) do
   end
 
   add_index "examples", ["definition_id"], :name => "index_examples_on_definition_id"
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject",                         :null => false
+    t.string   "body",                            :null => false
+    t.boolean  "read",         :default => false
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "messages", ["recipient_id"], :name => "index_messages_on_recipient_id"
+  add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
 
   create_table "subdivision_managements", :force => true do |t|
     t.integer  "user_id",        :null => false

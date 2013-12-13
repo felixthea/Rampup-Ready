@@ -27,8 +27,22 @@ class User < ActiveRecord::Base
 
   has_many(
     :votes,
-    class_name: "Votes",
+    class_name: "Vote",
     foreign_key: :user_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :sent_messages,
+    class_name: "Message",
+    foreign_key: :sender_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :received_messages,
+    class_name: "Message",
+    foreign_key: :recipient_id,
     primary_key: :id
   )
 
@@ -57,7 +71,7 @@ class User < ActiveRecord::Base
     self.save!
     self.session_token
   end
-  
+
   def self.generate_random_password
     SecureRandom.urlsafe_base64(4)
   end

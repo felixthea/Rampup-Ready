@@ -1,0 +1,14 @@
+<h2>Compose New Message</h2>
+<br>
+<%= render 'form' %>
+<br>
+<h2>Messages</h2>
+<ul>
+  <% @messages.each do |message| %>
+  <% status = message.read ? "read" : "unread" %>
+    <li>
+      <%= link_to message.subject, message_url(message.id) %> from <%= User.find(message.sender_id).email %>
+      <%= time_ago_in_words(message.created_at) %> ago (<%= status.html_safe %>)
+    </li>
+  <% end %>
+</ul>

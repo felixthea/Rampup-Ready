@@ -1,0 +1,20 @@
+<form action="<%= messages_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  From: <%= current_user.email %>
+  <br>
+  <label for="message_recipient_id">To:</label>
+  <select name="message[recipient_id]">
+    <% @recipients.each do |recipient| %>
+      <%= selected = @message.recipient_id == recipient.id ? "selected" : "" %>
+      <option value="<%= recipient.id %>" <%= selected.html_safe %>><%= recipient.email %></option>
+    <% end %>
+  </select>
+   <br>
+  <label for="message_subject">Subject:</label>
+  <input type="text" id="message_subject" name="message[subject]" value="<%= @message.subject %>">
+   <br>
+  <label for="message_body">Body:</label>
+  <input type="text" id="message_body" name="message[body]" value="<%= @message.body %>">
+   <br>
+  <input type="Submit" value="Send Message">
+</form>

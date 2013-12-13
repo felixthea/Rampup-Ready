@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	You received an email from <%= @sender.email %>.
+	<br>
+	<%= link_to "Click here to read", message_url(@message.id) %>.
+</body>
+</html>
