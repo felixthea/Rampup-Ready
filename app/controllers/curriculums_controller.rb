@@ -57,8 +57,8 @@ class CurriculumsController < ApplicationController
     recipient = User.find_by_email(params[:recipient][:email])
     msg = CurriculumMailer.curriculum_email(recipient, current_user, @curriculum)
     msg.deliver!
-    flash.now[:notice] = ["Curriculum emailed successfully."]
+    flash[:notice] = ["Curriculum emailed successfully."]
 
-    render :show
+    redirect_to curriculum_url(@curriculum)
   end
 end

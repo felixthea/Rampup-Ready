@@ -1,6 +1,8 @@
 <% if user_logged_in %>
   Hi, <%= current_user.email %>!
   <%= button_to "Log Out", session_url, method: :delete %>
+  <%= link_to "Words", words_url %> | <%= link_to "Subdivisions", subdivisions_url %> | 
+  <%= link_to "Curriculums", curriculums_url %> | <%= link_to "Tags", tags_url %>
 <% else %>
   <%= link_to "Log In", new_session_url %>
 <% end %>
