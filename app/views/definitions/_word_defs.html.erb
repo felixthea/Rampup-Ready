@@ -47,6 +47,7 @@
           <div class="def-footer group">
             <%= link_to "Edit", edit_definition_url(definition.id) if have_permission %>
             <%= button_to "Delete", definition_url(definition.id), method: :delete if have_permission %>
+            <%= link_to "Send Definition", email_definition_url(definition.id) %>
           </div>
         </div>
         <% end %>

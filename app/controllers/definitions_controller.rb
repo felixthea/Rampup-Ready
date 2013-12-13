@@ -68,4 +68,13 @@ class DefinitionsController < ApplicationController
     redirect_to word_url(word)
   end
 
+  def new_email_definition
+    @definition = Definition.find(params[:id])
+    @recipients = User.all
+    @messages = Message.all
+    @message = Message.new
+    @message.subject = "New definition to learn!"
+    @message.body = "#{@definition.word.name}: #{@definition.body}"
+    render 'messages/index'
+  end
 end

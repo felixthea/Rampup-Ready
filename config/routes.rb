@@ -19,6 +19,7 @@ Workwiki::Application.routes.draw do
       post 'downvote', :to => 'votes#create_downvote'
       delete 'upvote', :to => 'votes#destroy_upvote'
       delete 'downvote', :to => 'votes#destroy_downvote'
+      get 'email', :to => 'definitions#new_email_definition'
     end
   end
 

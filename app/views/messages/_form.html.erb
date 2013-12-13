@@ -14,7 +14,7 @@
   <input type="text" id="message_subject" name="message[subject]" value="<%= @message.subject %>">
    <br>
   <label for="message_body">Body:</label>
-  <input type="text" id="message_body" name="message[body]" value="<%= @message.body %>">
+  <textarea id="message_body" name="message[body]" rows="5" cols="50"><%= @message.body %></textarea>
    <br>
   <input type="Submit" value="Send Message">
 </form>

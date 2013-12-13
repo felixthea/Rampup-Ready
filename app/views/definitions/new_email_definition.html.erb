@@ -1,0 +1,16 @@
+<form action="<%= send_email_definition_url(@definition.id) %>" method="post">
+  From: <%= current_user.email %>
+  <br>
+  <label for="email_recipient">To:</label>
+  <select name="email[recipient_id]">
+    <% @users.each do |user| %>
+      <option value="<%= user.id %>"><%= user.email %></option>
+    <% end %>
+  </select>
+  <br>
+  <label for="email_text">Body:</label>
+  <br>
+  <textarea id="email_text" name="email[text]" rows="8" cols="50"><%= @definition.word.name %>: <%= @definition.body %></textarea>
+  <br>
+  <input type="Submit" value="Email Definition">
+</form>
