@@ -1,3 +1,4 @@
+<h2>Create Curriculum</h2>
 <form action="<%= curriculums_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="curriculum_name">Curriculum:</label>
@@ -7,7 +8,7 @@
   <input type="text" id="curriculum_description" name="curriculum[description]" value="<%= @curriculum.description %>">
   <br>
   <br>
-  Definitions:
+  <h3>Definitions:</h3>
   <ul>
     <% @definitions.each do |definition| %>
       <% checked = @curriculum.definitions.include?(definition) ? "checked" : "" %>
