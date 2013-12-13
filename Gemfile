@@ -18,12 +18,12 @@ gem 'jquery-rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'quiet_assets'
-  gem 'thin'
+  # gem 'quiet_assets'
+  # gem 'thin'
   gem 'letter_opener'
 end
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'figaro'
