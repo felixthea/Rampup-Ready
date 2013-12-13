@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     self.save!
     self.session_token
   end
+  
+  def self.generate_random_password
+    SecureRandom.urlsafe_base64(4)
+  end
 
   private
 

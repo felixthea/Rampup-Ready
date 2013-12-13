@@ -1,5 +1,11 @@
 Workwiki::Application.routes.draw do
-  resources :users
+  resources :users do
+    collection do 
+      get 'bulk_new', to: 'users#bulk_new'
+      post 'bulk_add', to: 'users#bulk_add'
+    end
+  end
+  
   resource :session, only: [:new, :create, :destroy]
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]

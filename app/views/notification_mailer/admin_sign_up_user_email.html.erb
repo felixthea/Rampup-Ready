@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	You have been invited by <%= @sender.email %>.  Your password is <%= @password %>.
+	<br>
+	<%= link_to "Click here to log in", new_session_url %>.
+</body>
+</html>

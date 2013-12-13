@@ -1,0 +1,14 @@
+<form action="<%= bulk_add_users_url %>" method="POST">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label for="user_email">Email:</label>
+	<input type="text" id="user_email" name="user[email]">
+	<br>
+	Subdivision
+	<select name="user[subdivision_id]">
+		<% @subdivisions.each do |subdivision| %>
+			<option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+		<% end %>
+	</select>
+	<br>
+	<input type="Submit" value="Add User">
+</form>
