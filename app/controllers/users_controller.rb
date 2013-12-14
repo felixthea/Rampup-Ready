@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   def set_new_password
     token = params[:token]
     user = User.find_by_forgot_password_token(token)
-    if token == nil || @user.nil?
+    if token == nil || user.nil?
       flash[:errors] = ["You are not authorized to visit that page."]
       redirect_to :root
     else
