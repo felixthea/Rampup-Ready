@@ -52,6 +52,7 @@ class UsersController < ApplicationController
   
   def favorites
     @definition_faves = DefinitionFave.find_all_by_user_id(current_user.id)
+    @curriculum_faves = CurriculumFave.find_all_by_user_id(current_user.id)
     render 'favorites/index'
   end
 
