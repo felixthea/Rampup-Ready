@@ -1,7 +1,7 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password_digest, :subdivision_id, :session_token, :password, :admin
+  attr_accessible :email, :password_digest, :subdivision_id, :session_token, :password, :admin, :forgot_password_token
   attr_accessor :password
 
   validates :email, :password_digest, :subdivision_id, :session_token,
@@ -59,6 +59,11 @@ class User < ActiveRecord::Base
 
   def self.generate_random_password
     SecureRandom.urlsafe_base64(4)
+  end
+  
+  def set_forgot_pw_token!
+    self.forgot_password_token = SecureRandom.urlsafe_base64(16)
+    self.save!
   end
 
   private

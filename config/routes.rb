@@ -37,6 +37,10 @@ Workwiki::Application.routes.draw do
   resources :curriculum_definitions, only: [:create, :destroy, :new]
   resources :messages
   get 'favorites', to: 'users#favorites'
+  get 'forgot_password', to: 'users#forgot_password'
+  post 'send_forgot_password_email', to: 'users#send_forgot_password_email'
+  get 'set_new_password', to: 'users#set_new_password'
+  post 'update_password', to: 'users#update_password'
 
   root to: "words#index"
 end

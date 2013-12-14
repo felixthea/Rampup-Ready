@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214182448) do
+ActiveRecord::Schema.define(:version => 20131214202613) do
 
   create_table "curriculum_definitions", :force => true do |t|
     t.integer  "definition_id"
@@ -129,16 +129,18 @@ ActiveRecord::Schema.define(:version => 20131214182448) do
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                              :null => false
-    t.string   "password_digest",                    :null => false
-    t.integer  "subdivision_id",                     :null => false
-    t.string   "session_token",                      :null => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "admin",           :default => false
+    t.string   "email",                                    :null => false
+    t.string   "password_digest",                          :null => false
+    t.integer  "subdivision_id",                           :null => false
+    t.string   "session_token",                            :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.boolean  "admin",                 :default => false
+    t.string   "forgot_password_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["forgot_password_token"], :name => "index_users_on_forgot_password_token"
 
   create_table "votes", :force => true do |t|
     t.integer  "vote"
