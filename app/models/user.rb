@@ -11,40 +11,23 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
 
-  belongs_to(
-    :subdivision,
-    class_name: "Subdivision",
-    foreign_key: :subdivision_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :definitions,
-    class_name: "Definition",
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :votes,
-    class_name: "Vote",
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-
+  belongs_to :sub_division
+  has_many :definitions
+  has_many :votes 
   has_many(
     :sent_messages,
     class_name: "Message",
     foreign_key: :sender_id,
     primary_key: :id
   )
-
   has_many(
     :received_messages,
     class_name: "Message",
     foreign_key: :recipient_id,
     primary_key: :id
   )
+  has_many :definition_faves
+  has_many :favorite_definitions, through: :definition_faves, source: :definition
 
   def self.find_by_credentials(email, secret)
     user = User.find_by_email(email)

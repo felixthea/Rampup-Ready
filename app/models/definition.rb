@@ -26,51 +26,14 @@ class Definition < ActiveRecord::Base
     return total_score
   end
 
-  belongs_to(
-    :word,
-    class_name: "Word",
-    foreign_key: :word_id,
-    primary_key: :id
-  )
-
-  belongs_to(
-    :user,
-    class_name: "User",
-    foreign_key: :user_id,
-    primary_key: :id
-  )
-
-  belongs_to(
-    :subdivision,
-    class_name: "Subdivision",
-    foreign_key: :subdivision_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :examples,
-    class_name: "Example",
-    foreign_key: :definition_id,
-    primary_key: :id,
-    inverse_of: :definition
-  )
-
-  has_many(
-    :votes,
-    class_name: "Vote",
-    foreign_key: :definition_id,
-    primary_key: :id
-  )
-
-  has_many(
-    :taggings,
-    class_name: "Tagging",
-    foreign_key: :definition_id,
-    primary_key: :id
-  )
-
+  belongs_to :word
+  belongs_to :user
+  belongs_to :subdivision
+  has_many :examples
+  has_many :votes
+  has_many :taggings
   has_many :tags, through: :taggings, source: :tag
-
   has_many :curriculum_definitions
   has_many :curriculums, through: :curriculum_definitions, source: :curriculum
+  has_many :definition_faves, dependent: :destroy
 end

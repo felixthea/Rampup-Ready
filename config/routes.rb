@@ -20,6 +20,8 @@ Workwiki::Application.routes.draw do
       delete 'upvote', :to => 'votes#destroy_upvote'
       delete 'downvote', :to => 'votes#destroy_downvote'
       get 'email', :to => 'definitions#new_email_definition'
+      post 'favorite', to: 'definition_faves#favorite'
+      delete 'unfavorite', to: 'definition_faves#unfavorite'
     end
   end
 
@@ -32,6 +34,7 @@ Workwiki::Application.routes.draw do
   end
   resources :curriculum_definitions, only: [:create, :destroy, :new]
   resources :messages
+  
 
   root to: "words#index"
 end
