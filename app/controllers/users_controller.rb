@@ -49,5 +49,10 @@ class UsersController < ApplicationController
       render :bulk_new
     end
   end
+  
+  def favorites
+    @definition_faves = DefinitionFave.find_all_by_user_id(current_user.id)
+    render 'favorites/index'
+  end
 
 end

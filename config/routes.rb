@@ -34,7 +34,7 @@ Workwiki::Application.routes.draw do
   end
   resources :curriculum_definitions, only: [:create, :destroy, :new]
   resources :messages
-  
+  get 'favorites', to: 'users#favorites'
 
   root to: "words#index"
 end

@@ -1,0 +1,9 @@
+<ul>
+	<% @definition_faves.each do |definition_fave| %>
+		<% definition = definition_fave.definition %>
+		<% word = definition.word %>
+		<li>
+			<%= word.name %>: <%= definition.body %>
+		</li>
+	<% end %>
+</ul>
