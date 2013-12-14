@@ -20,3 +20,5 @@ Definitions
   <input type="text" name="recipient[email]" id="recipient_email">
   <input type="Submit" value="Send Curriculum">
 </form>
+<%= button_to "Mark as Favorite", favorite_curriculum_url(@curriculum.id) %>
+<%= button_to "Unfavorite", unfavorite_curriculum_url(@curriculum.id), method: :delete %>

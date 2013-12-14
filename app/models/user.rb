@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   )
   has_many :definition_faves
   has_many :favorite_definitions, through: :definition_faves, source: :definition
+  has_many :curriculum_faves
+  has_many :favorite_curriculums, through: :curriculum_faves, source: :curriculum
 
   def self.find_by_credentials(email, secret)
     user = User.find_by_email(email)

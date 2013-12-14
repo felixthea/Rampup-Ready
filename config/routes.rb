@@ -30,6 +30,8 @@ Workwiki::Application.routes.draw do
   resources :curriculums do
     member do
       post 'email', to: 'curriculums#email'
+      post 'favorite', to: 'curriculum_faves#favorite'
+      delete 'unfavorite', to: 'curriculum_faves#unfavorite'
     end
   end
   resources :curriculum_definitions, only: [:create, :destroy, :new]

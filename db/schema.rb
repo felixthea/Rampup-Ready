@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214172033) do
+ActiveRecord::Schema.define(:version => 20131214182448) do
 
   create_table "curriculum_definitions", :force => true do |t|
     t.integer  "definition_id"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20131214172033) do
   add_index "curriculum_definitions", ["curriculum_id"], :name => "index_curriculum_definitions_on_curriculum_id"
   add_index "curriculum_definitions", ["definition_id", "curriculum_id"], :name => "index_curriculum_definitions_on_definition_id_and_curriculum_id", :unique => true
   add_index "curriculum_definitions", ["definition_id"], :name => "index_curriculum_definitions_on_definition_id"
+
+  create_table "curriculum_faves", :force => true do |t|
+    t.integer  "curriculum_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "curriculum_faves", ["curriculum_id", "user_id"], :name => "index_curriculum_faves_on_curriculum_id_and_user_id", :unique => true
+  add_index "curriculum_faves", ["curriculum_id"], :name => "index_curriculum_faves_on_curriculum_id"
+  add_index "curriculum_faves", ["user_id"], :name => "index_curriculum_faves_on_user_id"
 
   create_table "curriculums", :force => true do |t|
     t.integer  "user_id",                  :null => false

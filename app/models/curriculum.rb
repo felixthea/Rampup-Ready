@@ -5,4 +5,5 @@ class Curriculum < ActiveRecord::Base
 
   has_many :curriculum_definitions
   has_many :definitions, through: :curriculum_definitions, source: :definition
+  has_many :curriculum_faves
 end
