@@ -8,10 +8,15 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
-    @sender = User.find(@message.sender_id)
-    @message.read = true
-    @message.save
-    render :show
+    if is_current_user?(@message.recipient_id)
+      @sender = User.find(@message.sender_id)
+      @message.read = true
+      @message.save
+      render :show
+    else
+      flash[:errors] = ["You are not authorized to view this message."]
+      redirect_to new_session_url
+    end
   end
 
   def new
