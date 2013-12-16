@@ -32,7 +32,8 @@
 			<%= link_to "Inbox" + unread_messages, messages_url if user_logged_in %>
 			<ul class="inbox-options">
 				<li><%= link_to "Compose New Message", new_message_url %></li>
-				<li><%= link_to "Read Messages", messages_url %></li>
+				<li><%= link_to "Received Messages", messages_url %></li>
+        <li><%= link_to "Sent Messages", sent_messages_url %></li>
 			</ul>
 		</li>
 		<li><%= link_to "Favorites", favorites_url if user_logged_in %></li>

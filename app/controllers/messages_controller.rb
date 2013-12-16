@@ -1,15 +1,19 @@
 class MessagesController < ApplicationController
   def index
     @messages = Message.find_all_by_recipient_id(current_user.id)
-    @message = Message.new
-    @recipients = User.all
     render :index
+  end
+
+  def sent_index
+    @messages = Message.find_all_by_sender_id(current_user.id)
+    render :sent
   end
 
   def show
     @message = Message.find(params[:id])
     if is_current_user?(@message.recipient_id)
       @sender = User.find(@message.sender_id)
+      @recipient = User.find(@message.recipient_id)
       @message.read = true
       @message.save
       render :show

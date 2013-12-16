@@ -35,7 +35,12 @@ Workwiki::Application.routes.draw do
     end
   end
   resources :curriculum_definitions, only: [:create, :destroy, :new]
-  resources :messages
+  resources :messages do
+    collection do
+      get 'sent', :to => 'messages#sent_index'
+    end
+  end
+
   get 'favorites', to: 'users#favorites'
   get 'forgot_password', to: 'users#forgot_password'
   post 'send_forgot_password_email', to: 'users#send_forgot_password_email'
