@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  
 
   before_filter :require_current_user!, except: [:new, :create]
+  before_filter :require_admin!, only: [:bulk_add, :bulk_new]
   def index
     @users = User.all
     render :new
