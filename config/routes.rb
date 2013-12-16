@@ -46,6 +46,6 @@ Workwiki::Application.routes.draw do
   post 'send_forgot_password_email', to: 'users#send_forgot_password_email'
   get 'set_new_password', to: 'users#set_new_password'
   post 'update_password', to: 'users#update_password'
-
+  resource :search, only: [:new, :create, :destroy]
   root to: "words#index"
 end

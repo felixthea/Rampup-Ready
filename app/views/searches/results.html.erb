@@ -1,0 +1,8 @@
+<h2>Search Results for "<%= @keyword %>"</h2>
+<ul>
+  <% @results.each do |result| %>
+    <li>
+      <%= link_to result.name, word_url(result.id) %>
+    </li>
+  <% end %>
+</ul>

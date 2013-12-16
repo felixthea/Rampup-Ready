@@ -14,8 +14,6 @@ class Word < ActiveRecord::Base
       all_tags += definition.tags
     end
 
-
-
     all_words.each do |word|
       next if word == self
       word.definitions.each do |word_definition|
