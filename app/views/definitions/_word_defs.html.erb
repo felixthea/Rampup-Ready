@@ -12,10 +12,10 @@
             <div class="vote-info group">
 				<% if user_logged_in %>
 					<div class="upvote">
-					 <%= button_to "Upvote", upvote_definition_url(definition.id) %>
+            <%= button_to "Upvote", upvote_definition_url(definition.id) %>
 					</div>
 					<div class="downvote">
-					<%= button_to "Downvote", downvote_definition_url(definition.id) %>
+            <%= button_to "Downvote", downvote_definition_url(definition.id) %>
 					</div>
 				<% end %>
               <div class="total-votes">
