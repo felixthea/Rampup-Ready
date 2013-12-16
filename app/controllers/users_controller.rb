@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+
+  before_filter :require_current_user!, except: [:new, :create]
   def index
     @users = User.all
     render :new

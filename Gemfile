@@ -28,6 +28,7 @@ end
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'figaro'
 gem 'addressable'
+gem 'backbone-on-rails'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

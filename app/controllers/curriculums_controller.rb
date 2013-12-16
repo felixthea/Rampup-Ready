@@ -1,5 +1,6 @@
 class CurriculumsController < ApplicationController
 
+  before_filter :require_current_user!
   before_filter :require_curriculum_creator_or_admin!, only: [:edit, :update, :destroy]
 
   def index

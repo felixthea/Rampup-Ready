@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
 
+  before_filter :require_current_user!
   before_filter :require_admin!, only: [:destroy]
 
   def index
