@@ -13,7 +13,7 @@
  */
 
 
-body, header, h1, h2, h3, div{
+body, header, h1, h2, h3, div, nav ul, nav li{
   margin:0;
   padding:0;
   border:0;
@@ -31,7 +31,7 @@ body{
 }
 
 header{
-  background: #FFC652;
+  background: #4e7ca0;
   width: 1000px;
   margin: auto;
   margin-top: 50px;
@@ -54,6 +54,12 @@ header .search{
   float: left;
 }
 
+.bottom-header nav {
+	float: right;
+	width: 700px;
+	background: #40627C;
+}
+
 .bottom-header > nav > ul {
   float: right;
 }
@@ -66,6 +72,30 @@ header .search{
 .bottom-header > nav > ul > li {
   float: left;
   padding: 5px;
+  position: relative;
+}
+
+.bottom-header .inbox-options {
+	display: none;
+	background: #FFC652;
+	width: 200px;
+	left: 4px;
+	top: 29px;
+	border: 2px solid black;
+}
+
+.bottom-header > nav > ul > li:hover .inbox-options{
+	display: block;
+	position: absolute;
+}
+
+.bottom-header .inbox-options li{
+	list-style-type: none;
+	border-top: 1px solid black;
+}
+
+.bottom-header .inbox-options li:nth-child(1){
+	border-top:none;
 }
 
 .container{
@@ -96,7 +126,6 @@ header .search{
 
 .def-footer > a{
   float: left;
-
 }
 
 .def-footer > form{
