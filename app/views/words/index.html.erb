@@ -1,3 +1,24 @@
-<script type="application/json" id="bootstrapped-words">
-  <%= Word.all.to_json(include: :definitions).html_safe %>
-</script>
+<div class="words-wrapper group">
+  <div class="add-words-form group">
+    <h2>Add Word</h2>
+    <form action="<%= words_url %>">
+      <label for="word_name">Word:</label>
+      <input type="text" name="word[name]" id="word_name">
+      <button class="createWord">Add Word</button>
+    </div>
+  </div>
+  <div class="words-list">
+    <h2>Words</h2>
+    <div class="words">
+      <% @words.each do |word| %>
+        <div class="word">
+          <div class="word-info group">
+            <a href="#" data-id="<%= word.id %>"><%= word.name %></a>
+            <button data-id="<%= word.id %>">Delete</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
