@@ -22,3 +22,19 @@
 //= require_tree ./routers
 //= require_tree .
 //= require jquery.serializeJSON.js
+
+$(document).ready(function(){
+  $('#new-word-form').on('ajax:success', function(event, data){
+    event.preventDefault();
+    $form = $(this);
+    $('.words').append(data);
+    $form[0].reset();
+  })
+
+
+  $('.word-info').on('ajax:success', function(event, data){
+    event.preventDefault();
+    console.log(event);
+    console.log(data);
+  })
+});

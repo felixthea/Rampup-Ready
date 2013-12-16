@@ -1,0 +1,7 @@
+<div class="word">
+  <div class="word-info group">
+    <%= link_to word.name, "#" %>
+    <!-- <button class="delete-word">Delete</button> -->
+    <%= button_to "Delete", word_url(word.id), method: :delete, remote: true %>
+  </div>
+</div>

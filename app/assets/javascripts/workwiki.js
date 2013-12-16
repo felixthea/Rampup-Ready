@@ -17,5 +17,5 @@ window.Workwiki = {
 };
 
 $(document).ready(function(){
-  Workwiki.initialize();
+  // Workwiki.initialize();
 });

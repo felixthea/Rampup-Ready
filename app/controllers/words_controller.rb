@@ -31,8 +31,12 @@ class WordsController < ApplicationController
   def create
     @word = Word.new(params[:word])
     if @word.save
-      flash[:notice] = ["#{@word.name} created successfully."]
-      redirect_to @word
+      if request.xhr?
+        render partial: 'word', locals: {word: @word}
+      else
+        flash[:notice] = ["#{@word.name} created successfully."]
+        redirect_to @word
+      end
     else
       flash[:errors] = @word.errors.full_messages
       render :new
@@ -40,8 +44,14 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    @word = Word.find(params[:id])
-    @word.destroy
-    redirect_to words_url
+    if request.xhr?
+      @word = Word.find(params[:id])
+      @word.destroy
+      redirect_to words_url
+    else
+      @word = Word.find(params[:id])
+      @word.destroy
+      redirect_to words_url
+    end
   end
 end
