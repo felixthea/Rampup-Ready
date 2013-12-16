@@ -28,6 +28,5 @@ Workwiki.Views.WordsIndex = Backbone.View.extend({
 
     var newWord = $('#word_name').val();
     resp = that.collection.create({name: newWord});
-    console.log(resp.get("id"));
   }
 });
