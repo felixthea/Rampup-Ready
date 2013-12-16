@@ -6,7 +6,10 @@ class WordsController < ApplicationController
   def index
     @words = Word.all
     @word = Word.new
-    render :index
+    respond_to do |format|
+      format.html
+      format.json { render json: @words }
+    end
   end
 
   def show

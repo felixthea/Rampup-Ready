@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   belongs_to :sub_division
   has_many :definitions
-  has_many :votes 
+  has_many :votes
   has_many(
     :sent_messages,
     class_name: "Message",
@@ -26,7 +26,13 @@ class User < ActiveRecord::Base
     foreign_key: :recipient_id,
     primary_key: :id
   )
-  has_many :definition_faves
+  has_many(
+    :definition_faves,
+    class_name: "DefinitionFave",
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
   has_many :favorite_definitions, through: :definition_faves, source: :definition
   has_many :curriculum_faves
   has_many :favorite_curriculums, through: :curriculum_faves, source: :curriculum
@@ -60,7 +66,7 @@ class User < ActiveRecord::Base
   def self.generate_random_password
     SecureRandom.urlsafe_base64(4)
   end
-  
+
   def set_forgot_pw_token!
     self.forgot_password_token = SecureRandom.urlsafe_base64(16)
     self.save!

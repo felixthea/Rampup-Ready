@@ -56,7 +56,6 @@ header .search{
 
 .bottom-header nav {
 	float: right;
-	width: 700px;
 	background: #40627C;
 }
 
@@ -133,6 +132,8 @@ header .search{
   padding-left: 5px;
 }
 
+/*Words*/
+
 .word{
   float: left;
 }
@@ -143,4 +144,38 @@ header .search{
 
 .vote-info > .upvote, .downvote, .total-votes{
   float: left;
+}
+
+.words-wrapper{
+  padding: 40px;
+}
+
+.add-words-form {
+  float: right;
+  width: 300px;
+}
+
+.add-words-form h2{
+  float: right;
+  width: 300px;
+}
+
+.words-list{
+  float: left;
+  width: 620px;
+}
+
+.words-list .word {
+  width: 620px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.words-list .word a {
+  float: left;
+}
+
+.words-list .word form {
+  float: left;
+  margin-left: 5px;
 }

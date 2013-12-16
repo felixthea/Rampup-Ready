@@ -35,5 +35,11 @@ class Definition < ActiveRecord::Base
   has_many :tags, through: :taggings, source: :tag
   has_many :curriculum_definitions
   has_many :curriculums, through: :curriculum_definitions, source: :curriculum
-  has_many :definition_faves, dependent: :destroy
+  has_many(
+    :definition_faves,
+    class_name: "DefinitionFave",
+    foreign_key: :definition_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
 end
