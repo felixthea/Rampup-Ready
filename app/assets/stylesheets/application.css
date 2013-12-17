@@ -13,7 +13,7 @@
  */
 
 
-body, header, h1, h2, h3, div, nav ul, nav li{
+body, header, h1, h2, h3, div, nav ul, nav li, p{
   margin:0;
   padding:0;
   border:0;
@@ -62,14 +62,23 @@ header .top-header-left{
 
 header .top-header-right{
   float: right;
+  width: 600px;
 }
 
 header .sign-in-up-out{
+  float: right;
+}
+
+header .sign-in-up-out p {
+  float: left;
+}
+
+header .sign-in-up-out .button-to {
   float: left;
 }
 
 header .search{
-  float: left;
+  float: right;
 }
 
 .bottom-header nav {
@@ -230,6 +239,10 @@ header .search{
 /*Curriculums*/
 
 .curriculums-wrapper{
+  padding: 40px;
+}
+
+.new-curriculum-wrapper{
   padding: 40px;
 }
 

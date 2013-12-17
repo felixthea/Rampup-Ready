@@ -1,21 +1,23 @@
-<h2>Create Curriculum</h2>
-<form action="<%= curriculums_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="curriculum_name">Curriculum:</label>
-  <input type="text" id="curriculum_name" name="curriculum[name]" value="<%= @curriculum.name %>">
-  <br>
-  <label for="curriculum_description">Description:</label>
-  <input type="text" id="curriculum_description" name="curriculum[description]" value="<%= @curriculum.description %>">
-  <br>
-  <br>
-  <h3>Definitions:</h3>
-  <ul>
-    <% @definitions.each do |definition| %>
-      <% checked = @curriculum.definitions.include?(definition) ? "checked" : "" %>
-      <li>
-        <input type="checkbox" name="curriculum[definition_ids][]" value="<%= definition.id %>" <%= checked.html_safe %>><%= definition.word.name %>: <%= definition.body %></input>
-      </li>
-    <% end %>
-  </ul>
-  <input type="Submit" value="Create Curriculum">
-</form>
+<div class="new-curriculum-wrapper">
+  <h2>Create Curriculum</h2>
+  <form action="<%= curriculums_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="curriculum_name">Curriculum:</label>
+    <input type="text" id="curriculum_name" name="curriculum[name]" value="<%= @curriculum.name %>">
+    <br>
+    <label for="curriculum_description">Description:</label>
+    <input type="text" id="curriculum_description" name="curriculum[description]" value="<%= @curriculum.description %>">
+    <br>
+    <br>
+    <h3>Definitions:</h3>
+    <ul>
+      <% @definitions.each do |definition| %>
+        <% checked = @curriculum.definitions.include?(definition) ? "checked" : "" %>
+        <li>
+          <input type="checkbox" name="curriculum[definition_ids][]" value="<%= definition.id %>" <%= checked.html_safe %>><%= definition.word.name %>: <%= definition.body %></input>
+        </li>
+      <% end %>
+    </ul>
+    <input type="Submit" value="Create Curriculum">
+  </form>
+</div>

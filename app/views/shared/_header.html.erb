@@ -6,10 +6,11 @@
       </div>
     </div>
     <div class="top-header-right">
-      <div class="sign-in-up-out">
+      <div class="sign-in-up-out group">
         <% if user_logged_in %>
-          Hi, <%= current_user.email %>!
-          <%= button_to "Log Out", session_url, method: :delete %>
+          <p>Hi, <%= current_user.email %>!</p>
+          <button class="log-out">Log Out</button>
+          <!-- <%= button_to "Log Out", session_url, method: :delete %> -->
         <% else %>
           <%= link_to "Log In", new_session_url %> | <%= link_to "Sign Up", new_user_url %>
         <% end %>
