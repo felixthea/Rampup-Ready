@@ -156,7 +156,7 @@ $(document).ready(function(){
 
   $('.nav-bar-inbox').on('click', 'a', function(event){
     event.preventDefault();
-    $('.bottom-nav').removeClass('hidden');
+    $('.bottom-nav').toggleClass('hidden');
   })
 
   // Helper function for showing notices/errors
