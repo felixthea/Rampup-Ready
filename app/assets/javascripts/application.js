@@ -91,6 +91,7 @@ $(document).ready(function(){
     })
   })
 
+  // Unfavoriting a definition in words#show
   $('.definitions').on('click', '.mark-unfavorite', function(event) {
     event.preventDefault();
     var definitionId = $(event.target).attr("data-id");
@@ -108,6 +109,47 @@ $(document).ready(function(){
     })
   });
 
+  // Upvoting a definition in words#show
+  $('.definitions').on('click', '.upvote', function(event) {
+    event.preventDefault();
+    var definitionId = $(event.target).attr("data-id")
+
+    $.ajax({
+      url: '/definitions/' + definitionId + '/upvote',
+      type: 'POST',
+      success: function(response){
+        flashNotice("Upvoted!");
+        total = response.total;
+        upvotes = response.upvotes;
+        downvotes = response.downvotes;
+        updateVoteCount(definitionId, total, upvotes, downvotes);
+      },
+      error: function(response){
+        flashNotice(response.responseText);
+      }
+    })
+  });
+
+  // Downvoting definition in words#show
+  $('.definitions').on('click', '.downvote', function(event){
+    var definitionId = $(event.target).attr("data-id");
+
+    $.ajax({
+      url: '/definitions/' + definitionId + '/downvote',
+      type: 'POST',
+      success: function(response){
+        flashNotice("Downvoted!");
+        total = response.total;
+        upvotes = response.upvotes;
+        downvotes = response.downvotes;
+        updateVoteCount(definitionId, total, upvotes, downvotes);
+      },
+      error: function(response){
+        flashNotice(response.responseText);
+      }
+    })
+  });
+
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
@@ -119,5 +161,11 @@ $(document).ready(function(){
   var swapFavorite = function () {
     $('.mark-unfavorite').toggleClass('hidden');
     $('.mark-favorite').toggleClass('hidden');
+  }
+
+  var updateVoteCount = function (definitionId, total, upvotes, downvotes) {
+    $('li#' + definitionId).find('li#total-score').html("Total: " + total);
+    $('li#' + definitionId).find('li#sum-upvotes').html("Up: " + upvotes);
+    $('li#' + definitionId).find('li#sum-downvotes').html("Down: " + downvotes);
   }
 });

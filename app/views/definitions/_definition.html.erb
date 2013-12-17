@@ -7,15 +7,16 @@
         </div>
         <div class="vote-info group">
 		<% if user_logged_in %>
-			<div class="upvote">
-        <%= button_to "Upvote", upvote_definition_url(definition.id) %>
-			</div>
-			<div class="downvote">
-        <%= button_to "Downvote", downvote_definition_url(definition.id) %>
-			</div>
+      <button class="upvote" data-id=<%= definition.id %>>Upvote</button>
+      <button class="downvote" data-id=<%= definition.id %>>Downvote</button>
 		<% end %>
           <div class="total-votes">
-             <%= definition.total_score %> (Up: <%= definition.sum_upvotes %> | Down: <%= definition.sum_downvotes %>)
+            <ul>
+              <li id="total-score">Total: <%= definition.total_score %></li>
+              <li id="sum-upvotes">Up: <%= definition.sum_upvotes %></li>
+              <li id="sum-downvotes">Down: <%= definition.sum_downvotes %></li>
+            </ul>
+             <!-- <%= definition.total_score %> (Up: <%= definition.sum_upvotes %> | Down: <%= definition.sum_downvotes %>) -->
           </div>
         </div>
       </div>
