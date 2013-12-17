@@ -44,14 +44,8 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    if request.xhr?
-      @word = Word.find(params[:id])
-      @word.destroy
-      redirect_to words_url
-    else
-      @word = Word.find(params[:id])
-      @word.destroy
-      redirect_to words_url
-    end
+    @word = Word.find(params[:id])
+    @word.destroy
+    render :json => { status: 200 }
   end
 end

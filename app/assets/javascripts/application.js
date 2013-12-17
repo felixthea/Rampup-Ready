@@ -31,10 +31,22 @@ $(document).ready(function(){
     $form[0].reset();
   })
 
-
-  $('.word-info').on('ajax:success', function(event, data){
+  $('.words-list').on('click', 'button', function(event){
     event.preventDefault();
-    console.log(event);
-    console.log(data);
+    $wordId = $(event.target).attr("data-id")
+    $.ajax({
+      url: '/words/' + $wordId,
+      type: 'DELETE',
+      success: function(response){
+        console.log(response)
+        $('.words').find('#' + $wordId).remove();
+      }
+    })
   })
+  //
+  // $('.word-info').on('ajax:success', function(event, data){
+  //   event.preventDefault();
+  //   console.log($(event.target).find('div'));
+  //   console.log(data);
+  // })
 });
