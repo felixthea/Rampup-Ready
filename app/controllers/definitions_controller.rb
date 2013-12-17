@@ -18,9 +18,10 @@ class DefinitionsController < ApplicationController
     word_id = params[:word_id]
     user_id = current_user.id
     tag_ids = params[:definition][:tag_ids]
-
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids)
     @definition.examples.new(params[:example])
+
+
     if @definition.save
       flash[:notice] = ["Thanks! Your definition was added!"]
       redirect_to word_url(word_id)

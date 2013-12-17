@@ -29,7 +29,14 @@ class Definition < ActiveRecord::Base
   belongs_to :word
   belongs_to :user
   belongs_to :subdivision
-  has_many :examples
+  has_many(
+    :examples,
+    class_name: "Example",
+    foreign_key: :definition_id,
+    primary_key: :id,
+    inverse_of: :definition,
+    dependent: :destroy
+  )
   has_many :votes
   has_many :taggings
   has_many :tags, through: :taggings, source: :tag
