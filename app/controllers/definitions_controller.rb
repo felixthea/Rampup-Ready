@@ -21,18 +21,21 @@ class DefinitionsController < ApplicationController
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids)
     @definition.examples.new(params[:example])
 
-    if @definition.save
-      if request.xhr?
+    if request.xhr?
+      if @definition.save
         render partial: 'definitions/definition', locals: { definition: @definition }
       else
-        flash[:notice] = ["Thanks! Your definition was added!"]
-        redirect_to word_url(word_id)
+        render :json => @definition.errors.full_messages, status: 422
       end
     else
-      flash[:errors] = @definition.errors.full_messages
-      redirect_to word_url(word_id)
+      if @definition.save
+        flash[:notice] = ["Thanks! Your definition was added!"]
+        redirect_to word_url(word_id)
+      else
+        flash[:errors] = @definition.errors.full_messages
+        redirect_to word_url(word_id)
+      end
     end
-
   end
 
   def edit
@@ -69,8 +72,14 @@ class DefinitionsController < ApplicationController
     definition = Definition.find(params[:id])
     word = definition.word
     definition.destroy
-    flash[:notice] = ["Definition deleted from #{word.name}."]
-    redirect_to word_url(word)
+
+    if request.xhr?
+      render json: {status: 200}
+    else
+      flash[:notice] = ["Definition deleted from #{word.name}."]
+      redirect_to word_url(word)
+    end
+
   end
 
   def new_email_definition

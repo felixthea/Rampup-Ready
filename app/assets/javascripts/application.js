@@ -24,7 +24,7 @@
 //= require jquery.serializeJSON.js
 
 $(document).ready(function(){
-  // Adding new words from the words index page
+  // Adding new words from the words#index page
   $('#new-word-form').on('ajax:success', function(event, data, xhr){
     event.preventDefault();
     $form = $(this);
@@ -33,7 +33,7 @@ $(document).ready(function(){
     flashNotice("Word Added");
   })
 
-  // Deleting words from the words index page (admin only)
+  // Deleting words from the words#index page (admin only)
   $('.words-list').on('click', 'button', function(event){
     event.preventDefault();
     $wordId = $(event.target).attr("data-id")
@@ -47,8 +47,8 @@ $(document).ready(function(){
     })
   })
 
+  // Adding definitions from words#show
   $('#new-def-form').on('ajax:success', function(event, data, xhr){
-    console.log("in here")
     event.preventDefault();
     $form = $(this);
     $('.definitions ol').append(data);
@@ -56,11 +56,68 @@ $(document).ready(function(){
     flashNotice("Definition Added");
   })
 
-  // Helper function for showing notices/errors
+  // Deleting definitions from words#show
+  $('.definitions').on('click', '.delete-definition', function(event){
+    event.preventDefault();
+    var definitionId = $(event.target).attr("data-id");
+    $.ajax({
+      url: '/definitions/' + definitionId,
+      type: 'DELETE',
+      success: function(response){
+        $('.definitions #' + definitionId).remove();
+        flashNotice("Definition Deleted")
+      },
+      error: function() {
+        console.log("Error")
+      }
+    })
+  })
 
+  // Favoriting a definition in words#show
+  $('.definitions').on('click', '.mark-favorite', function(event){
+    event.preventDefault();
+    var definitionId = $(event.target).attr("data-id");
+
+    $.ajax({
+      url: '/definitions/' + definitionId + '/favorite',
+      type: 'POST',
+      success: function(response) {
+        flashNotice("Definition Favorited");
+        swapFavorite();
+      },
+      error: function(response) {
+        flashNotice(response.responseText)
+      }
+    })
+  })
+
+  $('.definitions').on('click', '.mark-unfavorite', function(event) {
+    event.preventDefault();
+    var definitionId = $(event.target).attr("data-id");
+
+    $.ajax({
+      url: '/definitions/' + definitionId + '/unfavorite',
+      type: 'DELETE',
+      success: function(response) {
+        flashNotice("Definition Unfavorited");
+        swapFavorite();
+      },
+      error: function(response) {
+        flashNotice(response.responseText);
+      }
+    })
+  });
+
+  // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
     $('div.notices').removeClass('hidden');
     $('div.notices').append(message);
+  }
+
+  // Helper function for hiding/unhiding the favorite/unfavorite definition button
+  var swapFavorite = function () {
+    $('.mark-unfavorite').toggleClass('hidden');
+    $('.mark-favorite').toggleClass('hidden');
   }
 });

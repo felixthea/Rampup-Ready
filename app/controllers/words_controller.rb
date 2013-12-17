@@ -18,6 +18,7 @@ class WordsController < ApplicationController
     @definitions = @word.definitions
     @tags = Tag.all
     @related_words = @word.find_related_words
+    @definition_faves = DefinitionFave.all
 
     @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
     render :show
