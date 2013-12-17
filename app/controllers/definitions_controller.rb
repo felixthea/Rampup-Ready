@@ -21,14 +21,18 @@ class DefinitionsController < ApplicationController
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids)
     @definition.examples.new(params[:example])
 
-
     if @definition.save
-      flash[:notice] = ["Thanks! Your definition was added!"]
-      redirect_to word_url(word_id)
+      if request.xhr?
+        render partial: 'definitions/definition', locals: { definition: @definition }
+      else
+        flash[:notice] = ["Thanks! Your definition was added!"]
+        redirect_to word_url(word_id)
+      end
     else
       flash[:errors] = @definition.errors.full_messages
-      redirect_to word_url(word_id) # will want to render word show page without losing user input
+      redirect_to word_url(word_id)
     end
+
   end
 
   def edit

@@ -42,16 +42,19 @@ $(document).ready(function(){
       type: 'DELETE',
       success: function(response){
         $('.words').find('#' + $wordId).remove();
-        flashNotice("Word Deleted")
+        flashNotice("Word Deleted");
       }
     })
   })
 
-  // $('.new-defs-form').on('ajax:success', function(event, data, xhr){
-  //   event.preventDefault();
-  //   $form = $(this);
-  //   $()
-  // })
+  $('#new-def-form').on('ajax:success', function(event, data, xhr){
+    console.log("in here")
+    event.preventDefault();
+    $form = $(this);
+    $('.definitions ol').append(data);
+    $form[0].reset();
+    flashNotice("Definition Added");
+  })
 
   // Helper function for showing notices/errors
 
