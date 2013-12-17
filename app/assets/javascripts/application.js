@@ -24,13 +24,16 @@
 //= require jquery.serializeJSON.js
 
 $(document).ready(function(){
-  $('#new-word-form').on('ajax:success', function(event, data){
+  // Adding new words from the words index page
+  $('#new-word-form').on('ajax:success', function(event, data, xhr){
     event.preventDefault();
     $form = $(this);
     $('.words').append(data);
     $form[0].reset();
+    flashNotice("Word Added");
   })
 
+  // Deleting words from the words index page (admin only)
   $('.words-list').on('click', 'button', function(event){
     event.preventDefault();
     $wordId = $(event.target).attr("data-id")
@@ -38,9 +41,23 @@ $(document).ready(function(){
       url: '/words/' + $wordId,
       type: 'DELETE',
       success: function(response){
-        console.log(response)
         $('.words').find('#' + $wordId).remove();
+        flashNotice("Word Deleted")
       }
     })
   })
+
+  // $('.new-defs-form').on('ajax:success', function(event, data, xhr){
+  //   event.preventDefault();
+  //   $form = $(this);
+  //   $()
+  // })
+
+  // Helper function for showing notices/errors
+
+  var flashNotice = function (message) {
+    $('div.notices').empty();
+    $('div.notices').removeClass('hidden');
+    $('div.notices').append(message);
+  }
 });

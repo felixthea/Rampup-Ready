@@ -7,9 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="notices hidden"></div>
   <%= render 'shared/header' %>
-  <%= render 'shared/errors' %>
-  <%= render 'shared/notices' %>
   <div class="container">
     <%= yield %>
   </div>

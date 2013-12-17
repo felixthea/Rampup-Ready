@@ -4,11 +4,13 @@
     <%= render 'related_words' %>
   </div>
   <div class="word-defs">
-    <%= render '/definitions/word_defs' %>
+    <h3>Definitions</h3>
+    <div class="definitions">
+      <ol>
+        <%= render @definitions %>
+      </ol>
+    </div>
   </div>
-  <!-- <div class="tags">
-    <%= render '/tags/all_word_tags' %>
-  </div> -->
   <div class="new-defs-form">
     <%= render '/definitions/new_defs' %>
   </div>

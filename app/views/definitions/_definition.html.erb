@@ -1,0 +1,52 @@
+<li>
+  	<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
+    <div class="def-container">
+      <div class="def-header group">
+        <div class="word">
+          <h4><%= @word.name %></h4>
+        </div>
+        <div class="vote-info group">
+		<% if user_logged_in %>
+			<div class="upvote">
+        <%= button_to "Upvote", upvote_definition_url(definition.id) %>
+			</div>
+			<div class="downvote">
+        <%= button_to "Downvote", downvote_definition_url(definition.id) %>
+			</div>
+		<% end %>
+          <div class="total-votes">
+             <%= definition.total_score %> (Up: <%= definition.sum_upvotes %> | Down: <%= definition.sum_downvotes %>)
+          </div>
+        </div>
+      </div>
+      <div class="def-body">
+        <div class="definition">
+          <%= definition.body %>
+        </div>
+        <div class="examples">
+          Examples:
+          <ul>
+            <% definition.examples.each do |example| %>
+              <li>
+                <%= example.body %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="tags">
+          Tags:
+          <% definition.tags.each do |tag| %>
+            <%= tag.name %>
+            <%= ",".html_safe if tag != definition.tags.last %>
+          <% end %>
+        </div>
+      </div>
+      <div class="def-footer group">
+        <%= link_to "Edit", edit_definition_url(definition.id) if have_permission %>
+        <%= button_to "Delete", definition_url(definition.id), method: :delete if have_permission %>
+        <%= link_to "Send Definition", email_definition_url(definition.id)  %>
+	<%= button_to "Mark as Favorite", favorite_definition_url(definition.id) %>
+	<%= button_to "Unfavorite", unfavorite_definition_url(definition.id), method: :delete %>
+      </div>
+    </div>
+  </li>

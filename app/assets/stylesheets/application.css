@@ -30,6 +30,23 @@ body{
   background: #4e7ca0;
 }
 
+.hidden{
+  display:none;
+}
+
+.notices{
+  float: left;
+  position: absolute;
+  top:0;
+  left:0;
+  background: #FFC652;
+  color: #9E3200;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  font-weight: bold;
+}
+
 header{
   background: #4e7ca0;
   width: 1000px;
