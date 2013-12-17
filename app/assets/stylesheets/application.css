@@ -196,3 +196,51 @@ header .search{
   float: left;
   margin-left: 5px;
 }
+
+/*Subdivisions*/
+
+.subdivisions-wrapper{
+  padding: 40px;
+}
+
+/*Curriculums*/
+
+.curriculums-wrapper{
+  padding: 40px;
+}
+
+/*Tags*/
+
+.tags-wrapper{
+  padding: 40px;
+}
+
+/*Bulk New*/
+
+.bulk-new-wrapper{
+  padding: 40px;
+}
+
+/*Sent Messages*/
+
+.sent-messages-wrapper{
+  padding: 40px;
+}
+
+/*Received Messages*/
+
+.received-messages-wrapper{
+  padding: 40px;
+}
+
+/*New Message*/
+
+.new-message-wrapper{
+  padding: 40px;
+}
+
+/*Favorites*/
+
+.favorites-wrapper{
+  padding: 40px;
+}

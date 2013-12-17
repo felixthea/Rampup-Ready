@@ -1,9 +1,11 @@
-<h2>Subdivisions</h2>
-<ul>
-  <% @subdivisions.each do |subdivision| %>
-    <li>
-      <%= subdivision.name %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "Add Subdivision", new_subdivision_url %>
+<div class="subdivisions-wrapper">
+  <h2>Subdivisions</h2>
+  <ul>
+    <% @subdivisions.each do |subdivision| %>
+      <li>
+        <%= subdivision.name %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "Add Subdivision", new_subdivision_url %>
+</div>

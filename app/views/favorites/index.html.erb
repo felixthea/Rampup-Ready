@@ -1,20 +1,22 @@
-Favorite Definitions
-<ul>
-	<% @definition_faves.each do |definition_fave| %>
-		<% definition = definition_fave.definition %>
-		<% word = definition.word %>
-		<li>
-			<%= link_to word.name, word_url(word.id) %>: <%= definition.body %>
-		</li>
-	<% end %>
-</ul>
+<div class="favorites-wrapper">
+  <h2>Favorite Definitions</h2>
+  <ul>
+  	<% @definition_faves.each do |definition_fave| %>
+  		<% definition = definition_fave.definition %>
+  		<% word = definition.word %>
+  		<li>
+  			<%= link_to word.name, word_url(word.id) %>: <%= definition.body %>
+  		</li>
+  	<% end %>
+  </ul>
 
-Favorite Curriculums
-<ul>
-	<% @curriculum_faves.each do |curriculum_fave| %>
-		<% curriculum = curriculum_fave.curriculum %>
-		<li>
-			<%= link_to curriculum.name, curriculum_url(curriculum.id) %>
-		</li>
-	<% end %>
-</ul>
+  <h2>Favorite Curriculums</h2>
+  <ul>
+  	<% @curriculum_faves.each do |curriculum_fave| %>
+  		<% curriculum = curriculum_fave.curriculum %>
+  		<li>
+  			<%= link_to curriculum.name, curriculum_url(curriculum.id) %>
+  		</li>
+  	<% end %>
+  </ul>
+</div>

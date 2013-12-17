@@ -1,7 +1,9 @@
-<h2>Add Users</h2>
-<form action="<%= bulk_add_users_url %>" method="POST">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<%= render 'users/bulk_form' %>
-	<input type="Submit" value="Add Users" id="submit-button">
-</form>
-<a href="#" class="more-users">More Users</a>
+<div class='bulk-new-wrapper'>
+  <h2>Add Users</h2>
+  <form action="<%= bulk_add_users_url %>" method="POST">
+  	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  	<%= render 'users/bulk_form' %>
+  	<input type="Submit" value="Add Users" id="submit-button">
+  </form>
+  <a href="#" class="more-users">More Users</a>
+</div>

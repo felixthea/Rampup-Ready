@@ -1,10 +1,12 @@
-<h2>Received Messages</h2>
-<ul>
-  <% @messages.each do |message| %>
-  <% status = message.read ? "read" : "unread" %>
-    <li>
-      <%= link_to message.subject, message_url(message.id) %> from <%= User.find(message.sender_id).email %>
-      <%= time_ago_in_words(message.created_at) %> ago (<%= status.html_safe %>)
-    </li>
-  <% end %>
-</ul>
+<div class="received-messages-wrapper">
+  <h2>Received Messages</h2>
+  <ul>
+    <% @messages.each do |message| %>
+    <% status = message.read ? "read" : "unread" %>
+      <li>
+        <%= link_to message.subject, message_url(message.id) %> from <%= User.find(message.sender_id).email %>
+        <%= time_ago_in_words(message.created_at) %> ago (<%= status.html_safe %>)
+      </li>
+    <% end %>
+  </ul>
+</div>

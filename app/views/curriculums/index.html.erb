@@ -1,9 +1,11 @@
-<h2>Curriculums</h2>
-<ul>
-  <% @curriculums.each do |curriculum| %>
-    <li>
-      <%= link_to curriculum.name, curriculum_url(curriculum.id) %> (<%= pluralize(curriculum.definitions.length, "definition") %>)
-    </li>
-  <% end %>
-</ul>
-<%= link_to "Create Curriculum", new_curriculum_url %>
+<div class="curriculums-wrapper">
+  <h2>Curriculums</h2>
+  <ul>
+    <% @curriculums.each do |curriculum| %>
+      <li>
+        <%= link_to curriculum.name, curriculum_url(curriculum.id) %> (<%= pluralize(curriculum.definitions.length, "definition") %>)
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "Create Curriculum", new_curriculum_url %>
+</div>
