@@ -119,10 +119,7 @@ $(document).ready(function(){
       type: 'POST',
       success: function(response){
         flashNotice("Upvoted!");
-        total = response.total;
-        upvotes = response.upvotes;
-        downvotes = response.downvotes;
-        updateVoteCount(definitionId, total, upvotes, downvotes);
+        updateVoteCount(definitionId, response);
       },
       error: function(response){
         flashNotice(response.responseText);
@@ -139,10 +136,7 @@ $(document).ready(function(){
       type: 'POST',
       success: function(response){
         flashNotice("Downvoted!");
-        total = response.total;
-        upvotes = response.upvotes;
-        downvotes = response.downvotes;
-        updateVoteCount(definitionId, total, upvotes, downvotes);
+        updateVoteCount(definitionId, response);
       },
       error: function(response){
         flashNotice(response.responseText);
@@ -163,7 +157,11 @@ $(document).ready(function(){
     $('.mark-favorite').toggleClass('hidden');
   }
 
-  var updateVoteCount = function (definitionId, total, upvotes, downvotes) {
+  // Helper function for updating the total, upvote, and downvote count when voting.
+  var updateVoteCount = function (definitionId, response) {
+    var total = response.total
+    var upvotes = response.upvotes
+    var downvotes = response.downvotes
     $('li#' + definitionId).find('li#total-score').html("Total: " + total);
     $('li#' + definitionId).find('li#sum-upvotes').html("Up: " + upvotes);
     $('li#' + definitionId).find('li#sum-downvotes').html("Down: " + downvotes);
