@@ -43,10 +43,4 @@ $(document).ready(function(){
       }
     })
   })
-  //
-  // $('.word-info').on('ajax:success', function(event, data){
-  //   event.preventDefault();
-  //   console.log($(event.target).find('div'));
-  //   console.log(data);
-  // })
 });

@@ -1,6 +1,8 @@
 <div class="word" id="<%= word.id %>">
   <div class="word-info group">
-    <%= link_to word.name, "#" %>
-    <button class="delete-word" data-id="<%= word.id %>">Delete</button>
+    <%= link_to word.name, word_url(word.id) %>
+    <% if current_user.admin == true %>
+      <button class="delete-word" data-id="<%= word.id %>">Delete</button>
+    <% end %>
   </div>
 </div>
