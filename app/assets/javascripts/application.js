@@ -49,7 +49,6 @@ $(document).ready(function(){
 
   // Adding definitions from words#show
   $('#new-def-form').on('ajax:success', function(event, data, xhr){
-    event.preventDefault();
     $form = $(this);
     $('.definitions ol').append(data);
     $form[0].reset();
@@ -143,6 +142,17 @@ $(document).ready(function(){
       }
     })
   });
+
+  // Adds more fields for admin to add users
+  $('.more-users').on('click', function(event){
+    $.ajax({
+      url: '/users/add_more',
+      type: 'GET',
+      success: function(response){
+        $('#submit-button').before(response);
+      }
+    })
+  })
 
   // Helper function for showing notices/errors
   var flashNotice = function (message) {

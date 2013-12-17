@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
             presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :admin, inclusion: { in: [true, false] }
+  validates :email, uniqueness: true
 
   before_validation :ensure_session_token
 

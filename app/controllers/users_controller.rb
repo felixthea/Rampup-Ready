@@ -34,35 +34,44 @@ class UsersController < ApplicationController
     render :bulk_new
   end
 
+  def add_more
+    @subdivisions = Subdivision.all
+    render partial: 'users/bulk_form', locals: { subdivisions: @subdivisions }
+  end
+
   def bulk_add
+    new_users = []
     password = User.generate_random_password
-    email = params[:user][:email]
-    subdivision_id = params[:user][:subdivision_id]
-    @user = User.new(email: email, password: password, subdivision_id: subdivision_id)
-    if @user.save
-      msg = NotificationMailer.admin_sign_up_user_email(@user, current_user, password)
-      msg.deliver!
-      flash[:notice] = ["User created."]
-      redirect_to bulk_new_users_url
+
+    params[:users][:email].length.times do |i|
+      new_users << User.new(email: params[:users][:email][i], password: password, subdivision_id: params[:users][:subdivision_id][i])
+    end
+
+    begin
+      ActiveRecord::Base.transaction do
+        new_users.each(&:save)
+
+        unless new_users.all? (&:persisted?)
+          raise 'Users not created.'
+        end
+      end
+    rescue Exception => e
+      render json: e.message
     else
-      @subdivisions = Subdivision.all
-      fail
-      flash[:errors] ||= []
-      flash[:errors] += @user.errors.full_messages
-      render :bulk_new
+      render json: "Users were saved."
     end
   end
-  
+
   def favorites
     @definition_faves = DefinitionFave.find_all_by_user_id(current_user.id)
     @curriculum_faves = CurriculumFave.find_all_by_user_id(current_user.id)
     render 'favorites/index'
   end
-  
+
   def forgot_password
     render :forgot_password
   end
-  
+
   def send_forgot_password_email
     user = User.find_by_email(params[:email])
     user.set_forgot_pw_token!
@@ -71,7 +80,7 @@ class UsersController < ApplicationController
     flash[:notice] = ["Check your email for instructions on resetting your password."]
     redirect_to new_session_url
   end
-  
+
   def set_new_password
     token = params[:token]
     user = User.find_by_forgot_password_token(token)
@@ -83,7 +92,7 @@ class UsersController < ApplicationController
       render :set_new_password
     end
   end
-  
+
   def update_password
     @user = User.find_by_forgot_password_token(params[:token])
     new_password = params[:new_password]

@@ -1,0 +1,9 @@
+<label for="user_email">Email:</label>
+<input type="text" id="user_email" name="users[email][]">
+<select name="users[subdivision_id][]">
+  <option value="">Select a Subdivision</option>
+	<% @subdivisions.each do |subdivision| %>
+		<option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+	<% end %>
+</select>
+<br>

@@ -3,6 +3,7 @@ Workwiki::Application.routes.draw do
     collection do
       get 'bulk_new', to: 'users#bulk_new'
       post 'bulk_add', to: 'users#bulk_add'
+      get 'add_more', to: 'users#add_more'
     end
   end
 
