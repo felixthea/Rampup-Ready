@@ -52,6 +52,7 @@ header{
   width: 1000px;
   margin: auto;
   margin-top: 50px;
+  font-size: 12px;
 }
 
 header .top-header-left{
@@ -88,34 +89,48 @@ header .search{
   position: relative;
 }
 
+.bottom-header > nav > ul > li:last-child{
+  margin-right:0;
+}
+
 .bottom-header > nav > ul > li > a {
   text-decoration: none;
   color: white;
   display: block;
 }
 
-.bottom-header .inbox-options {
-	display: none;
-	background: #FFC652;
-	width: 200px;
-	left: 4px;
-	top: 29px;
-	border: 2px solid black;
+/*.bottom-header .inbox-options {
+  background: #FFC652;
+  width: 200px;
+  left: 4px;
+  top: 29px;
+  border: 2px solid black;
 }
-
+*/
 .bottom-header > nav > ul > li:hover .inbox-options{
 	display: block;
 	position: absolute;
 }
 
-.bottom-header .inbox-options li{
-	list-style-type: none;
-	border-top: 1px solid black;
+.bottom-header .inbox-options{
+  float: right;
 }
 
-.bottom-header .inbox-options li:nth-child(1){
-	border-top:none;
+.bottom-header .inbox-options li{
+	list-style-type: none;
+  float: left;
+  padding: 2px 7px 2px 7px;
 }
+
+.bottom-header .inbox-options li a{
+  text-decoration: none;
+  color: #9E3200;
+  font-weight: bold;
+}
+/*
+.bottom-header .inbox-options li:nth-child(1){
+  border-top:none;
+}*/
 
 .bottom-header .bottom-nav{
   float: right;

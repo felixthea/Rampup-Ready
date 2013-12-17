@@ -154,6 +154,11 @@ $(document).ready(function(){
     })
   })
 
+  $('.nav-bar-inbox').on('click', 'a', function(event){
+    event.preventDefault();
+    $('.bottom-nav').removeClass('hidden');
+  })
+
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
