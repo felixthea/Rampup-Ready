@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       ActiveRecord::Base.transaction do
         new_users.each(&:save)
 
-        unless new_users.all? (&:persisted?)
+        unless new_users.all?(&:persisted?)
           raise 'Users not created.'
         end
       end
