@@ -172,6 +172,24 @@ $(document).ready(function(){
     swapFavoriteCurriculum();
   })
 
+  $('#compose-new-message').on('click', function(event){
+    event.preventDefault();
+    $('.compose-message-modal').toggleClass('hidden');
+    $('.compose-message-modal').css("z-index",2)
+    $('.black_overlay').css("display", "block");
+  })
+
+  $('#close-compose-message-modal').on('click', function(event){
+    closeNewMessageModal();
+  })
+
+  $('.compose-message-form').on('ajax:success', function(event, data, xhr){
+    $form = $(this);
+    $form[0].reset();
+    closeNewMessageModal();
+    flashNotice("Message Sent");
+  })
+
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
@@ -204,5 +222,10 @@ $(document).ready(function(){
     $('li#' + definitionId).find('li#total-score').html("Total: " + total);
     $('li#' + definitionId).find('li#sum-upvotes').html("Up: " + upvotes);
     $('li#' + definitionId).find('li#sum-downvotes').html("Down: " + downvotes);
+  }
+
+  var closeNewMessageModal = function () {
+    $('.black_overlay').css('display', 'none');
+    $('.compose-message-modal').toggleClass('hidden');
   }
 });

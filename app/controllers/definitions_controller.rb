@@ -89,6 +89,6 @@ class DefinitionsController < ApplicationController
     @message = Message.new
     @message.subject = "New definition to learn!"
     @message.body = "#{@definition.word.name}: #{@definition.body}"
-    render 'messages/index'
+    render 'messages/new'
   end
 end

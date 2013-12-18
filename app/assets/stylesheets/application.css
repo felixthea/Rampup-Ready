@@ -58,6 +58,18 @@ body{
   display:none;
 }
 
+.black_overlay{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.6;
+}
+
 .notices{
   float: left;
   position: absolute;
@@ -132,14 +144,6 @@ header .search{
   display: block;
 }
 
-/*.bottom-header .inbox-options {
-  background: #FFC652;
-  width: 200px;
-  left: 4px;
-  top: 29px;
-  border: 2px solid black;
-}
-*/
 .bottom-header > nav > ul > li:hover .inbox-options{
 	display: block;
 	position: absolute;
@@ -171,10 +175,22 @@ header .search{
   background: #FFC652;
 }
 
+.compose-message-modal{
+  position: absolute;
+  width: 500px;
+  height: 200px;
+  top: 25px;
+  left: 200px;
+  background: #fffbce;
+  border: 1px solid #FFC652;
+  padding: 20px;
+}
+
 .container{
   background: white;
   margin: auto;
   width: 1000px;
+  position: relative;
 }
 
 .container > .container-body{

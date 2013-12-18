@@ -20,8 +20,31 @@
   <%= render 'shared/header' %>
   <div class="container">
     <%= yield %>
+    <div class="compose-message-modal hidden">
+      <form action="<%= messages_url %>" method="post" data-remote="true" class="compose-message-form">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        From: <%= current_user.email %>
+        <br>
+        <label for="message_recipient_id">To:</label>
+        <select name="message[recipient_id]">
+          <% User.all.each do |recipient| %>
+            <option value="<%= recipient.id %>"><%= recipient.email %></option>
+          <% end %>
+        </select>
+         <br>
+        <label for="message_subject">Subject:</label>
+        <input type="text" id="message_subject" name="message[subject]">
+         <br>
+        <label for="message_body">Body:</label>
+        <textarea id="message_body" name="message[body]" rows="5" cols="50"></textarea>
+         <br>
+        <input type="Submit" value="Send Message">
+      </form>
+      <a href="#" id="close-compose-message-modal">Close</a>
+    </div>
   </div>
   <footer>
   </footer>
+  <div class="black_overlay"></div>
 </body>
 </html>

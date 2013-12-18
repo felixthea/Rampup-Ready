@@ -36,15 +36,22 @@ class MessagesController < ApplicationController
     params[:message][:sender_id] = current_user.id
     @message = Message.new(params[:message])
     if @message.save
-      msg = NotificationMailer.message_received_email(@message)
-      msg.deliver!
-      flash[:notice] = ["Message sent!"]
-      redirect_to new_message_url
+      if request.xhr?
+        render :json => @message
+      else
+        msg = NotificationMailer.message_received_email(@message)
+        msg.deliver!
+        flash[:notice] = ["Message sent!"]
+        redirect_to new_message_url
+      end
     else
-      flash[:errors] ||= []
-      flash[:errors] += @message.errors.full_messages
-      @recipients = User.all
-      render :new
+      if request.xhr?
+      else
+        flash[:errors] ||= []
+        flash[:errors] += @message.errors.full_messages
+        @recipients = User.all
+        render :new
+      end
     end
   end
 
