@@ -162,21 +162,25 @@ $(document).ready(function(){
 
   // Favoriting curriculum
   $('.unfavorite-curriculum').on('ajax:success', function(event, data, xhr){
-    console.log(data)
+    flashNotice("Curriculum unfavorited")
     swapFavoriteCurriculum();
   })
 
   // Unfavoriting curriculum
   $('.favorite-curriculum').on('ajax:success', function(event, data, xhr){
-    console.log(data)
+    flashNotice("Curriculum favorited")
     swapFavoriteCurriculum();
   })
 
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
+    $('div.notices').fadeIn();
     $('div.notices').removeClass('hidden');
     $('div.notices').append(message);
+    window.setTimeout(function() {
+      $('div.notices').fadeOut();
+    }, 3000)
   }
 
   // Helper function for hiding/unhiding the favorite/unfavorite definition button
