@@ -82,7 +82,7 @@ $(document).ready(function(){
       type: 'POST',
       success: function(response) {
         flashNotice("Definition Favorited");
-        swapFavorite();
+        swapFavorite(definitionId);
       },
       error: function(response) {
         flashNotice(response.responseText)
@@ -100,7 +100,7 @@ $(document).ready(function(){
       type: 'DELETE',
       success: function(response) {
         flashNotice("Definition Unfavorited");
-        swapFavorite();
+        swapFavorite(definitionId);
       },
       error: function(response) {
         flashNotice(response.responseText);
@@ -167,9 +167,9 @@ $(document).ready(function(){
   }
 
   // Helper function for hiding/unhiding the favorite/unfavorite definition button
-  var swapFavorite = function () {
-    $('.mark-unfavorite').toggleClass('hidden');
-    $('.mark-favorite').toggleClass('hidden');
+  var swapFavorite = function (definitionId) {
+		$('li#'+definitionId).find('.mark-unfavorite').toggleClass('hidden');
+		$('li#'+definitionId).find('.mark-favorite').toggleClass('hidden');
   }
 
   // Helper function for updating the total, upvote, and downvote count when voting.
