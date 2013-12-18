@@ -248,9 +248,17 @@ footer{
   margin-left: 5px;
 }
 
-/*Sessions*/
+/*User and Sessions*/
 
 .new-session-wrapper{
+  padding: 40px;
+}
+
+.forgot-password-wrapper{
+  padding: 40px;
+}
+
+.sign-up-wrapper{
   padding: 40px;
 }
 
@@ -268,6 +276,10 @@ footer{
 
 .new-curriculum-wrapper{
   padding: 40px;
+}
+
+.curriculum-wrapper{
+  padding: 40px ;
 }
 
 /*Tags*/
@@ -291,6 +303,10 @@ footer{
 /*Received Messages*/
 
 .received-messages-wrapper{
+  padding: 40px;
+}
+
+.message-wrapper{
   padding: 40px;
 }
 
