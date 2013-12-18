@@ -30,6 +30,17 @@ body{
   background: #4e7ca0;
 }
 
+.social{
+  background: #3F627D;
+}
+
+.social-wrapper{
+  width: 325px;
+  margin: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .hidden{
   display:none;
 }
