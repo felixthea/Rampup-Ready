@@ -9,8 +9,8 @@
       <div class="sign-in-up-out group">
         <% if user_logged_in %>
           <p>Hi, <%= current_user.email %>!</p>
-          <button class="log-out">Log Out</button>
-          <!-- <%= button_to "Log Out", session_url, method: :delete %> -->
+          <!-- <button class="log-out">Log Out</button> -->
+          <%= button_to "Log Out", session_url, method: :delete %>
         <% else %>
           <%= link_to "Log In", new_session_url %> | <%= link_to "Sign Up", new_user_url %>
         <% end %>
@@ -32,10 +32,10 @@
         <li><%= link_to "Curriculums", curriculums_url %></li>
         <li><%= link_to "Tags", tags_url %></li>
         <li><%= link_to "Add Users", bulk_new_users_url %></li>
-        <li class="nav-bar-inbox">
-          <%= link_to "Inbox" + unread_messages, messages_url if user_logged_in %>
-        </li>
-		    <li><%= link_to "Favorites", favorites_url if user_logged_in %></li>
+        <% if user_logged_in %>
+          <li class="nav-bar-inbox"><%= link_to "Inbox" + unread_messages, messages_url %></li>
+  		    <li><%= link_to "Favorites", favorites_url %></li>
+        <% end %>
       </ul>
       <div class="bottom-nav hidden">
         <ul class="inbox-options group">
