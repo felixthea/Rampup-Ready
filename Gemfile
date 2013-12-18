@@ -20,14 +20,6 @@ group :development do
   gem 'rspec-rails'
 end
 
-group :development, :test do
-  gem 'factory_girl_rails'
-end
-
-group :test do
-  gem 'faker'
-end
-
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'figaro'
 gem 'addressable'
