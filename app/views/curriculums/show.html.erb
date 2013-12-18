@@ -21,6 +21,13 @@
     <input type="text" name="recipient[email]" id="recipient_email">
     <input type="Submit" value="Send Curriculum">
   </form>
-  <%= button_to "Mark as Favorite", favorite_curriculum_url(@curriculum.id) %>
-  <%= button_to "Unfavorite", unfavorite_curriculum_url(@curriculum.id), method: :delete %>
+  <% if current_user.favorite_curriculums.any?{ |fave_curriculum| fave_curriculum.id == @curriculum.id } %>
+    <%= button_to "Mark as Favorite", favorite_curriculum_url(@curriculum.id), remote: true, form_class: "favorite-curriculum hidden" %>
+    <%= button_to "Unfavorite", unfavorite_curriculum_url(@curriculum.id), remote: true, form_class: "unfavorite-curriculum", method: :delete %>
+  <% else %>
+    <%= button_to "Mark as Favorite", favorite_curriculum_url(@curriculum.id), remote: true, form_class: "favorite-curriculum" %>
+    <%= button_to "Unfavorite", unfavorite_curriculum_url(@curriculum.id), remote: true, form_class: "unfavorite-curriculum hidden", method: :delete %>
+  <% end %>
+
+
 </div>

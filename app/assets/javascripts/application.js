@@ -154,9 +154,22 @@ $(document).ready(function(){
     })
   })
 
+  // Displays and hides the additional menu for the inbox
   $('.nav-bar-inbox').on('click', 'a', function(event){
     event.preventDefault();
     $('.bottom-nav').toggleClass('hidden');
+  })
+
+  // Favoriting curriculum
+  $('.unfavorite-curriculum').on('ajax:success', function(event, data, xhr){
+    console.log(data)
+    swapFavoriteCurriculum();
+  })
+
+  // Unfavoriting curriculum
+  $('.favorite-curriculum').on('ajax:success', function(event, data, xhr){
+    console.log(data)
+    swapFavoriteCurriculum();
   })
 
   // Helper function for showing notices/errors
@@ -170,6 +183,13 @@ $(document).ready(function(){
   var swapFavorite = function (definitionId) {
 		$('li#'+definitionId).find('.mark-unfavorite').toggleClass('hidden');
 		$('li#'+definitionId).find('.mark-favorite').toggleClass('hidden');
+  }
+
+  // Helper function for hiding/unhiding the favorite/unfavorite curriculum button
+
+  var swapFavoriteCurriculum = function () {
+    $('.curriculum-wrapper').find('.favorite-curriculum').toggleClass('hidden');
+    $('.curriculum-wrapper').find('.unfavorite-curriculum').toggleClass('hidden');
   }
 
   // Helper function for updating the total, upvote, and downvote count when voting.
