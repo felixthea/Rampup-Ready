@@ -35,7 +35,13 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
   has_many :favorite_definitions, through: :definition_faves, source: :definition
-  has_many :curriculum_faves
+  has_many(
+    :curriculum_faves,
+    class_name: "CurriculumFave",
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
   has_many :favorite_curriculums, through: :curriculum_faves, source: :curriculum
 
   def self.find_by_credentials(email, secret)

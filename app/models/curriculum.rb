@@ -5,5 +5,11 @@ class Curriculum < ActiveRecord::Base
 
   has_many :curriculum_definitions
   has_many :definitions, through: :curriculum_definitions, source: :definition
-  has_many :curriculum_faves
+  has_many(
+    :curriculum_faves,
+    class_name: "CurriculumFave",
+    foreign_key: :curriculum_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
 end
