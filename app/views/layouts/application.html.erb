@@ -23,7 +23,7 @@
     <div class="compose-message-modal hidden">
       <form action="<%= messages_url %>" method="post" data-remote="true" class="compose-message-form">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        From: <%= current_user.email %>
+        From: <%= current_user.email if user_logged_in %>
         <br>
         <label for="message_recipient_id">To:</label>
         <select name="message[recipient_id]">

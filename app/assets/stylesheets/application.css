@@ -319,6 +319,10 @@ footer{
   padding: 40px;
 }
 
+.word li{
+  list-style: none;
+}
+
 /*Curriculums*/
 
 .curriculums-wrapper{
