@@ -37,8 +37,7 @@
       <div class="tags">
         Tags:
         <% definition.tags.each do |tag| %>
-          <%= tag.name %>
-          <%= ",".html_safe if tag != definition.tags.last %>
+          <%= link_to tag.name, tag_url(tag.id) %>
         <% end %>
       </div>
     </div>

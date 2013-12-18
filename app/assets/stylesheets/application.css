@@ -286,13 +286,13 @@ footer{
   list-style: none;
 }
 
-/*.one-definition ul li {
-  display: none;
-}*/
-
 .words-list .word form {
   float: left;
   margin-left: 5px;
+}
+
+#new-def-form li {
+  list-style: none;
 }
 
 /*User and Sessions*/

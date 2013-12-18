@@ -12,11 +12,12 @@
       <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
     <% end %>
   </select>
-  <br>
-  <% @tags.each do |tag| %>
-    <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>"><%= tag.name %></input>
-  <% end %>
-  <br>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li>
+        <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>"><%= tag.name %></input>
+      </li>
+    <% end %>
+  </ul>
   <input type="Submit" value="Add Definition">
-
 </form>
