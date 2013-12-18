@@ -1,8 +1,28 @@
 <div class="word" id="<%= word.id %>">
   <div class="word-info group">
-    <%= link_to word.name, word_url(word.id) %>
+    <div class="word-name">
+      <%= link_to word.name, word_url(word.id) %>
+    </div>
     <% if current_user.admin == true %>
       <button class="delete-word" data-id="<%= word.id %>">Delete</button>
     <% end %>
   </div>
+  <div class="one-definition">
+    <% if word.definitions.length > 0 %>
+      <ul>
+        <% word.definitions.each_with_index do |definition, index| %>
+          <% if index == 0 %>
+            <li id="<%= index %>">
+          <% else %>
+            <li id="<%= index %>" class="hidden">
+          <% end %>
+            <%= index+1 %>.) <%= definition.body %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      No definitions.
+    <% end %>
+  </div>
+  <button class="next-definition" >Next Definition</button>
 </div>

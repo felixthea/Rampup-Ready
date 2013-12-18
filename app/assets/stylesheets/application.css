@@ -269,9 +269,26 @@ footer{
   padding-bottom: 10px;
 }
 
-.words-list .word a {
+.word-info .word-name {
   float: left;
 }
+
+.word-info .delete-word{
+  float: left;
+}
+
+.words-list .word .one-definition {
+  float: left;
+  width: 475px;
+}
+
+.words-list .word .one-definition li{
+  list-style: none;
+}
+
+/*.one-definition ul li {
+  display: none;
+}*/
 
 .words-list .word form {
   float: left;

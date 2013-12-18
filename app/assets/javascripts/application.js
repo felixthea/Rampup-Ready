@@ -34,7 +34,7 @@ $(document).ready(function(){
   })
 
   // Deleting words from the words#index page (admin only)
-  $('.words-list').on('click', 'button', function(event){
+  $('.words-list').on('click', '.delete-word', function(event){
     event.preventDefault();
     $wordId = $(event.target).attr("data-id")
     $.ajax({
@@ -189,6 +189,23 @@ $(document).ready(function(){
     closeNewMessageModal();
     flashNotice("Message Sent");
   })
+
+  $('.words-list').on('click', '.next-definition', function(event){
+    var $allDefs = $(event.currentTarget).closest('div').find('li');
+    var numDefs = $allDefs.length;
+    var $currentDef = $allDefs.not('.hidden')
+    var nextDef;
+
+    if ((numDefs > 1) && ($currentDef.index() < numDefs-1)) {
+      $nextDef = $currentDef.next();
+      $nextDef.toggleClass('hidden');
+      $currentDef.toggleClass('hidden');
+    } else {
+      $nextDef = $allDefs.first();
+      $nextDef.toggleClass('hidden');
+      $currentDef.toggleClass('hidden');
+    }
+  });
 
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
