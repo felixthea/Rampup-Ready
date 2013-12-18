@@ -1,7 +1,7 @@
 class SubdivisionsController < ApplicationController
 
   before_filter :require_current_user!
-  
+
   def index
     @subdivisions = Subdivision.all
   end
@@ -25,6 +25,7 @@ class SubdivisionsController < ApplicationController
 
   def show
     @subdivision = Subdivision.find(params[:id])
+    @definitions = Definition.find_all_by_subdivision_id(@subdivision.id)
     render :show
   end
 end

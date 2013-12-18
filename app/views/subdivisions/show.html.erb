@@ -1,3 +1,9 @@
-Subdivisions#show
-<br>
-Subdivision Name: <%= @subdivision.name %>
+<div class="subdivision-wrapper">
+  <h2><%= @subdivision.name %></h2>
+  <h3>Definitions</h3>
+  <div class="definitions">
+    <ol>
+      <%= render @definitions %>
+    </ol>
+  </div>
+</div>
