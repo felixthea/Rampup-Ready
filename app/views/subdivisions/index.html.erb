@@ -3,7 +3,7 @@
   <ul>
     <% @subdivisions.each do |subdivision| %>
       <li>
-        <%= subdivision.name %>
+        <%= link_to subdivision.name, subdivision_url(subdivision.id) %>
       </li>
     <% end %>
   </ul>
