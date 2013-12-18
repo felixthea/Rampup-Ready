@@ -248,6 +248,12 @@ footer{
   margin-left: 5px;
 }
 
+/*Sessions*/
+
+.new-session-wrapper{
+  padding: 40px;
+}
+
 /*Subdivisions*/
 
 .subdivisions-wrapper{
