@@ -1,59 +1,58 @@
-<li id="<%= definition.id %>">
-  	<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
-    <div class="def-container">
-      <div class="def-header group">
-        <div class="word">
-          <h4><%= definition.word.name %></h4>
-        </div>
-        <div class="vote-info group">
-		<% if user_logged_in %>
-      <button class="upvote" data-id=<%= definition.id %>>Upvote</button>
-      <button class="downvote" data-id=<%= definition.id %>>Downvote</button>
-		<% end %>
-          <div class="total-votes">
-            <ul>
-              <li id="total-score">Total: <%= definition.total_score %></li>
-              <li id="sum-upvotes">Up: <%= definition.sum_upvotes %></li>
-              <li id="sum-downvotes">Down: <%= definition.sum_downvotes %></li>
-            </ul>
-             <!-- <%= definition.total_score %> (Up: <%= definition.sum_upvotes %> | Down: <%= definition.sum_downvotes %>) -->
-          </div>
-        </div>
+<% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
+  <div class="def-container">
+    <div class="def-header group">
+      <div class="word">
+        <li id="<%= definition.id %>"><h4><%= definition.word.name %></h4>
       </div>
-      <div class="def-body">
-        <div class="definition">
-          <%= definition.body %>
-        </div>
-        <div class="examples">
-          Examples:
+      <div class="vote-info group">
+	<% if user_logged_in %>
+    <button class="upvote" data-id=<%= definition.id %>>Upvote</button>
+    <button class="downvote" data-id=<%= definition.id %>>Downvote</button>
+	<% end %>
+        <div class="total-votes">
           <ul>
-            <% definition.examples.each do |example| %>
-              <li>
-                <%= example.body %>
-              </li>
-            <% end %>
+            <li id="total-score">Total: <%= definition.total_score %></li>
+            <li id="sum-upvotes">Up: <%= definition.sum_upvotes %></li>
+            <li id="sum-downvotes">Down: <%= definition.sum_downvotes %></li>
           </ul>
+           <!-- <%= definition.total_score %> (Up: <%= definition.sum_upvotes %> | Down: <%= definition.sum_downvotes %>) -->
         </div>
-        <div class="tags">
-          Tags:
-          <% definition.tags.each do |tag| %>
-            <%= tag.name %>
-            <%= ",".html_safe if tag != definition.tags.last %>
-          <% end %>
-        </div>
-      </div>
-      <div class="def-footer group">
-        <%= link_to "Edit", edit_definition_url(definition.id) if have_permission %>
-        <button class="delete-definition" data-id=<%= definition.id %>>Delete</button>
-        <%= link_to "Send Definition", email_definition_url(definition.id) %>
-        <% if current_user.definition_faves.any? { |definition_fave| definition_fave.definition_id == definition.id } %>
-          <button class="mark-favorite hidden" data-id=<%= definition.id %>>Mark as Favorite</button>
-          <button class="mark-unfavorite" data-id=<%= definition.id %>>Unfavorite</button>
-        <% else %>
-          <button class="mark-favorite" data-id=<%= definition.id %>>Mark as Favorite</button>
-          <button class="mark-unfavorite hidden" data-id=<%= definition.id %>>Unfavorite</button>
-        <% end %>
-
       </div>
     </div>
-  </li>
+    <div class="def-body">
+      <div class="definition">
+        <p><%= definition.body %></p>
+      </div>
+      <div class="examples">
+        Examples:
+        <ul>
+          <% definition.examples.each do |example| %>
+            <li>
+               <%= example.body %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="tags">
+        Tags:
+        <% definition.tags.each do |tag| %>
+          <%= tag.name %>
+          <%= ",".html_safe if tag != definition.tags.last %>
+        <% end %>
+      </div>
+    </div>
+    <div class="def-footer group">
+      <%= link_to "Edit", edit_definition_url(definition.id) if have_permission %>
+      <button class="delete-definition" data-id=<%= definition.id %>>Delete</button>
+      <%= link_to "Send Definition", email_definition_url(definition.id) %>
+      <% if current_user.definition_faves.any? { |definition_fave| definition_fave.definition_id == definition.id } %>
+        <button class="mark-favorite hidden" data-id=<%= definition.id %>>Mark as Favorite</button>
+        <button class="mark-unfavorite" data-id=<%= definition.id %>>Unfavorite</button>
+      <% else %>
+        <button class="mark-favorite" data-id=<%= definition.id %>>Mark as Favorite</button>
+        <button class="mark-unfavorite hidden" data-id=<%= definition.id %>>Unfavorite</button>
+      <% end %>
+
+    </div>
+  </div>
+</li>

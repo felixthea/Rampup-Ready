@@ -4,6 +4,11 @@
     <% @messages.each do |message| %>
       <li>
         Subject: <%= link_to message.subject, message_url(message.id) %> | sent to <%= User.find(message.recipient_id).email %>
+        <% if message.read %>
+          (read)
+        <% else %>
+          (unread)
+        <% end %>
       </li>
     <% end %>
   </ul>
