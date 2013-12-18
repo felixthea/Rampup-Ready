@@ -11,11 +11,14 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
+    @sender = User.find(@message.sender_id)
+    @recipient = User.find(@message.recipient_id)
+
     if is_current_user?(@message.recipient_id)
-      @sender = User.find(@message.sender_id)
-      @recipient = User.find(@message.recipient_id)
       @message.read = true
       @message.save
+      render :show
+    elsif is_current_user?(@message.sender_id)
       render :show
     else
       flash[:errors] = ["You are not authorized to view this message."]
