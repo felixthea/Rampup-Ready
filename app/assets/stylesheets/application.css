@@ -189,7 +189,7 @@ header .search{
 .add-first-definition-modal{
   position: absolute;
   width: 500px;
-  height: 200px;
+  height: auto;
   top: 25px;
   left: 200px;
   background: #fffbce;
@@ -240,6 +240,7 @@ footer{
   width: 1000px;
   margin: auto;
   background: #FFC652;
+  margin-bottom: 50px;
 }
 
 /*Words*/

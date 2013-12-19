@@ -37,7 +37,7 @@ end
   Subdivision.create(name: Faker::Commerce.department)
 end
 
-(1..10).each do
+(1..11).each do
   Tag.create(name: Faker::Lorem.word)
 end
 
