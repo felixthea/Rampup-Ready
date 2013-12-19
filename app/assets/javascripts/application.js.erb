@@ -230,19 +230,20 @@ $(document).ready(function(){
   // Checks if user email already exists in database.
   $('.sign-up-wrapper').on('blur', '#user_email', function(event){
     var userEmail = $(event.currentTarget).val();
-    console.log("in blur event");
-    $.ajax({
-      url: '/users/valid_email',
-      type: 'get',
-      dataType: 'json',
-      data: { email: userEmail },
-      success: function(data, response, xhr){
-        $('#valid-email-notice').html(data.message);
-      },
-      error: function() {
-        console.log("error")
-      }
-    })
+    if (userEmail.length > 0) {
+      $.ajax({
+        url: '/users/valid_email',
+        type: 'get',
+        dataType: 'json',
+        data: { email: userEmail },
+        success: function(data, response, xhr){
+          $('#valid-email-notice').html(data.message);
+        },
+        error: function() {
+          console.log("error")
+        }
+      })
+    }
   })
 
   // Removes email validity message when the user tries to enter text into the box again.
