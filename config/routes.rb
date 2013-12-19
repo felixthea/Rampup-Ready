@@ -51,4 +51,5 @@ Workwiki::Application.routes.draw do
   post 'update_password', to: 'users#update_password'
   resource :search, only: [:new, :create, :destroy]
   root to: "words#index"
+  get 'notify_recipient', to: 'inbound#notify_recipient'
 end
