@@ -83,6 +83,13 @@ body{
   font-weight: bold;
 }
 
+.mark-favorite, .mark-unfavorite, .delete-definition{
+  background: #ed6523;
+  color: white;
+  border: none;
+}
+
+
 header{
   background: #4e7ca0;
   width: 1000px;
@@ -255,6 +262,11 @@ footer{
 
 .vote-info > .upvote, .downvote, .total-votes{
   float: left;
+}
+
+.upvote{
+  background-image: url('../images/upvote.png');
+  background-repeat: no-repeat;
 }
 
 .words-wrapper{
