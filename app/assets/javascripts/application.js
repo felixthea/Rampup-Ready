@@ -176,18 +176,32 @@ $(document).ready(function(){
     event.preventDefault();
     $('.compose-message-modal').toggleClass('hidden');
     $('.compose-message-modal').css("z-index",2)
-    $('.black_overlay').css("display", "block");
+    toggleLightbox();
   })
 
   $('#close-compose-message-modal').on('click', function(event){
     closeNewMessageModal();
+    toggleLightbox();
   })
 
+  // If message is sent successfully, close the lightbox and compose message modal
   $('.compose-message-form').on('ajax:success', function(event, data, xhr){
     $form = $(this);
     $form[0].reset();
     closeNewMessageModal();
+    toggleLightbox();
     flashNotice("Message Sent");
+  })
+
+  // Remove all the modals and the lightbox whenever user clicks on area outside the lightbox
+  $('.black_overlay').on('click', function(event){
+    $('.modal').each(function(index,elem){
+      var $elem = $(elem)
+      if (!$elem.hasClass('hidden')){
+        $elem.addClass('hidden');
+      }
+    })
+    toggleLightbox();
   })
 
   $('.words-list').on('click', '.next-definition', function(event){
@@ -230,6 +244,10 @@ $(document).ready(function(){
     $('#valid-email-notice').empty();
   })
 
+  $('#add-first-definition').on('click', function(event){
+
+  })
+
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
@@ -265,7 +283,14 @@ $(document).ready(function(){
   }
 
   var closeNewMessageModal = function () {
-    $('.black_overlay').css('display', 'none');
     $('.compose-message-modal').toggleClass('hidden');
+  }
+
+  var toggleLightbox = function () {
+    if ($('.black_overlay').css("display") == "none") {
+      $('.black_overlay').css("display", "block");
+    } else {
+      $('.black_overlay').css("display", "none");
+    }
   }
 });

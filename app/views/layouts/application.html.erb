@@ -20,7 +20,7 @@
   <%= render 'shared/header' %>
   <div class="container">
     <%= yield %>
-    <div class="compose-message-modal hidden">
+    <div class="compose-message-modal hidden modal">
       <form action="<%= messages_url %>" method="post" data-remote="true" class="compose-message-form">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         From: <%= current_user.email if user_logged_in %>
@@ -41,6 +41,31 @@
         <input type="Submit" value="Send Message">
       </form>
       <a href="#" id="close-compose-message-modal">Close</a>
+    </div>
+    <div class="add-first-definition hidden modal">
+      <form action="#" method="post" id="new-def-form" data-remote="tru">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <label for="definition_body">Definition</label>
+        <input type="text" name="definition[body]" id="definition_body">
+        <br>
+        <label for="example_body">Example</label>
+        <input type="text" name="example[body]" id="example_body">
+        <br>
+        <select name="definition[subdivision_id]">
+          <%= Subdivision.all.each do |subdivision| %>
+            <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+          <% end %>
+        </select>
+        <ul>
+          <% Tag.all.each do |tag| %>
+            <li>
+              <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>"><%= tag.name %></input>
+            </li>
+          <% end %>
+        </ul>
+        <input type="Submit" value="Add Definition">
+      </form>
+      <a href="#" id="close-add-first-definition-modal">Close</a>
     </div>
   </div>
   <footer>
