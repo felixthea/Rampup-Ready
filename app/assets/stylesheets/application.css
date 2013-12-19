@@ -87,6 +87,7 @@ body{
   background: #ed6523;
   color: white;
   border: none;
+  border-bottom: 2px solid black;
 }
 
 
@@ -264,13 +265,22 @@ footer{
   float: left;
 }
 
-.upvote{
-  background-image: url('../images/upvote.png');
-  background-repeat: no-repeat;
+.upvote, .downvote, .next-definition{
+  background: #476a90;
+  color: #FBFFEA;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.upvote:hover, .downvote:hover, .mark-favorite:hover, .mark-unfavorite:hover, .delete-definition:hover, .next-definition:hover {
+  cursor: pointer;
 }
 
 .words-wrapper{
   padding: 40px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .add-words-form {
