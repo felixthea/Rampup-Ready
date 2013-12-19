@@ -2,16 +2,20 @@
   <h2>Sign Up</h2>
   <form action="<%= users_url %>" method="post">
     <label for="user_email">Email:</label>
-    <input type="text" id="user_email" name="user[email]">
+    <input type="text" id="user_email" name="user[email]"> <span id="valid-email-notice"></span>
+    <br>
     <label for="user_password">Password:</label>
     <input type="password" id="user_password" name="user[password]">
+    <br>
+    <label for="user_subdivision_id">Subdivision:</label>
     <select name="user[subdivision_id]">
       <% @subdivisions.each do |subdivision| %>
         <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
       <% end %>
     </select>
-    <label for="user_admin">Admin?</label>
-    <input type="checkbox" name="user[admin]" id="user_admin" value="true">
+    <!-- <label for="user_admin">Admin?</label>
+    <input type="checkbox" name="user[admin]" id="user_admin" value="true"> -->
+    <br>
     <input type="submit" value="Sign Up">
   </form>
 </div>

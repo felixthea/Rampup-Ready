@@ -4,6 +4,7 @@ Workwiki::Application.routes.draw do
       get 'bulk_new', to: 'users#bulk_new'
       post 'bulk_add', to: 'users#bulk_add'
       get 'add_more', to: 'users#add_more'
+      get 'valid_email', to: 'users#valid_email'
     end
   end
 

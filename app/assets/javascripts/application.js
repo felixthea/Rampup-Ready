@@ -207,6 +207,29 @@ $(document).ready(function(){
     }
   });
 
+  // Checks if user email already exists in database.
+  $('.sign-up-wrapper').on('blur', '#user_email', function(event){
+    var userEmail = $(event.currentTarget).val();
+    console.log("in blur event");
+    $.ajax({
+      url: '/users/valid_email',
+      type: 'get',
+      dataType: 'json',
+      data: { email: userEmail },
+      success: function(data, response, xhr){
+        $('#valid-email-notice').html(data.message);
+      },
+      error: function() {
+        console.log("error")
+      }
+    })
+  })
+
+  // Removes email validity message when the user tries to enter text into the box again.
+  $('.sign-up-wrapper').on('focus', '#user_email', function(event){
+    $('#valid-email-notice').empty();
+  })
+
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();

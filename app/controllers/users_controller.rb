@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 
   before_filter :require_current_user!, except: [:new, :create, :forgot_password,
-    :send_forgot_password_email, :set_new_password, :update_password]
+    :send_forgot_password_email, :set_new_password, :update_password, :valid_email]
   before_filter :require_admin!, only: [:bulk_add, :bulk_new]
+
   def index
     @users = User.all
     render :new
@@ -60,6 +61,15 @@ class UsersController < ApplicationController
       render json: e.message
     else
       render json: "Users were saved."
+    end
+  end
+
+  def valid_email
+    email = params[:email]
+    if User.all.any?{ |user| user.email == email }
+      render json: { message: "Invalid email, user already exists." }
+    else
+      render json: { message: "Valid email." }
     end
   end
 
