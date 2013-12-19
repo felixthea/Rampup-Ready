@@ -8,6 +8,7 @@
     <% end %>
   </div>
   <div class="one-definition">
+    <% word.definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score } %>
     <% if word.definitions.length > 0 %>
       <ul>
         <% word.definitions.each_with_index do |definition, index| %>
