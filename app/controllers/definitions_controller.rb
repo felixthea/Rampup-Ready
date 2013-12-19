@@ -16,12 +16,20 @@ class DefinitionsController < ApplicationController
     def_body = params[:definition][:body]
     subdivision_id = params[:definition][:subdivision_id]
     word_id = params[:word_id]
+    word = Word.find(word_id)
     user_id = current_user.id
     tag_ids = params[:definition][:tag_ids]
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids)
     @definition.examples.new(params[:example])
 
-    if request.xhr?
+    if request.xhr? && params[:from_modal] == "true"
+      if @definition.save
+        definition_index = word.definitions.index(@definition)
+        render json: { definition: @definition, index: definition_index }
+      else
+        render json: {message: @definition.errors.full_messages}
+      end
+    elsif request.xhr?
       if @definition.save
         render partial: 'definitions/definition', locals: { definition: @definition }
       else

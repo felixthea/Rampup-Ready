@@ -184,6 +184,11 @@ $(document).ready(function(){
     toggleLightbox();
   })
 
+  $('#close-add-first-definition-modal').on('click', function(event){
+    closeNewDefinitionModal();
+    toggleLightbox();
+  })
+
   // If message is sent successfully, close the lightbox and compose message modal
   $('.compose-message-form').on('ajax:success', function(event, data, xhr){
     $form = $(this);
@@ -244,8 +249,32 @@ $(document).ready(function(){
     $('#valid-email-notice').empty();
   })
 
-  $('#add-first-definition').on('click', function(event){
+  $('.words-list').on('click', '#add-first-definition', function(event){
+    var wordId = $(event.currentTarget).closest('div.word').attr("id");
+    $('.add-first-definition-modal').removeClass('hidden');
+    $('.add-first-definition-modal').css('z-index', 2);
+    $('.add-first-definition-form #word-id').attr("value", wordId)
+    toggleLightbox();
+  })
 
+  $('.add-first-definition-form').on('ajax:success', function(event, data, xhr){
+    var wordId = data.definition.word_id;
+    var $wordDiv = $('.word#' + wordId)
+    var addFirstWordLink = $('.word#' + wordId + ' a#add-first-definition')
+    var $defList;
+    var newDef = data.definition;
+    var defIndex = data.index + 1;
+    var $defLi = $('<li></li>')
+
+    $wordDiv.find('.one-definition').append($('<ul></ul>'));
+    $defList = $wordDiv.find('ul')
+
+    $defLi.html(defIndex + ".) " + newDef.body);
+    $defList.html($defLi);
+    closeNewDefinitionModal();
+    toggleLightbox();
+    addFirstWordLink.remove();
+    console.log(data.definition);
   })
 
   // Helper function for showing notices/errors
@@ -284,6 +313,10 @@ $(document).ready(function(){
 
   var closeNewMessageModal = function () {
     $('.compose-message-modal').toggleClass('hidden');
+  }
+
+  var closeNewDefinitionModal = function () {
+    $('.add-first-definition-modal').toggleClass('hidden');
   }
 
   var toggleLightbox = function () {

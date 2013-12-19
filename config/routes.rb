@@ -15,7 +15,7 @@ Workwiki::Application.routes.draw do
     resources :definitions, only: [:create, :index]
   end
 
-  resources :definitions, only: [:show, :edit, :destroy, :update] do
+  resources :definitions, only: [:show, :edit, :destroy, :update, :create] do
     member do
       post 'upvote', :to => 'votes#create_upvote'
       post 'downvote', :to => 'votes#create_downvote'
@@ -24,6 +24,7 @@ Workwiki::Application.routes.draw do
       get 'email', :to => 'definitions#new_email_definition'
       post 'favorite', to: 'definition_faves#favorite'
       delete 'unfavorite', to: 'definition_faves#unfavorite'
+      # post 'create_from_modal', to: 'definitions#create_from_modal'
     end
   end
 

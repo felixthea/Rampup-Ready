@@ -42,9 +42,11 @@
       </form>
       <a href="#" id="close-compose-message-modal">Close</a>
     </div>
-    <div class="add-first-definition hidden modal">
-      <form action="#" method="post" id="new-def-form" data-remote="tru">
+    <div class="add-first-definition-modal hidden modal">
+      <form action="<%= definitions_url %>" method="post" id="new-def-form" data-remote="true" class="add-first-definition-form">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" id="word-id" name="word_id" value="">
+        <input type="hidden" name="from_modal" value="true">
         <label for="definition_body">Definition</label>
         <input type="text" name="definition[body]" id="definition_body">
         <br>

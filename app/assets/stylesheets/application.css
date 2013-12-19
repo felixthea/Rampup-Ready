@@ -186,6 +186,17 @@ header .search{
   padding: 20px;
 }
 
+.add-first-definition-modal{
+  position: absolute;
+  width: 500px;
+  height: 200px;
+  top: 25px;
+  left: 200px;
+  background: #fffbce;
+  border: 1px solid #FFC652;
+  padding: 20px;
+}
+
 .container{
   background: white;
   margin: auto;
