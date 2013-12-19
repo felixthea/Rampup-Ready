@@ -36,6 +36,7 @@ class MessagesController < ApplicationController
     params[:message][:sender_id] = current_user.id
     @message = Message.new(params[:message])
     if @message.save
+      push_message
       if request.xhr?
         render :json => @message
       else

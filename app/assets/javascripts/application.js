@@ -22,6 +22,7 @@
 //= require_tree ./routers
 //= require_tree .
 //= require jquery.serializeJSON.js
+//= require pusher.min.js
 
 $(document).ready(function(){
   // Adding new words from the words#index page
@@ -326,4 +327,12 @@ $(document).ready(function(){
       $('.black_overlay').css("display", "none");
     }
   }
+
+  // Pusher
+  var pusher = new Pusher(ENV["PUSHER_KEY"])
+  var channel = pusher.subscribe("messages")
+  channel.bind('new', function(data){
+    console.log(data);
+  })
+
 });
