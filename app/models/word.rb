@@ -17,7 +17,7 @@ class Word < ActiveRecord::Base
     all_words.each do |word|
       next if word == self
       word.definitions.each do |word_definition|
-        if (word_definition.tags & all_tags).count > 0
+        if ((word_definition.tags & all_tags).count > 0) && !related_words.include?(word)
           related_words << word
           next
         end

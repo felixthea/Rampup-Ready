@@ -206,11 +206,12 @@ header .search{
 
 .container > .container-body{
   padding: 40px;
+  margin-bottom: 50px;
 }
 
 .container > .container-body > .related-words{
   float: left;
-  width: 150px;
+  width: 170px;
   height: 100%;
 }
 
@@ -221,7 +222,7 @@ header .search{
 
 .container > .container-body > .word-defs{
   float: left;
-  width: 560px;
+  width: 540px;
   margin-right: 10px;
 }
 

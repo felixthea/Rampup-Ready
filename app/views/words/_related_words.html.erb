@@ -1,4 +1,4 @@
-<h3>Related Words</h3>
+<h3>Related Words (<%= @related_words.count %>)</h3>
 <% @related_words.each do |word| %>
    <%= link_to word.name, word_url(word.id) %>
 <% end %>
