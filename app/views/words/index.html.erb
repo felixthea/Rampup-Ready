@@ -10,7 +10,9 @@
   <div class="words-list">
     <h2>Words</h2>
     <div class="words">
+      <nav class="word-pages"><%= paginate @words %></nav>
       <%= render @words %>
+      <nav class="word-pages"><%= paginate @words %></nav>
     </div>
   </div>
 </div>

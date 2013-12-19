@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   before_filter :require_admin!, only: [:destroy]
 
   def index
-    @words = Word.all
+    @words = Word.page(params[:page])
     @word = Word.new
     respond_to do |format|
       format.html

@@ -308,6 +308,10 @@ footer{
   list-style: none;
 }
 
+nav.word-pages{
+  text-align: center;
+}
+
 /*User and Sessions*/
 
 .new-session-wrapper{

@@ -29,7 +29,8 @@ $(document).ready(function(){
   $('#new-word-form').on('ajax:success', function(event, data, xhr){
     event.preventDefault();
     $form = $(this);
-    $('.words').append(data);
+    $('.words nav.word-pages').first().after(data);
+    // $('.words').prepend(data);
     $form[0].reset();
     flashNotice("Word Added");
   })
@@ -276,7 +277,6 @@ $(document).ready(function(){
     closeNewDefinitionModal();
     toggleLightbox();
     addFirstWordLink.remove();
-    console.log(data.definition);
   })
 
   // Helper function for showing notices/errors
