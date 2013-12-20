@@ -335,20 +335,5 @@ $(document).ready(function(){
   }
 
   // Pusher
-  var pusher = new Pusher('<%= ENV["PUSHER_KEY"]%>')
-  var channel = pusher.subscribe("messages")
-  channel.bind('new', function(data){
-    $.ajax({
-      url: '/notify_recipient',
-      data: {recipient_id: data.recipient_id },
-      type: 'get',
-      dataType: 'json',
-      success: function(data, response, xhr){
-        if (data.current_user === "true") {
-          $('.nav-bar-inbox a').html("Inbox" + data.message_count);
-          flashNotice("You've received a new message!");
-        }
-      }
-    })
-  })
+
 });
