@@ -293,7 +293,6 @@ $(document).ready(function(){
   $('.inline-update-definition').on('ajax:success', function(event, data,xhr){
     var newDef = data.body
     $(event.target).closest('div').toggleClass('hidden')
-    // $('<p></p>').html(newDef);
     $(event.target).closest('div').closest('div.definition').html('<p>'+newDef+'</p>')
   })
 

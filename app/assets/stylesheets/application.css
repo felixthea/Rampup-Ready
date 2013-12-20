@@ -97,7 +97,7 @@ button, .submit{
   font-weight: bold;
 }
 
-.mark-favorite, .mark-unfavorite, .delete-definition{
+.mark-favorite, .mark-unfavorite, .delete-definition, .favorite-curriculum-button, .unfavorite-curriculum-button{
   background: #ed6523;
   color: white;
   border: none;
