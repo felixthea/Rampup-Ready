@@ -54,6 +54,20 @@ body{
   padding-bottom: 5px;
 }
 
+.social-wrapper button{
+  background: #ed6523;
+  color: white;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+button, .submit{
+  background: #ed6523;
+  color: white;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
 .hidden{
   display:none;
 }
@@ -119,6 +133,7 @@ header .sign-in-up-out{
 header .sign-in-up-out p {
   float: left;
   margin-top: 2px;
+  color: white;
 }
 
 header .sign-in-up-out .button-to {
@@ -230,6 +245,11 @@ header .search{
 .container > .container-body > .new-defs-form{
   float: right;
   width: 200px;
+}
+
+.new-defs-form ul {
+  margin: 0;
+  padding: 0;
 }
 
 .container > .container-body > .word-defs{
