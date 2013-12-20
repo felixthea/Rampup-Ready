@@ -59,19 +59,28 @@ class DefinitionsController < ApplicationController
     @example = @definition.examples[0]
     @subdivisions = Subdivision.all
 
-    ActiveRecord::Base.transaction do
-      @definition.update_attributes(params[:definition])
-      @example.update_attributes(params[:example])
-    end
-
-    if @definition.valid? && @example.valid?
-      flash[:notice] = ["Definitition updated for #{@definition.word.name}"]
-      redirect_to word_url(@definition.word.id)
+    if request.xhr?
+      @definition.body = params[:definition][:body]
+      if @definition.save
+        render json: { body: @definition.body }
+      else
+        render json: { errors: @definition.errors.full_messages, params: params[:definition][:body] }, status: 422
+      end
     else
-      flash.now[:errors] ||= []
-      flash.now[:errors] += @definition.errors.full_messages
-      flash.now[:errors] += @example.errors.full_messages
-      render :edit
+      ActiveRecord::Base.transaction do
+        @definition.update_attributes(params[:definition])
+        @example.update_attributes(params[:example])
+      end
+
+      if @definition.valid? && @example.valid?
+        flash[:notice] = ["Definitition updated for #{@definition.word.name}"]
+        redirect_to word_url(@definition.word.id)
+      else
+        flash.now[:errors] ||= []
+        flash.now[:errors] += @definition.errors.full_messages
+        flash.now[:errors] += @example.errors.full_messages
+        render :edit
+      end
     end
 
   end

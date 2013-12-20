@@ -23,6 +23,15 @@
     <div class="def-body">
       <div class="definition">
         <p><%= definition.body %></p>
+        <div class="hidden" id="inline-edit-definition-body-<%= definition.id %>">
+          <form action="<%= definition_url(definition.id) %>" method="post" class="inline-update-definition" data-remote="true">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="put">
+            <textarea rows="5" cols="50" name="definition[body]"><%= definition.body %></textarea>
+            <br>
+            <input type="submit" value="Update Definition" class="submit">
+          </form>
+        </div>
       </div>
       <div class="examples">
         Examples:
@@ -56,7 +65,6 @@
         <button class="mark-favorite" data-id=<%= definition.id %>>Mark as Favorite</button>
         <button class="mark-unfavorite hidden" data-id=<%= definition.id %>>Unfavorite</button>
       <% end %>
-
     </div>
   </div>
 </li>

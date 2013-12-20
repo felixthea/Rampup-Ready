@@ -284,6 +284,19 @@ $(document).ready(function(){
     addFirstWordLink.remove();
   })
 
+  $('.definitions').on('click', 'div.definition p', function(event){
+    var definitionId = $(event.target).closest('li').attr("id");
+    $('#inline-edit-definition-body-'+definitionId).toggleClass('hidden')
+    $(this).toggleClass('hidden')
+  })
+
+  $('.inline-update-definition').on('ajax:success', function(event, data,xhr){
+    var newDef = data.body
+    $(event.target).closest('div').toggleClass('hidden')
+    // $('<p></p>').html(newDef);
+    $(event.target).closest('div').closest('div.definition').html('<p>'+newDef+'</p>')
+  })
+
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
     $('div.notices').empty();
@@ -333,7 +346,5 @@ $(document).ready(function(){
       $('.black_overlay').css("display", "none");
     }
   }
-
-  // Pusher
 
 });
