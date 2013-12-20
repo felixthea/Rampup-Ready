@@ -23,6 +23,7 @@
 //= require_tree .
 //= require jquery.serializeJSON.js
 //= require pusher.min.js
+//= require chosen-jquery
 
 $(document).ready(function(){
   // Adding new words from the words#index page
@@ -60,6 +61,10 @@ $(document).ready(function(){
     $('.definitions ol').append(data);
     $form[0].reset();
     flashNotice("Definition Added");
+  })
+
+  $('#new-def-form').on('ajax:complete', function(){
+    $('select').chosen({width: "95%"});
   })
 
   // Deleting definitions from words#show
@@ -347,5 +352,7 @@ $(document).ready(function(){
       $('.black_overlay').css("display", "none");
     }
   }
+
+  $('select').chosen({width: "95%"});
 
 });
