@@ -335,7 +335,7 @@ $(document).ready(function(){
   }
 
   // Pusher
-  var pusher = new Pusher("<%= ENV['PUSHER_KEY']%>")
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"]%>')
   var channel = pusher.subscribe("messages")
   channel.bind('new', function(data){
     $.ajax({
