@@ -10,6 +10,12 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
+    @definitions = Definition.joins("INNER JOIN taggings ON definitions.id = taggings.definition_id")
+                              .joins("INNER JOIN tags ON tags.id = taggings.tag_id")
+                              .joins("INNER JOIN words ON words.id = definitions.word_id")
+                              .where("tags.id = ?", @tag.id)
+                              .order("words.name asc")
+                              .page(params[:page])
     render :show
   end
 

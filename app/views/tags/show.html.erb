@@ -1,1 +1,8 @@
-<%= @tag.name %>
+<div class="tag-wrapper">
+  <nav class="tag-pages"><%= paginate @definitions %></nav>
+  <h2><%= @tag.name %></h2>
+  <ul>
+    <%= render @definitions %>
+  </ul>
+  <nav class="tag-pages"><%= paginate @definitions %></nav>
+</div>

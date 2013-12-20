@@ -415,3 +415,12 @@ nav.word-pages{
 .favorites-wrapper{
   padding: 40px;
 }
+
+/*Tags*/
+.tag-wrapper{
+  padding: 40px;
+}
+
+.tag-pages{
+  text-align: center;
+}
