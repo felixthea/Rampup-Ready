@@ -293,7 +293,9 @@ $(document).ready(function(){
   $('.inline-update-definition').on('ajax:success', function(event, data,xhr){
     var newDef = data.body
     $(event.target).closest('div').toggleClass('hidden')
-    $(event.target).closest('div').closest('div.definition').prepend('<p>'+newDef+'</p>')
+    $defP = $(event.target).closest('div').closest('div.definition').find('p')
+    $defP.toggleClass('hidden').html(newDef);
+    // $(event.target).closest('div').closest('div.definition').prepend('<p>'+newDef+'</p>')
   })
 
   // Helper function for showing notices/errors
