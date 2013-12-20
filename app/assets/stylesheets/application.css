@@ -105,16 +105,20 @@ header .top-header-left{
 }
 
 header .top-header-right{
+  margin-top: 60px;
   float: right;
   width: 600px;
 }
 
 header .sign-in-up-out{
+  margin-top: 2px;
   float: right;
+  width: 200px;
 }
 
 header .sign-in-up-out p {
   float: left;
+  margin-top: 2px;
 }
 
 header .sign-in-up-out .button-to {
@@ -423,4 +427,9 @@ nav.word-pages{
 
 .tag-pages{
   text-align: center;
+}
+
+/*Results*/
+.results-wrapper{
+  padding: 40px;
 }

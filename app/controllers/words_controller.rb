@@ -39,8 +39,12 @@ class WordsController < ApplicationController
         redirect_to @word
       end
     else
-      flash[:errors] = @word.errors.full_messages
-      render :new
+      if request.xhr?
+        render json: @word.errors.full_messages, status: 422
+      else
+        flash[:errors] = @word.errors.full_messages
+        render :new
+      end
     end
   end
 

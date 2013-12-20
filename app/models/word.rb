@@ -34,4 +34,7 @@ class Word < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy
   )
+
+  include PgSearch
+  multisearchable against: :name
 end

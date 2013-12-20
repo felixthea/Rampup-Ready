@@ -1,4 +1,5 @@
 class Definition < ActiveRecord::Base
+
   attr_accessible :word_id, :user_id, :body, :subdivision_id, :tag_ids
 
   validates :word_id, :user_id, :body, :subdivision_id, presence: true
@@ -49,4 +50,7 @@ class Definition < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy
   )
+
+  include PgSearch
+  multisearchable against: :body
 end

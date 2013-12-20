@@ -35,6 +35,11 @@ $(document).ready(function(){
     flashNotice("Word Added");
   })
 
+  $('#new-word-form').on('ajax:error', function(event,data,xhr){
+    event.preventDefault();
+    flashNotice(data.responseText)
+  })
+
   // Deleting words from the words#index page (admin only)
   $('.words-list').on('click', '.delete-word', function(event){
     event.preventDefault();

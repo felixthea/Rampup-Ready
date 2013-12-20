@@ -12,4 +12,7 @@ class Tag < ActiveRecord::Base
 
   has_many :tagged_definitions, through: :taggings, source: :definition
 
+  include PgSearch
+  multisearchable against: :name
+
 end

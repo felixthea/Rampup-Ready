@@ -1,8 +1,19 @@
-<h2>Search Results for "<%= @keyword %>"</h2>
-<ul>
-  <% @results.each do |result| %>
-    <li>
-      <%= link_to result.name, word_url(result.id) %>
-    </li>
+<div class="results-wrapper">
+  <h2>Search Results for "<%= @keyword %>"</h2>
+  <% if @word_results.count > 0 %>
+    <h3>Word Results</h3>
+    <ul>
+      <% @word_results.each do |word_result| %>
+        <li><%= link_to word_result.name, word_url(word_result.id) %></li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
+  <% if @tag_results.count > 0 %>
+    <h3>Tag Results</h3>
+    <ul>
+      <% @tag_results.each do |tag_result| %>
+        <li><%= link_to tag_result.name, tag_url(tag_result.id) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
