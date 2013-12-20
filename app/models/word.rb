@@ -8,7 +8,7 @@ class Word < ActiveRecord::Base
     current_word_definitions = self.definitions
     all_tags = []
     related_words = []
-    all_words = Word.all
+    all_words = Word.first(10)
 
     current_word_definitions.each do |definition|
       all_tags += definition.tags
