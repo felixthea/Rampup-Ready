@@ -406,6 +406,10 @@ nav.word-pages{
   padding: 40px;
 }
 
+.tags-wrapper form{
+  display: inline-block;
+}
+
 /*Bulk New*/
 
 .bulk-new-wrapper{

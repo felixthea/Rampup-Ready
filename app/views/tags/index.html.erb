@@ -3,8 +3,8 @@
   <ul>
     <% @tags.each do |tag| %>
       <li>
-        <%= tag.name %>
-        <%= button_to "Delete", tag_url(tag.id), method: :delete %>
+        <%= link_to tag.name, tag_url(tag.id) %>
+        <%= button_to "Delete", tag_url(tag.id), method: :delete, class: "submit" %>
       </li>
     <% end %>
   </ul>
