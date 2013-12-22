@@ -15,6 +15,11 @@ class SearchesController < ApplicationController
         @tag_results << Tag.find(result.searchable_id)
       end
     end
-    render :results
+    
+    if request.xhr?
+      render :json => { results: @word_results }
+    else
+      render :results
+    end
   end
 end

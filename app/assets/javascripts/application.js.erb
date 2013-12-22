@@ -354,5 +354,33 @@ $(document).ready(function(){
   }
 
   $('select').chosen({width: "95%"});
-
+	
+	$('#curriculum-search-form').on('keyup', '#keyword', function(event){
+		event.preventDefault();
+		var keyword = $(this).val();
+		if(keyword.length >= 3){
+			var $resultsList = $('.new-curriculum-wrapper .search-results').html('<ul></ul>')
+			var $result;
+			search(keyword, function(results){
+				$.each(results, function(index, result){
+					$result = $('<li></li>').html(result.name)
+					$resultsList.append($result);
+				})			
+			});
+		}
+	})
+	
+	var search = function(keyword, callback){
+		$.ajax({
+			url: '/search',
+			type: 'post',
+			data: { keyword: keyword },
+			success: function(resp){
+				callback(resp.results)
+			},
+			error: function() {
+				console.log("error")
+			}
+		})
+	}
 });
