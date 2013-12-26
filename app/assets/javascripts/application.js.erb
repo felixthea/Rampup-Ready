@@ -358,12 +358,13 @@ $(document).ready(function(){
 	$('#curriculum-search-form').on('keyup', '#keyword', function(event){
 		event.preventDefault();
 		var keyword = $(this).val();
+		var $resultsList = $('.new-curriculum-wrapper .results-list')
+		$resultsList.empty();
+		var $result;
 		if(keyword.length >= 3){
-			var $resultsList = $('.new-curriculum-wrapper .search-results').html('<ul></ul>')
-			var $result;
 			search(keyword, function(results){
 				$.each(results, function(index, result){
-					$result = $('<li></li>').html(result.name)
+					$result = $('<li>' + result.name + '</li>')
 					$resultsList.append($result);
 				})			
 			});
