@@ -105,6 +105,12 @@ button, .submit{
   border-bottom: 2px solid black;
 }
 
+#website-description{
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+}
 
 header{
   background: #4e7ca0;
