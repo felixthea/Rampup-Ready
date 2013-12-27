@@ -20,6 +20,17 @@ group :development do
   gem 'rspec-rails'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'guard-rspec'
+  gem 'capybara'
+  gem 'launchy'
+end
+
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'figaro'
 gem 'addressable'
