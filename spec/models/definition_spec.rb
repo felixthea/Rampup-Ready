@@ -22,4 +22,12 @@ describe Definition do
     complete_definition.tag_ids = tag.id
     expect(complete_definition.tags[0].id).to eq(tag.id)
   end
+  
+  it { should belong_to(:word) }
+  it { should belong_to(:user) }
+  it { should belong_to(:subdivision) }
+  it { should have_many(:examples) }
+  it { should have_many(:votes) }
+  it { should have_many(:tags) }
+  
 end

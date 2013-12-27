@@ -6,7 +6,7 @@ class Example < ActiveRecord::Base
   belongs_to(
     :definition,
     class_name: "Definition",
-    foreign_key: :defintion_id,
+    foreign_key: :definition_id,
     primary_key: :id,
     inverse_of: :examples
   )
