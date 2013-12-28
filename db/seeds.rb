@@ -33,8 +33,8 @@
   User.create(email: Faker::Internet.free_email, password: Faker::Internet.password, subdivision_id: i, admin: false)
 end
 
-User.create(email: "admin@gmail.com", password: "password", subdivision_id: 1, admin: true)
-User.create(email: "notadmin@gmail.com", password: "password", subdivision_id: 1, admin: false)
+User.create(email: "demouser@gmail.com", password: "password", subdivision_id: 1, admin: false)
+User.create(email: "demoadmin@gmail.com", password: "password", subdivision_id: 1, admin: true)
 
 20.times do
   Subdivision.create(name: Faker::Commerce.department)

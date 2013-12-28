@@ -9,9 +9,15 @@
     <input type="submit" value="Sign In">
   </form>
   <%= link_to "Forgot Password?", forgot_password_url %>
+	<br><br>
 	<form action="<%= session_url %>" method="post">
-		<input type="hidden" name="user[email]" value="demouser">
+		<input type="hidden" name="user[email]" value="demouser@gmail.com">
 		<input type="hidden" name="user[password]" value="password">
 		<input type="submit" value="Demo Login">
+	</form>
+	<form action="<%= session_url %>" method="post">
+		<input type="hidden" name="user[email]" value="demoadmin@gmail.com">
+		<input type="hidden" name="user[password]" value="password">
+		<input type="submit" value="Demo Admin Login">
 	</form>
 </div>
