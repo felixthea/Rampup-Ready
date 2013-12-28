@@ -85,11 +85,17 @@ class UsersController < ApplicationController
 
   def send_forgot_password_email
     user = User.find_by_email(params[:email])
-    user.set_forgot_pw_token!
-    msg = AuthMailer.forgot_password_email(user)
-    msg.deliver!
-    flash[:notice] = ["Check your email for instructions on resetting your password."]
-    redirect_to new_session_url
+    if user
+      user.set_forgot_pw_token!
+      msg = AuthMailer.forgot_password_email(user)
+      msg.deliver!
+      flash[:notice] = ["Check your email for instructions on resetting your password."]
+      redirect_to new_session_url
+    else
+      flash[:errors] ||= []
+      flash[:errors] += user.errors.full_messages
+      render :forgot_password
+    end
   end
 
   def set_new_password
