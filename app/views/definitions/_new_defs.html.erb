@@ -8,16 +8,22 @@
   <input type="text" name="example[body]" id="example_body">
   <br>
   <select name="definition[subdivision_id]">
-    <%= @subdivisions.each do |subdivision| %>
+		<option selected="selected" disabled="disabled">Select Subdivision</option>
+    <% @subdivisions.each do |subdivision| %>
       <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
     <% end %>
   </select>
-  <ul>
+	<select name="definition[tag_ids][]" multiple data-placeholder="Select Tags">
+		<% @tags.each do |tag| %>
+			<option value="<%= tag.id %>"><%= tag.name %></option>
+		<% end %>
+	</select>
+  <!-- <ul>
     <% @tags.each do |tag| %>
       <li>
         <input type="checkbox" name="definition[tag_ids][]" value="<%= tag.id %>"><%= tag.name %></input>
       </li>
     <% end %>
-  </ul>
+  </ul> -->
   <input type="Submit" class="submit" value="Add Definition">
 </form>
