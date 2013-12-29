@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
 //= require underscore
 //= require backbone
 //= require workwiki
@@ -301,6 +303,10 @@ $(document).ready(function(){
     $defP = $(event.target).closest('div').closest('div.definition').find('p')
     $defP.toggleClass('hidden').html(newDef);
   })
+	
+	$('.notify-new-definitions').on('click', 'a', function(event){
+		event.preventDefault();
+	})
 
   // Helper function for showing notices/errors
   var flashNotice = function (message) {
@@ -364,9 +370,10 @@ $(document).ready(function(){
 		if(keyword.length >= 3){
 			search(keyword, function(results){
 				$.each(results, function(index, result){
-					$result = $('<li>' + result.name + '</li>')
+					$result = $('<li id=' + result.id + '>' + result.name + '</li>')
 					$resultsList.append($result);
-				})			
+					makeDraggable($result)
+				})
 			});
 		}
 	})
@@ -381,6 +388,28 @@ $(document).ready(function(){
 			},
 			error: function() {
 				console.log("error")
+			}
+		})
+	}
+	
+	$('.add-definitions-drop').droppable({
+		accept: ".results-list li",
+		drop: function (event, ui){
+			var wordId = ui.helper.attr("id")
+			var word = ui.helper.html()
+			var wordItem = $('<li id=' + wordId + '>' + word + '</li>')
+			$('div.add-definitions-drop ul').append(wordItem)
+			ui.helper.remove();
+			console.log(event)
+			console.log(ui)
+		}
+	})
+	
+	var makeDraggable = function ($el) {
+		$el.draggable({
+			revert: "invalid",
+			cursor: "move",
+			stop: function(event, ui){
 			}
 		})
 	}

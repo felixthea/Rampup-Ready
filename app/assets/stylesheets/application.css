@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  *= require chosen
+ *= require jquery.ui.all
  */
 
 
@@ -407,6 +408,16 @@ nav.word-pages{
 
 .curriculum-wrapper{
   padding: 40px ;
+}
+
+.results-list li {
+	cursor: move;
+}
+
+.add-definitions-drop{
+	background: red;
+	width: 500px;
+	height: 200px;
 }
 
 /*Tags*/
