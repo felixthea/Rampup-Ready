@@ -405,6 +405,32 @@ $(document).ready(function(){
 		}
 	})
 	
+	$('form#create-curriculum').on('submit', function(event){
+		var form = this;
+		var definitionIds;
+		event.preventDefault();
+		
+		definitionIds = getDefinitionIds($('div.add-definitions-drop ul li'))
+		
+		formData = $(form).serializeJSON();
+		formData["curriculum"]["definition_ids"] = definitionIds
+	
+		$.ajax({
+			url: "/curriculums",
+			type: "post",
+			data: formData,
+			success: function(data, textStatus, jqXHR){
+				flashNotice("Curriculum saved!")
+				$(form)[0].reset();
+				$('form#curriculum-search-form')[0].reset();
+				$('div.add-definitions-drop ul li').remove();
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				flashNotice(jqXHR.responseText)
+			}
+		})
+	})
+	
 	var makeDraggable = function ($el) {
 		$el.draggable({
 			revert: "invalid",
@@ -412,5 +438,13 @@ $(document).ready(function(){
 			stop: function(event, ui){
 			}
 		})
+	}
+	
+	var getDefinitionIds = function($list){
+		var definitionIds = [];
+		$list.map(function(index,el){
+			definitionIds.push($(el).attr("id"))
+		})
+		return definitionIds;
 	}
 });

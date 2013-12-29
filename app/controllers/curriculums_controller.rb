@@ -23,14 +23,22 @@ class CurriculumsController < ApplicationController
     params[:curriculum][:user_id] = current_user.id
     @curriculum = Curriculum.new(params[:curriculum])
 
-    if @curriculum.save
-      flash[:notice] = ["Curriculum created successfully."]
-      redirect_to @curriculum
+    if request.xhr?
+      if @curriculum.save
+        render json: @curriculum
+      else
+        render json: @curriculum.errors.full_messages, status: 422
+      end
     else
-      flash[:errors] ||= []
-      flash[:errors] += @curriculum.errors.full_messages
-      @definitions = Definition.all
-      render :new
+      if @curriculum.save
+        flash[:notice] = ["Curriculum created successfully."]
+        redirect_to @curriculum
+      else
+        flash[:errors] ||= []
+        flash[:errors] += @curriculum.errors.full_messages
+        @definitions = Definition.all
+        render :new
+      end
     end
   end
 

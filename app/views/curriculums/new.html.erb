@@ -1,10 +1,8 @@
 <div class="new-curriculum-wrapper">
   <h2>Create Curriculum</h2>		
-	<form action="<%= search_url %>" method="post" id="curriculum-search-form">
-		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-		<label for="keyword">Keyword:</label>
+	<form id="curriculum-search-form">
+		<label for="keyword">Keyword (enter at least 3 letters):</label>
 		<input type="text" name="keyword" id="keyword">
-		<input type="submit" value="Search" class="submit">
 	</form>
 	<div class="search-results">
 		<ul class="results-list"></ul>
@@ -13,7 +11,7 @@
 		<ul>
 		</ul>
 	</div>
-	<form>
+	<form id="create-curriculum">
 		<label for="curriculum_name">Curriculum:</label>
 		<input type="text" name="curriculum[name]" id="curriculum_name">
 		<br>
