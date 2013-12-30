@@ -121,6 +121,13 @@ header{
   font-size: 12px;
 }
 
+header .logo a{
+	font-size: 48px;
+	color: white;
+	text-decoration: none;
+}
+
+
 header .top-header-left{
   float: left;
   width: 200px;
