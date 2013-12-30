@@ -33,7 +33,6 @@ group :test do
 end
 
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'figaro'
 gem 'pusher'
 gem 'faker'
 gem 'kaminari'
