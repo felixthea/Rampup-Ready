@@ -440,6 +440,10 @@ nav.word-pages{
 	margin-top: 100px;
 }
 
+.light-up-droppable{
+	background: #FFC652;
+}
+
 /*Tags*/
 
 .tags-wrapper{

@@ -408,7 +408,16 @@ $(document).ready(function(){
 			$('div.add-definitions-drop ul').append(wordItem)
 			$('h3#defs-added').html("Definitions Added (" + curriculumBuildDefCount() + "):")
 			$('.drag-and-drop-message').addClass('hidden');
+			$(this).toggleClass('light-up-droppable');	
 		}
+	})
+	
+	$('.add-definitions-drop').on('dropover', function(event, ui){
+		$(this).addClass('light-up-droppable');
+	})
+	
+	$('.add-definitions-drop').on('dropout', function(event, ui){
+		$(this).removeClass('light-up-droppable');
 	})
 	
 	$('form#create-curriculum').on('submit', function(event){
