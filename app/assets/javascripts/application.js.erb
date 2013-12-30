@@ -62,6 +62,8 @@ $(document).ready(function(){
     $form = $(this);
     $('.definitions ol').append(data);
     $form[0].reset();
+		$('#new-def-form #select-tags').val('').trigger('chosen:updated');
+		$('#new-def-form #select-subdivision').val('').trigger('chosen:updated');
     flashNotice("Definition Added");
   })
 
