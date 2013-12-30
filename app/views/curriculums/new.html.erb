@@ -1,23 +1,30 @@
-<div class="new-curriculum-wrapper">
-  <h2>Create Curriculum</h2>		
-	<form id="curriculum-search-form">
-		<label for="keyword">Keyword (enter at least 3 letters):</label>
-		<input type="text" name="keyword" id="keyword">
-	</form>
-	<div class="search-results">
-		<ul class="results-list"></ul>
+<div class="new-curriculum-wrapper group">
+  <h2>Create Curriculum</h2>
+	<div class="search-and-results">
+		<form id="curriculum-search-form">
+			<label for="keyword">Search for Words and Definitions:</label>
+			<input type="text" name="keyword" id="keyword" style="width: 300px;">
+		</form>
+		<div class="search-results">
+			<ul class="results-list"></ul>
+		</div>
 	</div>
-	<div class="add-definitions-drop">
-		<ul>
-		</ul>
+	<div class="curriculum-details">
+		<h3>Details:</h3>
+		<form id="create-curriculum">
+			<label for="curriculum_name">Curriculum:</label>
+			<input type="text" name="curriculum[name]" id="curriculum_name">
+			<br>
+			<label for="curriculum_description">Description:</label>
+			<input type="text" name="curriculum[description]" id="curriculum_description">
+			<br>
+			<h3 id="defs-added">Definitions Added:</h3>
+			<div class="add-definitions-drop">
+				<ul>
+				</ul>
+			</div>
+			<br>
+			<input type="submit" class="submit">
+		</form>
 	</div>
-	<form id="create-curriculum">
-		<label for="curriculum_name">Curriculum:</label>
-		<input type="text" name="curriculum[name]" id="curriculum_name">
-		<br>
-		<label for="curriculum_description">Description:</label>
-		<input type="text" name="curriculum[description]" id="curriculum_description">
-		<br>
-		<input type="submit" class="submit">
-	</form>
 </div>

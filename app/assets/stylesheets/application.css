@@ -414,10 +414,23 @@ nav.word-pages{
 	cursor: move;
 }
 
+.curriculum-details{
+	width: 400px;
+	float: right;
+}
+
 .add-definitions-drop{
-	background: red;
-	width: 500px;
-	height: 200px;
+	background: #ccc;
+	border: 2px solid #4e7ca0;
+	width: 400px;
+	height: 300px;
+	overflow: auto;
+	float: left;
+}
+
+.search-and-results{
+	width: 400px;
+	float: left;
 }
 
 /*Tags*/

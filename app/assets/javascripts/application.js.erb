@@ -404,10 +404,11 @@ $(document).ready(function(){
 			var wordId = ui.helper.attr("id")
 			var word = ui.helper.html()
 			var wordItem = $('<li id=' + wordId + '>' + word + '</li>')
+			var defCount;
 			$('div.add-definitions-drop ul').append(wordItem)
+			defCount = $('div.add-definitions-drop ul li').length
+			$('h3#defs-added').html("Definitions Added (" + defCount + "):")
 			ui.helper.remove();
-			console.log(event)
-			console.log(ui)
 		}
 	})
 	
@@ -429,6 +430,7 @@ $(document).ready(function(){
 				flashNotice("Curriculum saved!")
 				$(form)[0].reset();
 				$('form#curriculum-search-form')[0].reset();
+				$('.results-list li').remove();
 				$('div.add-definitions-drop ul li').remove();
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
