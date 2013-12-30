@@ -362,29 +362,35 @@ $(document).ready(function(){
   $('select').chosen({width: "100%"});
 	
 	$('#curriculum-search-form').on('keyup', '#keyword', function(event){
-		event.preventDefault();
 		var keyword = $(this).val();
 		var $resultsList = $('.new-curriculum-wrapper .results-list')
 		$resultsList.empty();
 		var $result;
 		if(keyword.length >= 3){
-			search(keyword, function(results){
-				$.each(results, function(index, result){
-					$result = $('<li id=' + result.id + '>' + result.name + '</li>')
-					$resultsList.append($result);
-					makeDraggable($result)
+			search(keyword, function(words){
+				$.each(words, function(index, word){
+					$.each(word.definitions, function(index, definition){
+						$result = createResultLi(word, definition)
+						$resultsList.append($result);
+						makeDraggable($result);
+					})
 				})
 			});
 		}
 	})
+	
+	var createResultLi = function(word, definition) {
+		var li = $('<li id=' + definition.id + '>' + word.name + ': ' + definition.body + '</li>')
+		return li;
+	}
 	
 	var search = function(keyword, callback){
 		$.ajax({
 			url: '/search',
 			type: 'post',
 			data: { keyword: keyword },
-			success: function(resp){
-				callback(resp.results)
+			success: function(data, textStatus, jqXHR){
+				callback(data.results)
 			},
 			error: function() {
 				console.log("error")

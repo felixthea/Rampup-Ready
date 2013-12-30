@@ -17,7 +17,7 @@ class SearchesController < ApplicationController
     end
     
     if request.xhr?
-      render :json => { results: @word_results }
+      render :json => { results: @word_results.as_json(include: :definitions) }
     else
       render :results
     end
