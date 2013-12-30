@@ -8,8 +8,7 @@
     <div class="top-header-right">
       <div class="sign-in-up-out">
         <% if user_logged_in %>
-          <p>Hi, <%= current_user.email %>!</p>
-          <!-- <button class="log-out">Log Out</button> -->
+          <!-- <p>Hi, <%= current_user.email %>!</p> -->
           <%= button_to "Log Out", session_url, method: :delete, class: "submit" %>
         <% else %>
           <%= link_to "Log In", new_session_url %> | <%= link_to "Sign Up", new_user_url %>
@@ -18,7 +17,7 @@
       <div class="search">
         <form action="<%= search_url %>" method="post">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <input type="text" name="keyword">
+          <input type="text" name="keyword" style="width: 200px;">
           <input type="Submit" class="submit" value="Search">
         </form>
       </div>
