@@ -403,10 +403,10 @@ $(document).ready(function(){
 		drop: function (event, ui){
 			var wordId = ui.helper.attr("id")
 			var word = ui.helper.html()
-			var wordItem = $('<li id=' + wordId + '>' + word + '</li>')
+			var wordItem = ui.helper
+			wordItem.removeAttr('style');
 			$('div.add-definitions-drop ul').append(wordItem)
 			$('h3#defs-added').html("Definitions Added (" + curriculumBuildDefCount() + "):")
-			ui.helper.remove();
 			$('.drag-and-drop-message').addClass('hidden');
 		}
 	})
@@ -444,8 +444,7 @@ $(document).ready(function(){
 	
 	var makeDraggable = function ($el) {
 		$el.draggable({
-			revert: "invalid",
-			cursor: "move"
+			revert: "invalid"
 		})
 	}
 	

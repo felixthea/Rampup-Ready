@@ -422,10 +422,11 @@ nav.word-pages{
 .add-definitions-drop{
 	background: #ccc;
 	border: 2px solid #4e7ca0;
-	width: 400px;
+	width: 360px;
 	height: 300px;
 	overflow: auto;
 	float: left;
+	padding: 20px;
 }
 
 .search-and-results{
