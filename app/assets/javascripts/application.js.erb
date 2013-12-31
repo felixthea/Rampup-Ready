@@ -306,6 +306,13 @@ $(document).ready(function(){
     $defP.toggleClass('hidden').html(newDef);
   })
 	
+	$('.inline-update-definition').on('click', '.cancel', function(event) {
+		event.preventDefault();
+    var definitionId = $(event.target).closest('li').attr("id");
+    $('#inline-edit-definition-body-'+definitionId).toggleClass('hidden');
+		$('li#'+definitionId+' .definition p').toggleClass('hidden');
+	})
+	
 	$('.notify-new-definitions').on('click', 'a', function(event){
 		event.preventDefault();
 	})
