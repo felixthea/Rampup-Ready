@@ -442,6 +442,7 @@ $(document).ready(function(){
 				$('form#curriculum-search-form')[0].reset();
 				$('.results-list li').remove();
 				$('div.add-definitions-drop ul li').remove();
+				$('h3#defs-added').html("Definitions Added:")
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				flashNotice(jqXHR.responseText)
