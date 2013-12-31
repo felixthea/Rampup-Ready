@@ -3,6 +3,8 @@ An Urban Dictionary clone for companies to create an internal dictionary, with d
 
 Once a company grows to a size where there are more email conversations than face-to-face conversations, the knowledge base becomes too dispersed that organizing that knowledge becomes overbearing.  Rampup Ready makes management of terminology that's used within your company and industry easily accessible to any employee.  Employees can also contribute to defining terms and to vote up the best definitions.  Employees can create curriculums for others, this becomes useful when preparing a new hire to hit the ground running and be rampup ready.
 
+http://RampUpReady.com
+
 ## Features
 * Administrator can create users in bulk - sends user an email to log in
 	* SendGrid API
