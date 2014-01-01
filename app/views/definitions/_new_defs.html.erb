@@ -1,5 +1,5 @@
 <h3>Add New Definition</h3>
-<form action="<%= word_definitions_url(params[:id]) %>" method="post" id="new-def-form" data-remote="tru">
+<form action="<%= word_definitions_url(params[:id]) %>" method="post" id="new-def-form" data-remote="true">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="definition_body">Definition</label>
   <input type="text" name="definition[body]" id="definition_body">

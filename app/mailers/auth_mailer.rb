@@ -1,5 +1,5 @@
 class AuthMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "resetpassword@rampupready.com"
   
   def forgot_password_email(user)
     @user = user

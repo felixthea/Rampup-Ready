@@ -15,7 +15,7 @@
   <%= link_to "Edit", edit_curriculum_url(@curriculum.id) if (current_user.id == @curriculum.user_id || current_user.admin == true)%>
   <br>
   <br>
-  <form action="<%= email_curriculum_url(params[:id]) %>" method="post">
+  <form action="<%= email_curriculum_url(params[:id]) %>" method="post" data-remote="true" class="email-curriculum-form">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <label for="recipient_email">Email:</label>
     <input type="text" name="recipient[email]" id="recipient_email">

@@ -461,6 +461,11 @@ $(document).ready(function(){
 		return $('div.add-definitions-drop ul li').length
 	}
 	
+	$('.email-curriculum-form').on('ajax:success', function(event,data,xhr){
+		flashNotice("Curriculum sent!")
+		$(this)[0].reset();
+	})
+	
 	var makeDraggable = function ($el) {
 		$el.draggable({
 			revert: "invalid"
