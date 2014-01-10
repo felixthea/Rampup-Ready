@@ -107,7 +107,7 @@ button, .submit{
 }
 
 #website-description{
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 	margin-bottom: 50px;
@@ -517,6 +517,8 @@ nav.word-pages{
 }
 
 .sign-up-fields-wrapper{
+	padding-top: 10px;
+	padding-bottom: 10px;
 	width: 350px;
 	margin:auto;
 }
