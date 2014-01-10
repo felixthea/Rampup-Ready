@@ -70,6 +70,12 @@ button, .submit{
   border-bottom: 2px solid black;
 }
 
+button:hover, .submit:hover{
+	background: #ccc;
+	color: black;
+	cursor: pointer;
+}
+
 .hidden{
   display:none;
 }
@@ -529,4 +535,12 @@ nav.word-pages{
 
 button#subscribe{
 	float: left;
+}
+
+#mc_embed_signup p:first-child{
+	padding-top: 5px;
+}
+
+#mc_embed_signup p{
+	padding-bottom: 5px;
 }
