@@ -1,11 +1,21 @@
 <div class="new-session-wrapper">
-	<div id="website-description">Rampup Ready is an UrbanDictionary clone for companies to create employee-sourced internal-only dictionaries to train employees faster.</div>
+	<div id="website-description">
+		Employees will often hear industry jargon or interal terminology that they don't know the meaning of.
+		<br>
+		<br>
+		Don't risk leaving your team in the dark.
+		<br>
+		<br>
+		Create a dictionary for your team where all employees can easily contribute definitions and build curriculums for each other.
+	</div>
   <h2>Log In</h2>
   <form action="<%= session_url %>" method="post">
     <label for="user_email">Email:</label>
     <input type="text" id="user_email" name="user[email]">
+		<br>
     <label for="user_password">Password:</label>
     <input type="password" id="user_password" name="user[password]">
+		<br>
     <input type="submit" value="Sign In">
   </form>
   <%= link_to "Forgot Password?", forgot_password_url %>

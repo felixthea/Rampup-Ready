@@ -320,7 +320,7 @@ footer{
 
 .add-words-form {
   float: right;
-  width: 300px;
+  width: 280px;
 }
 
 .add-words-form h2{
@@ -505,4 +505,26 @@ nav.word-pages{
 /*Results*/
 .results-wrapper{
   padding: 40px;
+}
+
+#mc_embed_signup{
+/*	clear:left; */
+	font:14px Helvetica,Arial,sans-serif; 
+	color: white;
+  width: 600px;
+  margin: auto;
+	text-align: center;
+}
+
+.sign-up-fields-wrapper{
+	width: 350px;
+	margin:auto;
+}
+
+.mc-field-group{
+	float: left;
+}
+
+button#subscribe{
+	float: left;
 }
