@@ -114,10 +114,13 @@ button:hover, .submit:hover{
 
 #website-description{
 	font-size: 20px;
-	font-weight: bold;
 	text-align: center;
 	margin-bottom: 50px;
 	color: #454545;
+}
+
+#website-description p{
+	font-size: 18px;
 }
 
 header{
