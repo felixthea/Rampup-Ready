@@ -4,7 +4,7 @@ class CurriculumsController < ApplicationController
   before_filter :require_curriculum_creator_or_admin!, only: [:edit, :update, :destroy]
 
   def index
-    @curriculums = Curriculum.all
+    @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     render :index
   end
 
