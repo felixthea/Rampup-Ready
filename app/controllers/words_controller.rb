@@ -38,6 +38,13 @@ class WordsController < ApplicationController
         flash[:notice] = ["#{@word.name} created successfully."]
         redirect_to @word
       end
+    elsif @word.errors.full_messages.include?("Name has already been taken")
+      if request.xhr?
+        render json: Word.find_by_name(params[:word][:name]).id, status: 422
+      else
+        flash[:errors] = @word.errors.full_messages
+        render :new
+      end
     else
       if request.xhr?
         render json: @word.errors.full_messages, status: 422

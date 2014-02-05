@@ -40,7 +40,11 @@ $(document).ready(function(){
 
   $('#new-word-form').on('ajax:error', function(event,data,xhr){
     event.preventDefault();
-    flashNotice(data.responseText)
+    if(!isNaN(data.responseText)) {
+      window.location.href = "/words/" + data.responseText
+    } else {
+      flashNotice(data.responseText)
+    }
   })
 
   // Deleting words from the words#index page (admin only)
