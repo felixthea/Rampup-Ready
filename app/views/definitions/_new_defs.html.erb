@@ -1,11 +1,13 @@
 <h3>Add New Definition</h3>
 <form action="<%= word_definitions_url(params[:id]) %>" method="post" id="new-def-form" data-remote="true">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="definition_body">Definition</label>
-  <input type="text" name="definition[body]" id="definition_body">
+  <label for="definition_body">Definition:</label>
   <br>
-  <label for="example_body">Example</label>
-  <input type="text" name="example[body]" id="example_body">
+  <textarea rows="5" cols="25" name="definition[body]" id="definition_body" placeholder="Enter definition here"></textarea>
+  <br>
+  <label for="example_body">Example:</label>
+  <br>
+  <textarea rows="5" cols="25" name="example[body]" id="example_body" placeholder="Enter example here"></textarea>
   <br>
   <select name="definition[subdivision_id]" id="select-subdivision">
 		<option selected="selected" disabled="disabled">Select Subdivision</option>
