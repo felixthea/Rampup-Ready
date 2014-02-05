@@ -393,7 +393,7 @@ $(document).ready(function(){
 	})
 	
 	var createResultLi = function(word, definition) {
-		var li = $('<li id=' + definition.id + '>' + word.name + ': ' + definition.body + '</li>')
+		var li = $('<li class="curriculum-search-result" id=' + definition.id + '><strong>' + word.name + '</strong><br>' + definition.body + '</li>')
 		return li;
 	}
 	

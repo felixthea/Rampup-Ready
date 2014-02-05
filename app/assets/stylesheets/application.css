@@ -334,8 +334,8 @@ footer{
 }
 
 .add-words-form h2{
-  float: right;
-  width: 300px;
+  /*float: right;
+  width: 300px;*/
 }
 
 .words-list{
@@ -425,6 +425,11 @@ nav.word-pages{
   padding: 40px ;
 }
 
+.results-list{
+  margin: 0;
+  padding: 5px 0 0 0;
+}
+
 .results-list li {
 	cursor: move;
 }
@@ -444,6 +449,11 @@ nav.word-pages{
 	padding: 20px;
 }
 
+.add-definitions-drop ul{
+  margin: 0;
+  padding: 0;
+}
+
 .search-and-results{
 	width: 400px;
 	float: left;
@@ -457,6 +467,13 @@ nav.word-pages{
 
 .light-up-droppable{
 	background: #FFC652;
+}
+
+li.curriculum-search-result{
+  background: #61929C;
+  padding: 5px;
+  margin-bottom: 2px;
+  list-style: none;
 }
 
 /*Tags*/
