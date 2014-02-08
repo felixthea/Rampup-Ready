@@ -68,7 +68,15 @@ $(document).ready(function(){
     $form[0].reset();
 		$('#new-def-form #select-tags').val('').trigger('chosen:updated');
 		$('#new-def-form #select-subdivision').val('').trigger('chosen:updated');
+    console.log(event)
+    console.log(data)
+    console.log(xhr)
     flashNotice("Definition Added");
+  })
+
+  $('#new-def-form').on('ajax:error', function(event,data,xhr){
+    event.preventDefault();
+    console.log(data.responseText);
   })
 
   $('#new-def-form').on('ajax:complete', function(){
