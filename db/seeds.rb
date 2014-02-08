@@ -29,37 +29,37 @@
 # subdivmgmt3 = SubdivisionManagement.create(user_id: user2.id, subdivision_id: subdivision3.id)
 
 # Users
-20.times do |i|
-  User.create(email: Faker::Internet.free_email, password: Faker::Internet.password, subdivision_id: i, admin: false)
-end
+# 20.times do |i|
+#   User.create(email: Faker::Internet.free_email, password: Faker::Internet.password, subdivision_id: i, admin: false)
+# end
 
-User.create(email: "demouser@gmail.com", password: "password", subdivision_id: 1, admin: false)
-User.create(email: "demoadmin@gmail.com", password: "password", subdivision_id: 1, admin: true)
+# User.create(email: "demouser@gmail.com", password: "password", subdivision_id: 1, admin: false)
+# User.create(email: "demoadmin@gmail.com", password: "password", subdivision_id: 1, admin: true)
 
-20.times do
-  Subdivision.create(name: Faker::Commerce.department)
-end
+# 20.times do
+#   Subdivision.create(name: Faker::Commerce.department)
+# end
 
-(1..11).each do
-  Tag.create(name: Faker::Lorem.word)
-end
+# (1..11).each do
+#   Tag.create(name: Faker::Lorem.word)
+# end
 
-100.times do
-  Word.create(name: Faker::Company.catch_phrase)
-end
+# 100.times do
+#   Word.create(name: Faker::Company.catch_phrase)
+# end
 
-(1..100).each do |i|
-  5.times do
-    Definition.create(word_id: i, user_id: (1..20).to_a.sample, subdivision_id: (1..20).to_a.sample,
-                      body: Faker::Lorem.sentences, tag_ids: (1..10).to_a.sample(3))
-  end
-end
+# (1..100).each do |i|
+#   5.times do
+#     Definition.create(word_id: i, user_id: (1..20).to_a.sample, subdivision_id: (1..20).to_a.sample,
+#                       body: Faker::Lorem.sentences, tag_ids: (1..10).to_a.sample(3))
+#   end
+# end
 
-#Curriculums
-(1..20).each do |i|
-  Curriculum.create(user_id: i, name: Faker::Company.bs,
-                    description: Faker::Lorem.sentence, definition_ids: (1..500).to_a.sample(10))
-end
+# #Curriculums
+# (1..20).each do |i|
+#   Curriculum.create(user_id: i, name: Faker::Company.bs,
+#                     description: Faker::Lorem.sentence, definition_ids: (1..500).to_a.sample(10))
+# end
 
 #Messages
 
