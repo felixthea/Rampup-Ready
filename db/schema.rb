@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131220153112) do
+ActiveRecord::Schema.define(:version => 20140209045407) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "curriculum_definitions", :force => true do |t|
     t.integer  "definition_id"
@@ -61,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
   create_table "definitions", :force => true do |t|
     t.integer  "word_id",        :null => false
     t.integer  "user_id",        :null => false
-    t.string   "body",           :null => false
+    t.text     "body",           :null => false
     t.integer  "subdivision_id", :null => false
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
@@ -72,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
   add_index "definitions", ["word_id"], :name => "index_definitions_on_word_id"
 
   create_table "examples", :force => true do |t|
-    t.string   "body",          :null => false
+    t.text     "body",          :null => false
     t.integer  "definition_id", :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
