@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
       end
     else
       if request.xhr?
-        render :json => "Error"
+        redirect_to words_url
       else
         flash[:errors] ||= []
         flash[:errors] += @message.errors.full_messages
