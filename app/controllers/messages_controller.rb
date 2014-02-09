@@ -47,6 +47,7 @@ class MessagesController < ApplicationController
       end
     else
       if request.xhr?
+        render :json => "Error"
       else
         flash[:errors] ||= []
         flash[:errors] += @message.errors.full_messages
