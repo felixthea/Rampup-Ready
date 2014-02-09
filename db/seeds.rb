@@ -48,6 +48,46 @@
 #   Word.create(name: Faker::Company.catch_phrase)
 # end
 
+User.create(
+  email: 'fthea@mediamath.com',
+  password: 'Media#1233',
+  subdivision_id: 1,
+  admin: true)
+
+# contents = File.readlines("db/names.txt")
+# arr = []
+
+# contents.each do |line|
+#   arr << line.chomp
+# end
+
+# arr.each do |name|
+#   Word.create(name: name)
+# end
+
+words = Spreadsheet.open('db/words.xls').worksheet('Sheet1')
+words.each do |word|
+  Word.create(name: word[0])
+end
+
+definitions = Spreadsheet.open('db/definitions.xls').worksheet('Sheet1')
+Word.all.each do |word|
+  Definition.create(
+    word_id: word.id, 
+    user_id: User.first.id, 
+    subdivision_id: 1, 
+    body: definitions.row(word.id - 1)[0])
+end
+
+examples = Spreadsheet.open('db/examples.xls').worksheet('Sheet1')
+Definition.all.each do |definition|
+  example = examples.row(definition.id - 1)[0]
+  if example != 'blank'
+    Example.create(body: example, definition_id: definition.id)
+  end
+end
+
+
 # (1..100).each do |i|
 #   5.times do
 #     Definition.create(word_id: i, user_id: (1..20).to_a.sample, subdivision_id: (1..20).to_a.sample,
@@ -64,3 +104,4 @@
 #Messages
 
 #Favorites
+
