@@ -18,7 +18,13 @@
   <form action="<%= email_curriculum_url(params[:id]) %>" method="post" data-remote="true" class="email-curriculum-form">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <label for="recipient_email">Email:</label>
+    <br>
     <input type="text" name="recipient[email]" id="recipient_email">
+    <br>
+    <label for="email_body">Email Body (optional):</label>
+    <br>
+    <textarea name="email_body" id="email_body" rows="4" cols="20"></textarea>
+    <br>
     <input type="Submit" value="Send Curriculum" class="submit">
   </form>
   <% if current_user.favorite_curriculums.any?{ |fave_curriculum| fave_curriculum.id == @curriculum.id } %>

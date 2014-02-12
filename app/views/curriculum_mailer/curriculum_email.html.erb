@@ -6,6 +6,8 @@
   <body>
     <%= @sender.email %> sent you a curriculum.
     <br>
+    <%= @body %>
+    <br>
     <ul>
       <% @curriculum.definitions.each do |definition| %>
         <li>
