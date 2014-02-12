@@ -1,10 +1,18 @@
 <div class="curriculums-wrapper">
   <h2>Curriculums</h2>
   <ul>
-    <% @curriculums.each do |curriculum| %>
+  	<h3>My Curriculums</h3>
+    <% @my_curriculums.each do |my_curriculum| %>
       <li>
-        <%= link_to curriculum.name, curriculum_url(curriculum.id) %> (<%= pluralize(curriculum.definitions.length, "definition") %>)
+        <%= link_to my_curriculum.name, curriculum_url(my_curriculum.id) %> (<%= pluralize(my_curriculum.definitions.length, "definition") %>)
       </li>
+    <% end %>
+    <br><br>
+    <h3>Public Curriculums</h3>
+    <% @public_curriculums.each do |public_curriculum| %>
+	    <li>
+	    	<%= link_to public_curriculum.name, curriculum_url(public_curriculum.id) %> (<%= pluralize(public_curriculum.definitions.length, " definition") %>) by <%= public_curriculum.user.email %>
+	    </li>
     <% end %>
   </ul>
   <%= link_to "Create Curriculum", new_curriculum_url %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140209045407) do
+ActiveRecord::Schema.define(:version => 20140212024540) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -42,12 +42,13 @@ ActiveRecord::Schema.define(:version => 20140209045407) do
   add_index "curriculum_faves", ["user_id"], :name => "index_curriculum_faves_on_user_id"
 
   create_table "curriculums", :force => true do |t|
-    t.integer  "user_id",                  :null => false
-    t.string   "name",                     :null => false
+    t.integer  "user_id",                                     :null => false
+    t.string   "name",                                        :null => false
     t.integer  "curriculum_definition_id"
-    t.string   "description",              :null => false
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "description",                                 :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.boolean  "private",                  :default => false
   end
 
   add_index "curriculums", ["curriculum_definition_id"], :name => "index_curriculums_on_curriculum_definition_id"
