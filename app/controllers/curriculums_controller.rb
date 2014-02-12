@@ -5,7 +5,7 @@ class CurriculumsController < ApplicationController
 
   def index
     @my_curriculums = Curriculum.find_all_by_user_id(current_user.id)
-    @public_curriculums = Curriculum.find_all_by_private(false)
+    @public_curriculums = Curriculum.find_all_by_make_private(false)
     @public_curriculums.reject! { |public_curriculum| @my_curriculums.include?(public_curriculum) } 
     render :index
   end
