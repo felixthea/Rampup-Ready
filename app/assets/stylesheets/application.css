@@ -486,6 +486,10 @@ div.add-to-curriculum-wrapper{
   float: right;
 }
 
+.curriculum-wrapper label{
+  font-weight: bold;
+}
+
 /*Tags*/
 
 .tags-wrapper{

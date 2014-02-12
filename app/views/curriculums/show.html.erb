@@ -1,10 +1,10 @@
 <div class="curriculum-wrapper">
   <h2><%= @curriculum.name %></h2>
   <br>
-    <%= @curriculum.description %>
+    <strong>Description:</strong> <%= @curriculum.description %>
   <br>
   <br>
-  Definitions
+  <strong>Definitions</strong>
   <ul>
     <% @curriculum.definitions.each do |definition| %>
       <li>
@@ -17,13 +17,15 @@
   <br>
   <form action="<%= email_curriculum_url(params[:id]) %>" method="post" data-remote="true" class="email-curriculum-form">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label for="recipient_email">Email:</label>
+    <label for="recipient_email">
+      Emails<br>(separate emails by commas.  Ex: "jack@mediamath.com, jill@mediamath.com"):
+    </label>
     <br>
-    <input type="text" name="recipient[email]" id="recipient_email">
+    <input type="text" name="recipient[emails]" id="recipient_emails" style='width:300px'>
     <br>
     <label for="email_body">Email Body (optional):</label>
     <br>
-    <textarea name="email_body" id="email_body" rows="4" cols="20"></textarea>
+    <textarea name="email_body" id="email_body" rows="4" cols="40"></textarea>
     <br>
     <input type="Submit" value="Send Curriculum" class="submit">
   </form>

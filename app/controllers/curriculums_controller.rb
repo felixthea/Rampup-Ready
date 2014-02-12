@@ -63,17 +63,18 @@ class CurriculumsController < ApplicationController
 
   def email
     @curriculum = Curriculum.find(params[:id])
-    recipient = User.find_by_email(params[:recipient][:email])
-    body = params[:email_body]
-    if recipient
-      msg = CurriculumMailer.curriculum_email(recipient, current_user, @curriculum, body)
-      msg.deliver!
-      flash[:notice] = ["Curriculum emailed successfully."]
 
-      redirect_to curriculum_url(@curriculum)
-    else
-      flash[:errors] = ["User not found.  Please create an account for the user."]
-      render :show
+    body = params[:email_body]
+    emails_str = params[:recipient][:emails]
+    emails = emails_str.split(",").map { |email| email.strip }
+
+    emails.each do |email|
+      msg = CurriculumMailer.curriculum_email(email, current_user, @curriculum, body)
+      msg.deliver!
     end
+    
+    flash[:notice] = ["Curriculum emailed successfully."]
+
+    redirect_to curriculum_url(@curriculum)
   end
 end
