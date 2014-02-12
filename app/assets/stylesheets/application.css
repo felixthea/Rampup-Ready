@@ -379,6 +379,11 @@ nav.word-pages{
   text-align: center;
 }
 
+div.next-definition-wrapper{
+  width: 120px;
+  float: right;
+}
+
 /*User and Sessions*/
 
 .new-session-wrapper{
@@ -474,6 +479,11 @@ li.curriculum-search-result{
   padding: 5px;
   margin-bottom: 2px;
   list-style: none;
+}
+
+div.add-to-curriculum-wrapper{
+  width: 150px;
+  float: right;
 }
 
 /*Tags*/

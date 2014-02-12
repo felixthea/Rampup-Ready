@@ -25,7 +25,22 @@
       <a href="#" id="add-first-definition">No definitions.  Add one</a>
     <% end %>
   </div>
+  <!-- <div class="next-definition-wrapper">
+    
+  </div> -->
   <% unless word.definitions.length <= 1 %>
-    <button class="next-definition">Next Definition</button>
+      <button class="next-definition">Next Definition</button>
   <% end %>
+  <!-- <form>
+    <select class="add-to-curriculum">
+        <option>Add to Curriculum</option>
+        <% @curriculums.each do |curriculum| %>
+          <option data-id="<%= curriculum.id %>"><%= curriculum.name %></option>
+        <% end %>
+    </select>
+  </form> -->
+  <!-- <div class="add-to-curriculum-wrapper">
+    <button class="add-to-curriculum">Add to Curriculum</button>
+    
+  </div> -->
 </div>

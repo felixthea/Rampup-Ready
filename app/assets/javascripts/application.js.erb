@@ -237,7 +237,7 @@ $(document).ready(function(){
     toggleLightbox();
   })
 
-  $('.words-list').on('click', '.next-definition', function(event){
+  $('.words-list').on('click', 'button.next-definition', function(event){
     var $allDefs = $(event.currentTarget).closest('div').find('li');
     var numDefs = $allDefs.length;
     var $currentDef = $allDefs.not('.hidden')
@@ -253,6 +253,11 @@ $(document).ready(function(){
       $currentDef.toggleClass('hidden');
     }
   });
+
+  // $('.add-to-curriculum').on('change', function(event){
+  //   // console.log($(this).attr("data-id"))
+  //   console.log($(this).find("select option:selected"))
+  // });
 
   // Checks if user email already exists in database.
   $('.sign-up-wrapper').on('blur', '#user_email', function(event){

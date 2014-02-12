@@ -5,6 +5,7 @@ class WordsController < ApplicationController
 
   def index
     @words = Word.order("words.name asc").page(params[:page])
+    @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     @word = Word.new
     respond_to do |format|
       format.html
