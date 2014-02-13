@@ -281,7 +281,9 @@ header .search{
   margin-right: 10px;
 }
 
-
+.def-footer {
+  margin-left: 100px;
+}
 
 .def-footer > form{
   float: left;
@@ -299,14 +301,6 @@ footer{
 /*Words*/
 
 .word{
-  float: left;
-}
-
-.vote-info{
-  float: right;
-}
-
-.vote-info > .upvote, .downvote, .total-votes{
   float: left;
 }
 
@@ -382,6 +376,72 @@ nav.word-pages{
 div.next-definition-wrapper{
   width: 120px;
   float: right;
+}
+
+.definitions ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.definitions ul li{
+  margin-bottom: 20px;
+}
+
+.def-header{
+  float: left;
+  width: 25px;
+  padding-right: 10px;
+}
+
+.def-body{
+  float: left;
+  width: 440px;
+}
+
+.word-name{
+  margin-bottom: 20px;
+}
+
+.vote-info{
+  text-align: center;
+}
+
+.examples{
+  padding-top: 5px;
+  color: gray;
+  font-size: 10px;
+  font-style: italic;
+}
+
+.upvote-arrow{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 12.5px 21.7px 12.5px;
+  border-color: transparent transparent #476a90 transparent;
+}
+
+.downvote-arrow{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 21.7px 12.5px 0 12.5px;
+  border-color: #476a90 transparent transparent transparent;
+  margin-top: 15px;
+}
+
+span#total-score{
+  margin: 0;
+  padding: 0;
+}
+
+.tags{
+  padding-top: 5px;
+  color: gray;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 /*User and Sessions*/

@@ -64,13 +64,10 @@ $(document).ready(function(){
   // Adding definitions from words#show
   $('#new-def-form').on('ajax:success', function(event, data, xhr){
     $form = $(this);
-    $('.definitions ol').append(data);
+    $('.definitions ul').append(data);
     $form[0].reset();
 		$('#new-def-form #select-tags').val('').trigger('chosen:updated');
 		$('#new-def-form #select-subdivision').val('').trigger('chosen:updated');
-    console.log(event)
-    console.log(data)
-    console.log(xhr)
     flashNotice("Definition Added");
   })
 
@@ -137,7 +134,7 @@ $(document).ready(function(){
   });
 
   // Upvoting a definition in words#show
-  $('.definitions').on('click', '.upvote', function(event) {
+  $('.definitions').on('click', '.upvote-arrow', function(event) {
     event.preventDefault();
     var definitionId = $(event.target).attr("data-id")
 
@@ -155,7 +152,7 @@ $(document).ready(function(){
   });
 
   // Downvoting definition in words#show
-  $('.definitions').on('click', '.downvote', function(event){
+  $('.definitions').on('click', '.downvote-arrow', function(event){
     var definitionId = $(event.target).attr("data-id");
 
     $.ajax({
@@ -364,9 +361,9 @@ $(document).ready(function(){
     var total = response.total
     var upvotes = response.upvotes
     var downvotes = response.downvotes
-    $('li#' + definitionId).find('li#total-score').html("Total: " + total);
-    $('li#' + definitionId).find('li#sum-upvotes').html("Up: " + upvotes);
-    $('li#' + definitionId).find('li#sum-downvotes').html("Down: " + downvotes);
+    $('li#' + definitionId).find('#total-score').html(total);
+    // $('li#' + definitionId).find('li#sum-upvotes').html("Up: " + upvotes);
+    // $('li#' + definitionId).find('li#sum-downvotes').html("Down: " + downvotes);
   }
 
   var closeNewMessageModal = function () {

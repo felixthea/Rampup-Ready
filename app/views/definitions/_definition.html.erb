@@ -1,23 +1,15 @@
 <li id="<%= definition.id %>">
   <% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
-  <div class="def-container">
-    <div class="def-header group">
-      <div class="word">
-      <h4><%= definition.word.name %></h4>
-      </div>
-      <div class="vote-info group">
+  <div class="def-container group">
+    <div class="def-header">
+      <div class="vote-info">
 	<% if user_logged_in %>
-    <button class="upvote" data-id=<%= definition.id %>>Upvote</button>
-    <button class="downvote" data-id=<%= definition.id %>>Downvote</button>
+    <!-- <button class="upvote" data-id=<%= definition.id %>>Upvote</button> -->
+    <div class="upvote-arrow" data-id=<%= definition.id %>></div>
+    <br><span id="total-score"><%= definition.total_score %></span><br>
+    <div class="downvote-arrow" data-id=<%= definition.id %>></div>
+    <!-- <button class="downvote" data-id=<%= definition.id %>>Downvote</button> -->
 	<% end %>
-        <div class="total-votes">
-          <ul>
-            <li id="total-score">Total: <%= definition.total_score %></li>
-            <li id="sum-upvotes">Up: <%= definition.sum_upvotes %></li>
-            <li id="sum-downvotes">Down: <%= definition.sum_downvotes %></li>
-          </ul>
-           <br>
-        </div>
       </div>
     </div>
     <div class="def-body">
@@ -35,23 +27,21 @@
         </div>
       </div>
       <div class="examples">
-        Examples:
-        <ul>
-          <% definition.examples.each do |example| %>
-            <li>
-               <%= example.body %>
-            </li>
-          <% end %>
-        </ul>
+        <% if !definition.examples.empty? %>
+          Example: <%= definition.examples[0].body %>
+        <% end %>
       </div>
       <div class="tags">
-        Tags:
-        <% definition.tags.each do |tag| %>
-          <%= link_to tag.name, tag_url(tag.id) %>
+        <% if !definition.tags.empty? %>
+          Tags:
+          <% definition.tags.each do |tag| %>
+            <%= link_to tag.name, tag_url(tag.id) %>
+          <% end %>
         <% end %>
       </div>
     </div>
-    <div class="def-footer group">
+  </div>
+  <div class="def-footer group">
       <% if have_permission %>
         <%= link_to "Edit", edit_definition_url(definition.id) %>
       <% end %>
@@ -67,5 +57,4 @@
         <button class="mark-unfavorite hidden" data-id=<%= definition.id %>>Unfavorite</button>
       <% end %>
     </div>
-  </div>
 </li>

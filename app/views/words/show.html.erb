@@ -1,20 +1,20 @@
 <div class="container-body group">
-  <h2><%= @word.name %></h2>
+  <h2 class="word-name"><%= @word.name %></h2>
   <div class="related-words">
     <%= render 'related_words' %>
   </div>
   <div class="word-defs">
     <h3>Definitions</h3>
     <div class="definitions">
-      <ol>
+      <ul>
         <%= render @definitions %>
-      </ol>
+      </ul>
     </div>
   </div>
   <div class="new-defs-form">
     <%= render '/definitions/new_defs' %>
   </div>
-	<div class="notify-new-definitions">
+<!-- 	<div class="notify-new-definitions">
 		<a href="#">Notify me when new definitions are added</a>
-	</div>
+	</div> -->
 </div>
