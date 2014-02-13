@@ -432,6 +432,10 @@ div.next-definition-wrapper{
   margin-top: 15px;
 }
 
+.upvote-arrow:hover, .downvote-arrow:hover{
+  cursor: pointer;
+}
+
 span#total-score{
   margin: 0;
   padding: 0;
