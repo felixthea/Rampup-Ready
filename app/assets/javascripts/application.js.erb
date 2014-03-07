@@ -32,7 +32,7 @@ $(document).ready(function(){
   $('#new-word-form').on('ajax:success', function(event, data, xhr){
     event.preventDefault();
     $form = $(this);
-    $('.words nav.word-pages').first().after(data);
+    $('.words nav.word').first().before(data);
     // $('.words').prepend(data);
     $form[0].reset();
     flashNotice("Word Added");
