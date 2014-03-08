@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140308215453) do
+ActiveRecord::Schema.define(:version => 20140308223247) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20140308215453) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true

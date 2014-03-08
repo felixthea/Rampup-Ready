@@ -24,7 +24,6 @@ Workwiki::Application.routes.draw do
       get 'email', :to => 'definitions#new_email_definition'
       post 'favorite', to: 'definition_faves#favorite'
       delete 'unfavorite', to: 'definition_faves#unfavorite'
-      # post 'create_from_modal', to: 'definitions#create_from_modal'
     end
   end
 
