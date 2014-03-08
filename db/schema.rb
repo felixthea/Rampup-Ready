@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140212032456) do
+ActiveRecord::Schema.define(:version => 20140308214019) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20140212032456) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   create_table "taggings", :force => true do |t|
