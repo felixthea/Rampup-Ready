@@ -32,23 +32,19 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(params[:word])
-    if @word.save
-      if request.xhr?
-        render partial: 'word', locals: {word: @word}
-      else
-        flash[:notice] = ["#{@word.name} created successfully."]
-        redirect_to @word
-      end
-    elsif @word.errors.full_messages.include?("Name has already been taken")
-      if request.xhr?
+
+    if request.xhr?
+      if @word.save
+          render partial: 'word', locals: {word: @word}
+      elsif @word.errors.full_messages.include?("Name has already been taken")
         render json: Word.find_by_name(params[:word][:name]).id, status: 422
       else
-        flash[:errors] = @word.errors.full_messages
-        render :new
+        render json: @word.errors.full_messages, status: 422
       end
     else
-      if request.xhr?
-        render json: @word.errors.full_messages, status: 422
+      if @word.save
+        flash[:notice] = ["#{@word.name} created successfully."]
+        redirect_to @word
       else
         flash[:errors] = @word.errors.full_messages
         render :new
