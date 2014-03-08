@@ -53,8 +53,7 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    @word = Word.find(params[:id])
-    @word.destroy
+    Word.find(params[:id]).destroy
     render :json => { status: 200 }
   end
 end
