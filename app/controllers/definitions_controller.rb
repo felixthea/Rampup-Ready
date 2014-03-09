@@ -89,11 +89,15 @@ class DefinitionsController < ApplicationController
     word = definition.word
     definition.destroy
 
-    if request.xhr?
-      render json: {status: 200}
+    if word.company_id == current_co.id
+      if request.xhr?
+        render json: {status: 200}
+      else
+        flash[:notice] = ["Definition deleted from #{word.name}."]
+        redirect_to word_url(word)
+      end
     else
-      flash[:notice] = ["Definition deleted from #{word.name}."]
-      redirect_to word_url(word)
+      redirect_to new_sessions_url
     end
 
   end
