@@ -58,7 +58,12 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    Word.find(params[:id]).destroy
-    render :json => { status: 200 }
+    word = Word.find(params[:id])
+    if word.company_id == current_co.id
+      word.destroy
+      render :json => { status: 200 }
+    else
+      redirect_to new_session_url
+    end
   end
 end
