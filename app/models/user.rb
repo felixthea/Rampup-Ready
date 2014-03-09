@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
 
-  belongs_to :sub_division
+  belongs_to :subdivision
+  has_one :company, through: :subdivision
   has_many :definitions
   has_many :votes
   has_many(
