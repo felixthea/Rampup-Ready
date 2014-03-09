@@ -5,7 +5,6 @@ class WordsController < ApplicationController
   before_filter :require_company!, only: [:show, :destroy]
 
   def index
-    fail
     @words = Word.where('company_id = ?', current_co.id).order("words.name asc").page(params[:page])
     @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     @word = Word.new
