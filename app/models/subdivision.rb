@@ -16,4 +16,6 @@ class Subdivision < ActiveRecord::Base
     foreign_key: :subdivision_id,
     primary_key: :id
   )
+
+  belongs_to :company
 end

@@ -4,7 +4,8 @@ class WordsController < ApplicationController
   before_filter :require_admin!, only: [:destroy]
 
   def index
-    @words = Word.order("words.name asc").page(params[:page])
+    @words = Word.where('company_id = ?', current_co.id).order("words.name asc").page(params[:page])
+    # @words = Word.order("words.name asc").page(params[:page]) 
     @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     @word = Word.new
     respond_to do |format|
@@ -32,23 +33,19 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(params[:word])
-    if @word.save
-      if request.xhr?
-        render partial: 'word', locals: {word: @word}
-      else
-        flash[:notice] = ["#{@word.name} created successfully."]
-        redirect_to @word
-      end
-    elsif @word.errors.full_messages.include?("Name has already been taken")
-      if request.xhr?
+
+    if request.xhr?
+      if @word.save
+          render partial: 'word', locals: {word: @word}
+      elsif @word.errors.full_messages.include?("Name has already been taken")
         render json: Word.find_by_name(params[:word][:name]).id, status: 422
       else
-        flash[:errors] = @word.errors.full_messages
-        render :new
+        render json: @word.errors.full_messages, status: 422
       end
     else
-      if request.xhr?
-        render json: @word.errors.full_messages, status: 422
+      if @word.save
+        flash[:notice] = ["#{@word.name} created successfully."]
+        redirect_to @word
       else
         flash[:errors] = @word.errors.full_messages
         render :new
@@ -57,8 +54,7 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    @word = Word.find(params[:id])
-    @word.destroy
+    Word.find(params[:id]).destroy
     render :json => { status: 200 }
   end
 end

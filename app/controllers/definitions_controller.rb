@@ -34,7 +34,6 @@ class DefinitionsController < ApplicationController
         render partial: 'definitions/definition', locals: { definition: @definition }
       else
         render :json => @definition.errors.full_messages, status: 422
-        # render :json => params[:example], status: 422
       end
     else
       if @definition.save
