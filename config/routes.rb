@@ -15,7 +15,7 @@ Workwiki::Application.routes.draw do
     resources :definitions, only: [:create, :index]
   end
 
-  resources :definitions, only: [:show, :edit, :destroy, :update, :create] do
+  resources :definitions, only: [:edit, :destroy, :update, :create] do
     member do
       post 'upvote', :to => 'votes#create_upvote'
       post 'downvote', :to => 'votes#create_downvote'

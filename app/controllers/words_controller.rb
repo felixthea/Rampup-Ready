@@ -5,7 +5,6 @@ class WordsController < ApplicationController
 
   def index
     @words = Word.where('company_id = ?', current_co.id).order("words.name asc").page(params[:page])
-    # @words = Word.order("words.name asc").page(params[:page]) 
     @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     @word = Word.new
     respond_to do |format|
@@ -16,14 +15,19 @@ class WordsController < ApplicationController
 
   def show
     @word = Word.find(params[:id])
-    @subdivisions = Subdivision.all
-    @definitions = @word.definitions
-    @tags = Tag.all
-    @related_words = @word.find_related_words
-    @definition_faves = DefinitionFave.all
 
-    @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
-    render :show
+    if current_co.id == @word.company_id
+      @subdivisions = Subdivision.all
+      @definitions = @word.definitions
+      @tags = Tag.all
+      @related_words = @word.find_related_words
+      @definition_faves = DefinitionFave.all
+
+      @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
+      render :show
+    else
+      redirect_to words_url
+    end
   end
 
   def new
@@ -32,11 +36,11 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.new(params[:word])
+    @word = Word.new(params[:word].merge(company_id: current_co.id));
 
     if request.xhr?
       if @word.save
-          render partial: 'word', locals: {word: @word}
+        render partial: 'word', locals: {word: @word}
       elsif @word.errors.full_messages.include?("Name has already been taken")
         render json: Word.find_by_name(params[:word][:name]).id, status: 422
       else
@@ -54,7 +58,12 @@ class WordsController < ApplicationController
   end
 
   def destroy
-    Word.find(params[:id]).destroy
-    render :json => { status: 200 }
+    word = Word.find(params[:id])
+    if word.company_id == current_co.id
+      word.destroy
+      render :json => { status: 200 }
+    else
+      redirect_to new_session_url
+    end
   end
 end
