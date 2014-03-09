@@ -47,6 +47,9 @@ class DefinitionsController < ApplicationController
 
   def edit
     @definition = Definition.find(params[:id])
+
+    redirect_to new_session_url if @definition.word.company_id != current_co.id
+
     @subdivisions = Subdivision.all
     @example = @definition.examples[0]
     @tags = Tag.all
@@ -68,10 +71,10 @@ class DefinitionsController < ApplicationController
     else
       ActiveRecord::Base.transaction do
         @definition.update_attributes(params[:definition])
-        @example.update_attributes(params[:example])
+        @example.update_attributes(params[:example]) if params[:example]
       end
 
-      if @definition.valid? && @example.valid?
+      if @definition.valid? && (params[:example].blank? || @example.valid?)
         flash[:notice] = ["Definitition updated for #{@definition.word.name}"]
         redirect_to word_url(@definition.word.id)
       else

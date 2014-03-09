@@ -4,9 +4,11 @@
   <label for="definition_body">Definition:</label>
   <input type="text" name="definition[body]" value="<%= @definition.body %>" id="definition_body">
   <br>
+  <% if @example %>
   <label for="example_body">Example:</label>
   <input type="text" name="example[body]" value="<%= @example.body %>" id="example_body">
-  <Br>
+  <% end %>
+  <br>
   <select name="definition[subdivision_id]">
 	  <% @subdivisions.each do |subdivision| %>
 	    <% selected = subdivision.id == @definition.subdivision_id ? "selected" : "" %>
