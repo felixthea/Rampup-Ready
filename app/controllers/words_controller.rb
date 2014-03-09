@@ -2,6 +2,7 @@ class WordsController < ApplicationController
 
   before_filter :require_current_user!
   before_filter :require_admin!, only: [:destroy]
+  before_filter :require_company!, only: [:show, :destroy]
 
   def index
     @words = Word.where('company_id = ?', current_co.id).order("words.name asc").page(params[:page])
@@ -16,18 +17,14 @@ class WordsController < ApplicationController
   def show
     @word = Word.find(params[:id])
 
-    if current_co.id == @word.company_id
-      @subdivisions = Subdivision.all
-      @definitions = @word.definitions
-      @tags = Tag.all
-      @related_words = @word.find_related_words
-      @definition_faves = DefinitionFave.all
+    @subdivisions = Subdivision.all
+    @definitions = @word.definitions
+    @tags = Tag.all
+    @related_words = @word.find_related_words
+    @definition_faves = DefinitionFave.all
 
-      @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
-      render :show
-    else
-      redirect_to words_url
-    end
+    @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
+    render :show
   end
 
   def new
@@ -59,11 +56,16 @@ class WordsController < ApplicationController
 
   def destroy
     word = Word.find(params[:id])
-    if word.company_id == current_co.id
-      word.destroy
+    if word.destroy
       render :json => { status: 200 }
     else
-      redirect_to new_session_url
+      render :json => word.errors.full_messages, status: 422
     end
+  end
+
+  private
+
+  def require_company!
+    redirect_to new_session_url if Word.find(params[:id]).company_id != current_co.id
   end
 end
