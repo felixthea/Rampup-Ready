@@ -2,10 +2,11 @@ class WordsController < ApplicationController
 
   before_filter :require_current_user!
   before_filter :require_admin!, only: [:destroy]
-  before_filter :require_company!, only: [:show, :destroy]
+  # before_filter :require_company!, only: [:show, :destroy]
 
   def index
-    @words = Word.where('company_id = ?', current_co.id).order("words.name asc").page(params[:page])
+    # @words = Word.where('company_id = ?', current_co.id).order("words.name asc").page(params[:page])
+    @words = Word.order("words.name asc").page(params[:page])
     @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     @word = Word.new
     respond_to do |format|
