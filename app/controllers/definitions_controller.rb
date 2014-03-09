@@ -8,10 +8,14 @@ class DefinitionsController < ApplicationController
   end
 
   def create
-    def_body = params[:definition][:body]
-    subdivision_id = params[:definition][:subdivision_id]
     word_id = params[:word_id]
     word = Word.find(word_id)
+
+    redirect_to new_sessions_url if word.company_id != current_co.id
+
+    def_body = params[:definition][:body]
+    subdivision_id = params[:definition][:subdivision_id]
+    
     user_id = current_user.id
     tag_ids = params[:definition][:tag_ids]
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids)
