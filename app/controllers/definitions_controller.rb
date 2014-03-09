@@ -3,11 +3,6 @@ class DefinitionsController < ApplicationController
   before_filter :require_current_user!, only: [:new, :create]
   before_filter :require_author_or_admin!, only: [:edit, :update, :destroy]
 
-  def show
-    @definition = Definition.find(params[:id])
-    render :show
-  end
-
   def new
     @definition = Definition.new
   end
