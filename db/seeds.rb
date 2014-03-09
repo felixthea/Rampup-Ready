@@ -36,8 +36,10 @@ end
 User.create(email: "demouser@gmail.com", password: "password", subdivision_id: 1, admin: false)
 User.create(email: "demoadmin@gmail.com", password: "password", subdivision_id: 1, admin: true)
 
+Company.create(name: "Startup Inc")
+
 20.times do
-  Subdivision.create(name: Faker::Commerce.department)
+  Subdivision.create(name: Faker::Commerce.department, company_id: 1)
 end
 
 (1..11).each do
@@ -45,7 +47,7 @@ end
 end
 
 100.times do
-  Word.create(name: Faker::Company.catch_phrase)
+  Word.create(name: Faker::Company.catch_phrase, company_id: 1)
 end
 
 (1..100).each do |i|
