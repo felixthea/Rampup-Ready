@@ -1,6 +1,6 @@
 class DropCompanyTable < ActiveRecord::Migration
   def up
-  	drop_table :companies
+  	drop_table :companies if ActiveRecord::Base.connection.table_exists? 'companies'
   end
 
   def down
