@@ -36,11 +36,11 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.new(params[:word])
+    @word = Word.new(params[:word].merge(company_id: current_co.id));
 
     if request.xhr?
       if @word.save
-          render partial: 'word', locals: {word: @word}
+        render partial: 'word', locals: {word: @word}
       elsif @word.errors.full_messages.include?("Name has already been taken")
         render json: Word.find_by_name(params[:word][:name]).id, status: 422
       else
