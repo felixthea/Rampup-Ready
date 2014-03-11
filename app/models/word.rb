@@ -35,6 +35,8 @@ class Word < ActiveRecord::Base
     dependent: :destroy
   )
 
+  belongs_to :company
+
   include PgSearch
   multisearchable against: :name
 end
