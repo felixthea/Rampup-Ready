@@ -1,13 +1,23 @@
 <div class="word" id="<%= word.id %>">
   <div class="word-name">
-    <h2>Word name</h2>
+    <h2><%= link_to word.name, word_url(word.id) %></h2>
   </div>
   <div class="top-definition">
     <p>
-      Word definition
+      <% unless word.definitions.empty? %>
+        <% word.definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score } %>
+        <%= word.definitions.first.body %>
+      <% else %>
+        No definitions, yet.
+      <% end %>
     </p>
   </div>
   <div class="word-tags">
-    Tag 1, Tag 2
+    <% if word.definitions.first && word.definitions.first.tags %>
+      <% tags = word.definitions.first.tags %>
+      <%= render partial: 'tags/tag', collection: tags, spacer_template: 'shared/comma' %>
+    <% else %>
+      No tags, yet.
+    <% end %>
   </div>
 </div>

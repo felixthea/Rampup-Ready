@@ -1,7 +1,7 @@
 <div class="content">
   <div class="content-top group">
     <nav class="content-nav">
-      FILTER
+      <%= paginate @words %>
     </nav>
     <div class="add-new-button">
       <button id="add-cta">
@@ -12,6 +12,7 @@
   <div class="content-body group">
     <div class="content-main">
       <%= render @words %>
+      <%= paginate @words %>
     </div>
     <div class="content-sidebar">
       <ul>
