@@ -23,6 +23,7 @@ class CurriculumsController < ApplicationController
 
   def create
     params[:curriculum][:user_id] = current_user.id
+    params[:curriculum][:company_id] = current_co.id
     @curriculum = Curriculum.new(params[:curriculum])
 
     if request.xhr?
