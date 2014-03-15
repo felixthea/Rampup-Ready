@@ -149,6 +149,10 @@ input.word-search{
   background: none;
 }
 
+.search-focus{
+  color: white;
+}
+
 /* Layout Main */
 .main{
   /*background: yellow;*/
