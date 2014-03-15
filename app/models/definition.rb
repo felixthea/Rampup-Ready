@@ -30,6 +30,7 @@ class Definition < ActiveRecord::Base
   belongs_to :word
   belongs_to :user
   belongs_to :subdivision
+  belongs_to :company
   has_many(
     :examples,
     class_name: "Example",

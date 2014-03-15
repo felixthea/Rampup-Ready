@@ -5,4 +5,5 @@ class Company < ActiveRecord::Base
   has_many :words
   has_many :tags
   has_many :curriculums
+  has_many :definitions
 end

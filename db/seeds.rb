@@ -53,14 +53,14 @@ end
 (1..100).each do |i|
   5.times do
     Definition.create(word_id: i, user_id: (1..20).to_a.sample, subdivision_id: (1..20).to_a.sample,
-                      body: Faker::Lorem.sentences, tag_ids: (1..10).to_a.sample(3))
+                      body: Faker::Lorem.sentences, tag_ids: (1..10).to_a.sample(3), company_id: 1)
   end
 end
 
 #Curriculums
 (1..20).each do |i|
   Curriculum.create(user_id: i, name: Faker::Company.bs,
-                    description: Faker::Lorem.sentence, definition_ids: (1..500).to_a.sample(10))
+                    description: Faker::Lorem.sentence, definition_ids: (1..500).to_a.sample(10), company_id: 1)
 end
 
 #Messages
