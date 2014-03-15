@@ -2,26 +2,51 @@
 	<div class="content-boxes">
 		<div class="content-box">
 			<div class="content-box-pic">
-				PIC
+				<%= image_tag "new-curriculum.png", size: "128x128" %>
 			</div>
 			<div class="content-box-text">
-				TEXT
+				<h3>
+					New Curriculums
+				</h3>
+				<ul>
+					<% @new_curriculums.each do |curriculum| %>
+						<li>
+							<%= link_to curriculum.name, curriculum_url(curriculum.id) %>
+						</li>
+					<% end %>
+				</ul>
 			</div>
 		</div>
 		<div class="content-box">
 			<div class="content-box-pic">
-				PIC
+				<%= image_tag "new-definition.png", size: "128x128" %>
 			</div>
 			<div class="content-box-text">
-				TEXT
+				<h3>
+					New Definitions
+				</h3>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut
+				</p>
 			</div>
 		</div>
 		<div class="content-box">
 			<div class="content-box-pic">
-				PIC
+				<%= image_tag "new-word.png", size: "128x128" %>
 			</div>
 			<div class="content-box-text">
-				TEXT
+				<h3>
+					New Words
+				</h3>
+				<ul>
+					<% @new_words.each do |word| %>
+						<li>
+							<%= link_to word.name, word_url(word.id) %>
+						</li>
+					<% end %>
+				</ul>
+				</p>
 			</div>
 		</div>
 	</div>
@@ -35,7 +60,7 @@
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</p>
 		<div class="add-words-button">
-			<button id="add-word">
+			<button id="add-cta">
 				Add a Word
 			</button>
 		</div>

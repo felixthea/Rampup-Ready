@@ -12,12 +12,12 @@
       <div class="nav group">
         <div class="nav-left">
           <div class="logo">
-            LOGO
+            <%= link_to 'LOGO', root_url %>
           </div>
           <div class="links">
             <ul>
-              <li><a href="#">Words</a></li>
-              <li><a href="#">Curriculum</a></li>
+              <li><%= link_to 'Words', words_url %></li>
+              <li><%= link_to 'Curriculum', curriculums_url %></li>
             </ul>
           </div>
         </div>
@@ -33,14 +33,18 @@
         </div>
       </div>
     </div>
-    <div class="search">
-      SEARCH
+    <div class="search group">
+      <div class="search-icon">
+        <%= image_tag "search-2.png" %>
+      </div>
+      <div class="search-bar">
+        <input class="word-search" type="text" placeholder="What word would you like to learn?">
+      </div>
     </div>
     <div class="main">
       <%= yield %>
     </div>
     <footer>
-      FOOTER
     </footer>
   </div>
 </body>

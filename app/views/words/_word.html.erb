@@ -1,34 +1,13 @@
 <div class="word" id="<%= word.id %>">
-  <div class="word-info group">
-    <div class="word-name">
-      <%= link_to word.name, word_url(word.id) %>
-    </div>
-    <% if current_user.admin == true %>
-      <button class="delete-word" data-id="<%= word.id %>">Delete</button>
-    <% end %>
+  <div class="word-name">
+    <h2>Word name</h2>
   </div>
-  <div class="one-definition">
-    <% word.definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score } %>
-    <% if word.definitions.length > 0 %>
-      <ul>
-        <% word.definitions.each_with_index do |definition, index| %>
-          <% if index == 0 %>
-            <li id="<%= index %>">
-          <% else %>
-            <li id="<%= index %>" class="hidden">
-          <% end %>
-            <%= index+1 %>.) <%= definition.body %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <a href="#" id="add-first-definition">No definitions.  Add one</a>
-    <% end %>
+  <div class="top-definition">
+    <p>
+      Word definition
+    </p>
   </div>
-  <!-- <div class="next-definition-wrapper">
-    
-  </div> -->
-  <% unless word.definitions.length <= 1 %>
-      <button class="next-definition">Next Definition</button>
-  <% end %>
+  <div class="word-tags">
+    Tag 1, Tag 2
+  </div>
 </div>

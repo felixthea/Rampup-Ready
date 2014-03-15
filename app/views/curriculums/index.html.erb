@@ -1,19 +1,17 @@
-<div class="curriculums-wrapper">
-  <h2>Curriculums</h2>
-  <ul>
-  	<h3>My Curriculums</h3>
-    <% @my_curriculums.each do |my_curriculum| %>
-      <li>
-        <%= link_to my_curriculum.name, curriculum_url(my_curriculum.id) %> (<%= pluralize(my_curriculum.definitions.length, "definition") %>)
-      </li>
-    <% end %>
-    <br><br>
-    <h3>Public Curriculums</h3>
-    <% @public_curriculums.each do |public_curriculum| %>
-	    <li>
-	    	<%= link_to public_curriculum.name, curriculum_url(public_curriculum.id) %> (<%= pluralize(public_curriculum.definitions.length, " definition") %>) by <%= public_curriculum.user.email %>
-	    </li>
-    <% end %>
-  </ul>
-  <%= link_to "Create Curriculum", new_curriculum_url %>
+<div class="content">
+  <div class="content-top group">
+    <nav class="content-nav">
+      FILTER
+    </nav>
+    <div class="add-new-button">
+      <button id="add-cta">
+        Add a Curriculum
+      </button>
+    </div>
+  </div>
+  <div class="content-body group">
+    <div class="content-main-curriculums">
+      CURRICULUMS
+    </div>
+  </div>
 </div>

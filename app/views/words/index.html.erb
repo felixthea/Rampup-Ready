@@ -1,20 +1,27 @@
-<div class="words-wrapper group">
-  <div class="add-words-form group">
-    <h2>Add Word</h2>
-    <form action="<%= words_url %>" method="post" data-remote="true" id="new-word-form">
-      <label for="word_name">Word:</label>
-      <input type="text" name="word[name]" id="word_name">
-      <input type="submit" class="submit" value="Add Word">
-    </form>
-		<br>
-		<strong>Build a curriculum</strong> that you can send to another member of your team.  <%= link_to "Click Here!", new_curriculum_url %>
+<div class="content">
+  <div class="content-top group">
+    <nav class="content-nav">
+      FILTER
+    </nav>
+    <div class="add-new-button">
+      <button id="add-cta">
+        Add a Word
+      </button>
+    </div>
   </div>
-  <div class="words-list">
-    <h2>Words</h2>
-    <div class="words">
-      <nav class="word-pages"><%= paginate @words %></nav>
+  <div class="content-body group">
+    <div class="content-main">
       <%= render @words %>
-      <nav class="word-pages"><%= paginate @words %></nav>
+    </div>
+    <div class="content-sidebar">
+      <ul>
+        <li>Cost per order</li>
+        <li>Daisy chain</li>
+        <li>Cost per order</li>
+        <li>Daisy chain</li>
+        <li>Cost per order</li>
+        <li>Daisy chain</li>
+      </ul>
     </div>
   </div>
 </div>

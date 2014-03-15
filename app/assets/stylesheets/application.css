@@ -29,10 +29,15 @@ h1{
 
 h2{
   font-size: 1.5em;
+  color: #373737;
 }
 
 h3{
   font-size: 1.17em;
+}
+
+p{
+  color: #A9A9A9;
 }
 
 .group:after{
@@ -48,7 +53,7 @@ body{
 .container{
   padding: 20px;
   width: 1380px;
-  background: red;
+  /*background: red;*/
 }
 
 button{
@@ -59,13 +64,14 @@ button{
 
 /* Layout Top */
 .top{
-  background: blue;
+  /*background: blue;*/
+  margin: 0 0 30px 0;
 }
 
 .nav{
   width: 1000px;
   margin: 0 190px 0 190px;
-  background: yellow;
+  /*background: yellow;*/
 }
 
 .nav-left{
@@ -120,30 +126,50 @@ button{
 /* Layout Search */
 .search{
   height: 180px;
-  background: green;
+  background: #333333;
+  text-align: center;
+}
+
+.search-icon{
+  float: left;
+  margin: 60px 0 0 180px;
+}
+
+.search-bar{
+  float: left;
+  margin: 0 0 0 20px;
+}
+
+input.word-search{
+  margin: 15px 0 0 0;
+  width: 850px;
+  height: 150px;
+  font-size: 48px;
+  border: none;
+  background: none;
 }
 
 /* Layout Main */
 .main{
-  background: yellow;
+  /*background: yellow;*/
 }
 
 .content{
   width: 1000px;
   margin: 0 190px 0 190px;
-  background: teal;
+  /*background: teal;*/
 }
 
 .content-boxes{
   height: 300px;
   padding: 20px 0 20px 0;
-  background: blue;
+  /*background: blue;*/
 }
 
 .content-box{
   width: 300px;
   float: left;
-  background: purple;
+  /*background: purple;*/
   margin-right: 50px;
 }
 
@@ -153,19 +179,20 @@ button{
 
 .content-box-pic{
   height: 160px;
-  background: red;
+  /*background: #cccccc;*/
+  text-align: center;
 }
 
 .content-box-text{
   margin: 20px 0 0 0;
   height: 80px;
-  background: green;
+  /*background: green;*/
 }
 
 .add-words-box{
   height: 60px;
   padding: 20px 0 20px 0;
-  background: maroon;
+  /*background: maroon;*/
 }
 
 .add-words-text{
@@ -179,14 +206,84 @@ button{
 
 /* Layout Footer */
 footer{
-  background: orange;
+  background: #E5E5E5;
+  margin: 50px 0 0 0;
+  height: 100px;
 }
 
 /* Static Main Page */
-button#add-word{
-  width: 115px;
-  padding: 15px 0 15px 0;
+button#add-cta{
+  /*width: 115px;*/
+  padding: 15px 25px 15px 25px;
   font-size: 14px;
+  border-bottom: 3px solid #0066CC;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+.add-words-box{
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+.content-nav{
+  float: left;
+}
+
+.add-new-button{
+  float: right;
+}
+
+.content-top{
+  padding: 30px 0 30px 0;
+  border-bottom: 1px solid gray;
+}
+
+.content-body{
+  padding: 30px 0 30px 0;
+}
+
+.content-main{
+  float: left;
+  width: 650px;
+}
+
+.content-main-curriculums{
+}
+
+.content-sidebar{
+  float: right;
+  width: 300px;
+}
+
+/* Main Page Sidebar */
+.content-sidebar ul{
+  margin: 0 0 0 100px;
+}
+
+.content-sidebar ul li{
+  list-style: none;
+}
+
+/* Word */
+.word{
+  padding: 30px 0 20px 0;
+}
+
+.word:nth-child(1){
+  padding-top: 0;
+}
+
+.word-name{
+  padding: 0 0 20px 0;
+}
+
+.top-definition{
+  padding: 0 0 20px 0;
+}
+
+.word-tags{
+  color: #9C9C9C;
+  font-weight: bold;
+  font-size: 10px;
 }
