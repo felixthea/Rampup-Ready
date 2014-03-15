@@ -29,14 +29,58 @@ $(document).ready(function(){
 
     $inputBox.attr("placeholder", "");
     $inputBox.addClass('search-focus');
-  })
+  });
 
   $('.word-search').on('blur', function(event){
     var $inputBox = $(this);
 
-    $inputBox.attr("placeholder", searchPlaceholder)
+    $inputBox.attr("placeholder", searchPlaceholder);
     $inputBox.removeClass('search-focus');
-  })
+  });
+
+  $('.content-main').on('click', '.upvote-arrow', function(event){
+  	var definitionId = $(event.target).attr("data-id");
+
+  	$.ajax({
+  		url: '/definitions/' + definitionId + '/upvote',
+  		type: 'POST',
+  		success: function(response){
+  			flashNotice("Upvoted!");
+  			updateVoteCount(definitionId, response);
+  		},
+  		error: function(response){
+  			flashNotice(response.responseText);
+  		}
+  	});
+  });
+
+  $('.content-main').on('click', '.downvote-arrow', function(event){
+  	var definitionId = $(event.target).attr("data-id");
+  	
+  	$.ajax({
+  		url: '/definitions/' + definitionId + '/downvote',
+  		type: 'POST',
+  		success: function(response){
+  			flashNotice("Downvoted!");
+  			updateVoteCount(definitionId, response);
+  		},
+  		error: function(response){
+  			flashNotice(response.responseText);
+  		}
+  	});
+  });
+
+  var updateVoteCount = function (definitionId, response) {
+    var total = response.total
+    var upvotes = response.upvotes
+    var downvotes = response.downvotes
+    $('div#' + definitionId).find('#total-score').html(total);
+  };
+
+  var flashNotice = function (msg) {
+  	console.log(msg);
+  };
+
 });
 
 

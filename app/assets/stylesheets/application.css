@@ -117,6 +117,7 @@ button{
 
 .name{
   float: left;
+  margin: 10px 10px 0 0;
 }
 
 .avatar{
@@ -217,12 +218,31 @@ footer{
 
 /* Static Main Page */
 button#add-cta{
-  /*width: 115px;*/
   padding: 15px 25px 15px 25px;
   font-size: 14px;
   border-bottom: 3px solid #0066CC;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+}
+
+button#add-cta:hover{
+  background: #0066CC;
+  border-bottom: 3px solid #0066CC;
+}
+
+button#add-sub-cta{
+  background: #E5E5E5;
+  border: none;
+  color: #565656;
+  padding: 15px 25px 15px 25px;
+  font-size: 14px;
+  border-bottom: 3px solid #bababa;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+button#add-sub-cta:hover{
+  background: #bababa;
 }
 
 .add-words-box{
@@ -250,7 +270,7 @@ button#add-cta{
 
 .content-main{
   float: left;
-  width: 650px;
+  width: 700px;
 }
 
 .content-main-curriculums{
@@ -262,7 +282,7 @@ button#add-cta{
 }
 
 /* Main Page Sidebar */
-.content-sidebar ul{
+.content-sidebar ul, .content-sidebar h3{
   margin: 0 0 0 100px;
 }
 
@@ -292,3 +312,91 @@ button#add-cta{
   font-weight: bold;
   font-size: 10px;
 }
+
+.add-to-curriculum-button{
+  float: right;
+}
+
+.add-a-definition-button{
+  float: right;
+  margin: 30px 0 0 0;
+}
+
+/* Definition */
+.definition{
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 20px 0;
+  margin: 30px 0 0 0;
+}
+
+.definition:nth-child(1){
+  margin: 0;
+}
+
+.definition-content{
+  float: left;
+  width: 600px;
+}
+
+.definition-body{
+  padding: 0 0 10px 0;
+}
+
+.definition-examples{
+  padding: 0 0 10px 0;
+}
+
+.definition-tags{
+  padding: 0 0 10px 0;
+  color: #9C9C9C;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.definition-options{
+  padding: 0 0 10px 0;
+}
+
+.definition-votes{
+  vertical-align:top;
+  float: right;
+  height: 50px;
+  text-align: center;
+}
+
+.upvote-arrow{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 10px 15px 10px;
+  border-color: transparent transparent #dbdbdb transparent;
+}
+
+.upvote-arrow:hover{
+  border-color: transparent transparent #bababa transparent;
+}
+
+.downvote-arrow{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 15px 10px 0 10px;
+  border-color: #dbdbdb transparent transparent transparent;
+  margin: 15px 0 0 0;
+}
+
+.downvote-arrow:hover{
+  border-color: #bababa transparent transparent transparent;
+}
+
+.total-score{
+  padding: 0;
+  margin: 0 0 0 5px;
+}
+
+/* Entity Show */
+.content-title{
+  font-size: 38px;
+  float: left;
+}
+

@@ -1,20 +1,42 @@
-<div class="container-body group">
-  <h2 class="word-name"><%= @word.name %></h2>
-  <div class="related-words">
-    <%= render 'related_words' %>
+<div class="content">
+  <div class="content-top group">
+    <div class="content-title">
+      <%= @word.name %>
+    </div>
+    <div class="add-to-curriculum-button">
+      <button id="add-cta">
+        Add to Curriculum
+      </button>
+    </div>
   </div>
-  <div class="word-defs">
-    <h3>Definitions</h3>
-    <div class="definitions">
+  <div class="content-body group">
+    <div class="content-main">
+      <%= render @definitions %>
+      <div class="add-a-definition-button">
+        <button id="add-sub-cta">
+          Add a Definition
+        </button>
+      </div>
+    </div>
+    <div class="content-sidebar">
+      <h3>Tags</h3>
       <ul>
-        <%= render @definitions %>
+        <% @word_tags.each do |tag| %>
+          <li>
+            <%= tag.name %>
+            <!-- @TODO: turn clicking on the tag name to search for words with the same tag -->
+          </li>
+        <% end %>
+      </ul>
+      <br>
+      <h3>Related Words</h3>
+      <ul>
+        <% @related_words.each do |word| %>
+          <li>
+            <%= link_to word.name, word_url(word.id) %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
-  <div class="new-defs-form">
-    <%= render '/definitions/new_defs' %>
-  </div>
-<!-- 	<div class="notify-new-definitions">
-		<a href="#">Notify me when new definitions are added</a>
-	</div> -->
 </div>

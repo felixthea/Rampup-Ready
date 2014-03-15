@@ -27,6 +27,20 @@ class Word < ActiveRecord::Base
     return related_words
   end
 
+  def find_word_tags
+    return [] if self.definitions.empty?
+    current_word_definitions = self.definitions
+    all_tags = Set.new
+
+    current_word_definitions.each do |definition|
+      definition.tags.each do |tag|
+        all_tags.add(tag)
+      end
+    end
+
+    return all_tags
+  end
+
   has_many(
     :definitions,
     class_name: "Definition",

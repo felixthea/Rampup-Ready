@@ -25,10 +25,15 @@
 				<h3>
 					New Definitions
 				</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut
-				</p>
+				<ul>
+					<% @new_definitions.each do |definition| %>
+						<li>
+							<%= link_to definition.word.name, word_url(definition.word.id) %>
+							<br>
+							<%= definition.body[0..45].gsub(/\s\w+\s*$/, '...') %>
+						</li>
+					<% end %>
+				</ul>
 			</div>
 		</div>
 		<div class="content-box">
@@ -52,12 +57,7 @@
 	</div>
 	<div class="add-words-box group">
 		<p class="add-words-text">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Did you learn a new word and want to share it with your teammates?  Add the word!  If you heard a new word, but don't know the definition, add the word and if one of your colleagues knows the definition they will help you out by adding the definition.
 		</p>
 		<div class="add-words-button">
 			<button id="add-cta">
