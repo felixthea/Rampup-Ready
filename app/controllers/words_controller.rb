@@ -9,6 +9,7 @@ class WordsController < ApplicationController
     # @words = Word.order("words.name asc").page(params[:page])
     @curriculums = Curriculum.find_all_by_user_id(current_user.id)
     @word = Word.new
+    @recent = Word.recently_added(current_co, 10);
     respond_to do |format|
       format.html
       format.json { render json: @words }

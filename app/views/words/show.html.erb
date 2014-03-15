@@ -13,7 +13,7 @@
     <div class="content-main">
       <%= render @definitions %>
       <div class="add-a-definition-button">
-        <button id="add-sub-cta">
+        <button id="add-sub-cta" class="add-definition" data-id="add-definition-modal">
           Add a Definition
         </button>
       </div>
@@ -37,6 +37,32 @@
           </li>
         <% end %>
       </ul>
+    </div>
+  </div>
+</div>
+<div class="add-definition-modal hidden">
+  <div class="form">
+    <div class="definition-word">
+      <h1><%= @word.name %></h1>
+    </div>
+    <div class="definition">
+      <label for="definition_body"><h2>Definition</h2></label>
+      <textarea name="definition[body]" id="definition_body" type="text" placeholder="Type definition here"></textarea>
+    </div>
+    <div class="tags">
+      <label for="definition_tag_ids"><h3>Tags (optional)</h3></label>
+    </div>
+    <div class="example">
+      <label for="example_body"><h3>Example (optional)</h3></label>
+      <textarea name="example[body]" id="example_body" placeholder="Type example here"></textarea>
+    </div>
+    <div class="actions">
+      <span class="cancel">
+        <a href="#" data-id="add-definition-modal">Cancel</a>
+      </span>
+      <button id="add-cta">
+        Add
+      </button>
     </div>
   </div>
 </div>

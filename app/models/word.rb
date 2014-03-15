@@ -38,7 +38,11 @@ class Word < ActiveRecord::Base
       end
     end
 
-    return all_tags
+    all_tags
+  end
+
+  def self.recently_added(current_co, limit)
+    Word.where('company_id = ?', current_co.id).order("words.created_at desc").first(limit)
   end
 
   has_many(

@@ -27,6 +27,10 @@ class Definition < ActiveRecord::Base
     return total_score
   end
 
+  def self.recently_added(current_co, limit)
+    Definition.where('company_id = ?', current_co.id).order("definitions.created_at desc").first(limit)
+  end
+
   belongs_to :word
   belongs_to :user
   belongs_to :subdivision

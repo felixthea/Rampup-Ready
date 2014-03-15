@@ -14,4 +14,8 @@ class Curriculum < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy
   )
+
+  def self.recently_added(current_co, limit)
+    Curriculum.where('company_id = ?', current_co.id).order("curriculums.created_at desc").first(limit)
+  end
 end

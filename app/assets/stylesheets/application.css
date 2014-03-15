@@ -46,6 +46,10 @@ p{
   clear: both;
 }
 
+.hidden{
+  display: none;
+}
+
 body{
   background: #ffffff;
 }
@@ -228,6 +232,7 @@ button#add-cta{
 button#add-cta:hover{
   background: #0066CC;
   border-bottom: 3px solid #0066CC;
+  cursor: pointer;
 }
 
 button#add-sub-cta{
@@ -320,6 +325,55 @@ button#add-sub-cta:hover{
 .add-a-definition-button{
   float: right;
   margin: 30px 0 0 0;
+}
+
+.add-definition-modal{
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  height: 100%;
+  width: 100%;
+}
+
+.add-definition-modal .form{
+  z-index: 1001;
+  padding: 150px 0 0 450px;
+  width: 600px;
+}
+
+.add-definition-modal .form div{
+  padding: 10px 0 0 0;
+  /*padding: 0;*/
+}
+
+.add-definition-modal input, .add-definition-modal textarea{
+  width: 600px;
+  border: none;
+  height: 60px;
+  font-size: 16px;
+  outline: none;
+}
+
+.add-definition-modal input:focus, .add-definition-modal textarea:focus{
+  background: #f4fcff;
+}
+
+.add-definition-modal .definition, .tags, .example{
+  border-bottom: 1px solid #cccccc;
+}
+
+.add-definition-modal .actions{
+  float: right;
+}
+
+.cancel a{
+  color: #0066CC;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0 10px 0 0;
 }
 
 /* Definition */

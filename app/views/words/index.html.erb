@@ -15,13 +15,13 @@
       <%= paginate @words %>
     </div>
     <div class="content-sidebar">
+      <h3>Recently Added</h3>
       <ul>
-        <li>Cost per order</li>
-        <li>Daisy chain</li>
-        <li>Cost per order</li>
-        <li>Daisy chain</li>
-        <li>Cost per order</li>
-        <li>Daisy chain</li>
+        <% @recent.each do |word| %>
+          <li>
+            <%= link_to word.name, word_url(word.id) %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
