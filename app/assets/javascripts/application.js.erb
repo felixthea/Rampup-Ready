@@ -87,6 +87,7 @@ $(document).ready(function(){
   $('.cancel').on('click', 'a', function(event){
   	event.preventDefault();
   	var modal = $(this).attr('data-id')
+  	clearForm(modal);
   	closeModal(modal);
   });
 
@@ -107,11 +108,8 @@ $(document).ready(function(){
   		data: { word_id: wordId, definition_body: definitionBody, definition_example: { body: definitionExample }, definition_tags: definitionTags, subdivision_id: subdivisionId },
   		success: function(data, status, jqxhr){
   			$lastDef.after(data);
-  			$('textarea').val('');
-  			$("option:selected").removeAttr("selected");
-  			$('#definition_tag_ids').trigger('chosen:updated');
-  			$('#subdivision_id').trigger('chosen:updated');
   			closeModal('add-definition-modal');
+  			clearForm('add-definition-modal');
   		},
   		error: function(jqxhr, status, error){
   			console.log(jqxhr);
@@ -145,11 +143,9 @@ $(document).ready(function(){
   		},
   		success: function(data, status, jqxhr){
   			console.log(data);
+
   		},
   		error: function(jqxhr, status, error){
-  			console.log(jqxhr);
-  			console.log(status);
-  			console.log(error);
   		}
   	})
 	})
@@ -160,7 +156,16 @@ $(document).ready(function(){
 
   var openModal = function(modalClass){
   	$('.' + modalClass).removeClass('hidden');
-  }
+  };
+
+  var clearForm = function(modalClass) {
+  	$modal = $('.'+ modalClass)
+  	$modal.find('textarea').val('');
+  	$modal.find('input').val('');
+  	$modal.find("option:selected").removeAttr("selected");
+  	$modal.find('select').trigger('chosen:updated');
+  	console.log('cleared ' + modalClass);
+  };
 
   var updateVoteCount = function (definitionId, response) {
     var total = response.total

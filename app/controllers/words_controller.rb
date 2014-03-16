@@ -58,7 +58,7 @@ class WordsController < ApplicationController
       elsif @word.errors.full_messages.include?("Name has already been taken")
         render json: Word.find_by_name(params[:word][:name]).id, status: 422
       else
-        render json: word_errors: @word.errors.full_messages, status: 422
+        render json: @word.errors.full_messages, status: 422
       end
     else
       if @word.save
