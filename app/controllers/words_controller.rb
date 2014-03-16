@@ -36,15 +36,29 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.new(params[:word].merge(company_id: current_co.id));
+    @word = Word.new(name: params[:word_name], company_id: current_co.id)
+
+    @definition = @word.definitions.new(
+      user_id: current_user.id,
+      body: params[:definition_body],
+      subdivision_id: params[:subdivision_id],
+      tag_ids: params[:definition_tags],
+      company_id: current_co.id
+      )
+
+    @example = @definition.examples.new(
+      body: params[:definition_example][:body]
+      )
+
 
     if request.xhr?
       if @word.save
-        render partial: 'word', locals: {word: @word}
+        render json: { word: @word, definition: @definition, example: @example }
+        # render partial: 'word', locals: {word: @word}
       elsif @word.errors.full_messages.include?("Name has already been taken")
         render json: Word.find_by_name(params[:word][:name]).id, status: 422
       else
-        render json: @word.errors.full_messages, status: 422
+        render json: word_errors: @word.errors.full_messages, status: 422
       end
     else
       if @word.save

@@ -92,8 +92,8 @@ $(document).ready(function(){
 
   $('.add-definition-modal').on('click', '.submit-definition', function(event){
   	event.preventDefault();
-  	$modal = $('.add-definition-modal')
-  	$lastDef = $('.definition').last()
+  	$modal = $('.add-definition-modal');
+  	$lastDef = $('.definition').last();
 
   	wordId = $modal.attr("data-id");
   	definitionBody = $modal.find('textarea#definition_body').val();
@@ -119,8 +119,40 @@ $(document).ready(function(){
   			console.log(error);
   		}
   	})
-
   })
+
+	$('.add-word-modal').on('click', '.submit-word', function(event){
+		event.preventDefault();
+		$modal = $('.add-word-modal');
+
+		wordName = $modal.find('input#word_name').val();
+		definitionBody = $modal.find('textarea#definition_body').val();
+		definitionExample = $modal.find('textarea#example_body').val();
+		definitionTags = $modal.find('select#definition_tag_ids').val();
+  	subdivisionId = $modal.find('select#subdivision_id').val();
+
+  	$.ajax({
+  		url: '/words',
+  		type: 'POST',
+  		data: {
+  			word_name: wordName,
+  			definition_body: definitionBody,
+  			definition_example: {
+  				body: definitionExample
+  			},
+  			definition_tags: definitionTags,
+  			subdivision_id: subdivisionId
+  		},
+  		success: function(data, status, jqxhr){
+  			console.log(data);
+  		},
+  		error: function(jqxhr, status, error){
+  			console.log(jqxhr);
+  			console.log(status);
+  			console.log(error);
+  		}
+  	})
+	})
 
   var closeModal = function(modalClass){
   	$('.' + modalClass).addClass('hidden');

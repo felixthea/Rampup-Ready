@@ -50,7 +50,8 @@ class Word < ActiveRecord::Base
     class_name: "Definition",
     foreign_key: :word_id,
     primary_key: :id,
-    dependent: :destroy
+    dependent: :destroy,
+    inverse_of: :word
   )
 
   belongs_to :company
