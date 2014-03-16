@@ -3,12 +3,12 @@ class Word < ActiveRecord::Base
 
   validates :name, uniqueness: true, presence: true
 
-  def find_related_words
+  def find_related_words(current_co)
     return [] if self.definitions.empty?
     current_word_definitions = self.definitions
     all_tags = []
     related_words = []
-    all_words = Word.first(10)
+    all_words = Word.where('company_id = ?', current_co.id).first(10)
 
     current_word_definitions.each do |definition|
       all_tags += definition.tags

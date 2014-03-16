@@ -19,12 +19,12 @@ class WordsController < ApplicationController
   def show
     @word = Word.find(params[:id])
 
-    @subdivisions = Subdivision.all
+    @subdivisions = Subdivision.where('company_id = ?', current_co.id)
     @definitions = @word.definitions
-    @tags = Tag.all
-    @related_words = @word.find_related_words
+    @tags = Tag.where('company_id = ?', current_co.id)
+    @related_words = @word.find_related_words(current_co)
     @word_tags = @word.find_word_tags
-    @definition_faves = DefinitionFave.all
+    @definition_faves = DefinitionFave.where('user_id = ?', current_user.id)
 
     @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
     render :show, layout: "entity"

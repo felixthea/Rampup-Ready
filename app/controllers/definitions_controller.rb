@@ -13,14 +13,15 @@ class DefinitionsController < ApplicationController
 
     redirect_to new_sessions_url if word.company_id != current_co.id
 
-    def_body = params[:definition][:body]
-    subdivision_id = params[:definition][:subdivision_id]
+    def_body = params[:definition_body]
+    subdivision_id = params[:subdivision_id]
     
     user_id = current_user.id
-    tag_ids = params[:definition][:tag_ids]
+    tag_ids = params[:definition_tags]
     company_id = current_co.id
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids, company_id: company_id)
-    @definition.examples.new(params[:example]) unless params[:example][:body].empty?
+    
+    @definition.examples.new(params[:definition_example]) unless params[:definition_example].empty?
 
     if request.xhr? && params[:from_modal] == "true"
       if @definition.save

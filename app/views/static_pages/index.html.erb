@@ -60,9 +60,50 @@
 			Did you learn a new word and want to share it with your teammates?  Add the word!  If you heard a new word, but don't know the definition, add the word and if one of your colleagues knows the definition they will help you out by adding the definition.
 		</p>
 		<div class="add-words-button">
-			<button id="add-cta">
+			<button id="add-cta" class="add-word" data-id="add-word-modal">
 				Add a Word
 			</button>
 		</div>
 	</div>
+</div>
+<div class="add-word-modal hidden">
+  <div class="form">
+  	<div class="word">
+  		<label for="word_name"><h2>Word</h2></label>
+  		<input type="text" id="word_name" name="word[name]" placeholder="Type word here">
+  	</div>
+    <div class="definition_body">
+      <label for="definition_body"><h2>Definition</h2></label>
+      <textarea name="definition[body]" id="definition_body" type="text" placeholder="Type definition here"></textarea>
+    </div>
+    <div class="example">
+      <label for="example_body"><h3>Example (optional)</h3></label>
+      <textarea name="example[body]" id="example_body" placeholder="Type example here"></textarea>
+    </div>
+     <div class="subdivisions">
+      <label for="subdivision_id"><h3>Department (optional)</h3></label>
+      <select name="subdivision_id" id="subdivision_id">
+        <option value="0">Uncategorized</option>
+        <% @subdivisions.each do |subdivision| %>
+          <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="tags">
+      <label for="definition_tag_ids"><h3>Tags (optional)</h3></label>
+      <select name="definition[tag_ids][]" multiple data-placeholder="Select Tags" id="definition_tag_ids">
+        <% @tags.each do |tag| %>
+          <option value="<%= tag.id %>"><%= tag.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="actions">
+      <span class="cancel">
+        <a href="#" data-id="add-word-modal">Cancel</a>
+      </span>
+      <button id="add-cta">
+        Add
+      </button>
+    </div>
+  </div>
 </div>

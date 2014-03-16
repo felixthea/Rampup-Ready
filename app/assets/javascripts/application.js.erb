@@ -73,14 +73,54 @@ $(document).ready(function(){
   $('.main').on('click', 'button.add-definition', function(event){
   	event.preventDefault();
   	modal = $(this).attr('data-id');
+  	$('#select-tags').trigger('chosen:updated');
+  	$('#select-subdivision').trigger('chosen:updated');
   	openModal(modal);
   });
+
+  $('.container').on('click', 'button.add-word', function(event){
+  	event.preventDefault();
+  	modal = $(this).attr('data-id');
+  	openModal(modal);
+  })
 
   $('.cancel').on('click', 'a', function(event){
   	event.preventDefault();
   	var modal = $(this).attr('data-id')
   	closeModal(modal);
   });
+
+  $('.add-definition-modal').on('click', '.submit-definition', function(event){
+  	event.preventDefault();
+  	$modal = $('.add-definition-modal')
+  	$lastDef = $('.definition').last()
+
+  	wordId = $modal.attr("data-id");
+  	definitionBody = $modal.find('textarea#definition_body').val();
+  	definitionExample = $modal.find('textarea#example_body').val();
+  	definitionTags = $modal.find('select#definition_tag_ids').val();
+  	subdivisionId = $modal.find('select#subdivision_id').val();
+
+  	$.ajax({
+  		url: '/definitions',
+  		type: 'POST',
+  		data: { word_id: wordId, definition_body: definitionBody, definition_example: { body: definitionExample }, definition_tags: definitionTags, subdivision_id: subdivisionId },
+  		success: function(data, status, jqxhr){
+  			$lastDef.after(data);
+  			$('textarea').val('');
+  			$("option:selected").removeAttr("selected");
+  			$('#definition_tag_ids').trigger('chosen:updated');
+  			$('#subdivision_id').trigger('chosen:updated');
+  			closeModal('add-definition-modal');
+  		},
+  		error: function(jqxhr, status, error){
+  			console.log(jqxhr);
+  			console.log(status);
+  			console.log(error);
+  		}
+  	})
+
+  })
 
   var closeModal = function(modalClass){
   	$('.' + modalClass).addClass('hidden');
@@ -100,6 +140,14 @@ $(document).ready(function(){
   var flashNotice = function (msg) {
   	console.log(msg);
   };
+
+  $('#definition_tag_ids').chosen({
+  	width: "100%"
+	});
+
+	$('#subdivision_id').chosen({
+		width: "100%"
+	});
 
 });
 
