@@ -2,7 +2,7 @@ class Definition < ActiveRecord::Base
 
   attr_accessible :word_id, :user_id, :body, :subdivision_id, :tag_ids, :company_id
 
-  validates :word_id, :user_id, :body, :subdivision_id, presence: true
+  validates :word_id, :user_id, :body, presence: true
 
   def sum_upvotes
     upvotes = all_votes.select { |vote| vote == 1 }
