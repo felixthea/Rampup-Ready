@@ -93,7 +93,14 @@ button{
   float: left;
   height: 50px;
   width: 200px;
-  background: gray;
+  padding: 10px 0 0 0;
+}
+
+.logo p a{
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #cccccc;
 }
 
 .links{
@@ -150,12 +157,13 @@ input.word-search{
   margin: 15px 0 0 0;
   width: 850px;
   height: 150px;
-  font-size: 48px;
+  font-size: 56px;
   border: none;
   background: none;
 }
 
-.search-focus{
+input.word-search:focus{
+  outline: none;
   color: white;
 }
 
