@@ -21,7 +21,7 @@ class DefinitionsController < ApplicationController
     company_id = current_co.id
     @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids, company_id: company_id)
     
-    @definition.examples.new(params[:definition_example]) unless params[:definition_example].empty?
+    @definition.examples.new(params[:definition_example]) unless params[:definition_example][:body].empty?
 
     if request.xhr? && params[:from_modal] == "true"
       if @definition.save
