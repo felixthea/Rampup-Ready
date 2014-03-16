@@ -73,8 +73,6 @@ $(document).ready(function(){
   $('.main').on('click', 'button.add-definition', function(event){
   	event.preventDefault();
   	modal = $(this).attr('data-id');
-  	$('#select-tags').trigger('chosen:updated');
-  	$('#select-subdivision').trigger('chosen:updated');
   	openModal(modal);
   });
 
@@ -142,8 +140,7 @@ $(document).ready(function(){
   			subdivision_id: subdivisionId
   		},
   		success: function(data, status, jqxhr){
-  			console.log(data);
-
+  			window.location.href = '/words/' + data;
   		},
   		error: function(jqxhr, status, error){
   		}
