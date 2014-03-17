@@ -100,7 +100,7 @@ button{
   font-size: 22px;
   text-decoration: none;
   font-weight: bold;
-  color: #cccccc;
+  color: #333333;
 }
 
 .links{
@@ -160,10 +160,41 @@ input.word-search{
   font-size: 56px;
   border: none;
   background: none;
+  color: #A9A9A9;
 }
 
 input.word-search:focus{
   outline: none;
+  color: white;
+}
+
+.search-results-container{
+  left: 20px;
+  top: 290px;
+  position: absolute;
+  width: 1380px;
+  z-index: 1001;
+  background: #333333;
+}
+
+ul.search-results{
+  width: 850px;
+  list-style: none;
+  margin: 0 0 0 270px;
+}
+
+ul.search-results li{
+  text-align: left;
+  margin: 0 0 20px 0;
+}
+
+.search-results a{
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+.search-results a:visited{
   color: white;
 }
 

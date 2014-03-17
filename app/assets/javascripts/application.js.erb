@@ -32,9 +32,11 @@ $(document).ready(function(){
 
   $('.word-search').on('blur', function(event){
     var $inputBox = $(this);
-
+    $inputBox.val("");
     $inputBox.attr("placeholder", searchPlaceholder);
-    $inputBox.removeClass('search-focus');
+    setTimeout(function(){
+    	$('ul.search-results').html("");
+    },100);
   });
 
   $('.content-main').on('click', '.upvote-arrow', function(event){
@@ -184,6 +186,34 @@ $(document).ready(function(){
 		width: "100%"
 	});
 
+	$('.search-bar').on('keyup', 'input', function(event){
+		console.log(event);
+		var searchTerm = $(this).val();
+		if (searchTerm.length > 2) {
+			search(searchTerm, function(result){
+				$('ul.search-results').html("");
+				_.each(result, function(el, idx, list){
+					$('ul.search-results').append('<li><a href="/words/' + el.id + '">' + el.name + '</a></li>');
+				})
+			})
+		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
+			$('ul.search-results').html("");
+		}
+	})
+
+	var search = function(keyword, callback){
+		$.ajax({
+			url: '/search',
+			type: 'post',
+			data: { keyword: keyword },
+			success: function(data, textStatus, jqXHR){
+				callback(data.results)
+			},
+			error: function() {
+				console.log("error")
+			}
+		})
+	};
 });
 
 
