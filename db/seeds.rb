@@ -43,7 +43,7 @@ Company.create(name: "Startup Inc")
 end
 
 (1..11).each do
-  Tag.create(name: Faker::Lorem.word)
+  Tag.create(name: Faker::Lorem.word, company_id: 1)
 end
 
 100.times do

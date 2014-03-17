@@ -16,7 +16,7 @@
     <div class="nav-right">
       <div class="user-info">
         <div class="name">
-          <%= current_user.email %>
+          <%= current_user.email if current_user %>
         </div>
         <div class="avatar">
           <%= image_tag "user-4.png" %>
