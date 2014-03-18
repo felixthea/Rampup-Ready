@@ -48,9 +48,11 @@ class WordsController < ApplicationController
       company_id: current_co.id
       )
 
-    @example = @definition.examples.new(
+    unless params[:definition_example][:body].blank?
+      @example = @definition.examples.new(
       body: params[:definition_example][:body]
       )
+    end
 
 
     if request.xhr?
