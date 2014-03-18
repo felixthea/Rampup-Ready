@@ -1,0 +1,15 @@
+<div class="definition group" id="<%= definition.id %>">
+  <div class="definition-content">
+    <div class="definition-word">
+      <h2><%= link_to definition.word.name, word_url(definition.word.id) %></h2>
+    </div>
+    <div class="definition-body">
+      <%= definition.body %>
+    </div>
+    <div class="definition-examples">
+      <% unless definition.examples.empty? %>
+        Example: <%= definition.examples[0].body %>
+      <% end %>
+    </div>
+  </div>
+</div>

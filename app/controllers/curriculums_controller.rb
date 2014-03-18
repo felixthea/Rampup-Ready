@@ -5,13 +5,15 @@ class CurriculumsController < ApplicationController
 
   def index
     @my_curriculums = Curriculum.find_all_by_user_id(current_user.id)
-    @public_curriculums = Curriculum.find_all_by_make_private(false)
+    @public_curriculums = Curriculum.where('company_id = ? AND make_private = ?', current_co.id, false)
     @public_curriculums.reject! { |public_curriculum| @my_curriculums.include?(public_curriculum) } 
+    @curriculums = @my_curriculums + @public_curriculums
     render :index
   end
 
   def show
     @curriculum = Curriculum.find(params[:id])
+    @definitions = @curriculum.definitions
     render :show
   end
 

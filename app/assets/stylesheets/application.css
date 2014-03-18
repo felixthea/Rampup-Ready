@@ -335,28 +335,41 @@ button#add-sub-cta:hover{
 }
 
 /* Word */
-.word{
+.word, .curriculum{
   padding: 30px 0 20px 0;
 }
 
-.word:nth-child(1){
+.word:nth-child(1), .curriculum:nth-child(1){
   padding-top: 0;
 }
 
-.word-name{
+.entity-name{
   padding: 0 0 20px 0;
 }
 
-.top-definition{
+.entity-name a{
+  text-decoration: none;
+}
+
+.entity-description{
   padding: 0 0 20px 0;
 }
 
-.word-tags{
+.entity-more-info{
   color: #9C9C9C;
   font-weight: bold;
   font-size: 10px;
 }
 
+.curriculum-name{
+  float: left;
+}
+
+.entity-count{
+  float: right;
+  padding: 0 30px 0 0;
+  color: #D4D4D4;
+}
 .add-to-curriculum-button{
   float: right;
 }
@@ -490,6 +503,16 @@ button#add-sub-cta:hover{
 .total-score{
   padding: 0;
   margin: 0 0 0 5px;
+}
+
+.definition-word a{
+  text-decoration: none;
+}
+
+.curriculum-entity-count{
+  padding: 20px 0 0 0;
+  float: right;
+  color: #D4D4D4;
 }
 
 /* Entity Show */
