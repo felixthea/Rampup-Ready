@@ -1,0 +1,28 @@
+<div class="add-modal" id="add-curriculum-modal">
+  <div class="form">
+    <div class="title">
+      <label for="curriculum_name"><h2>Curriculum</h2></label>
+      <textarea id="curriculum_name" name="curriculum[name]" placeholder="Type curriculum name here"></textarea>
+    </div>
+    <div class="secondary-entry">
+      <label for="curriculum_description"><h2>Description</h2></label>
+      <textarea id="curriculum_description" name="curriculum[description]" type="text" placeholder="Type description here"></textarea>
+    </div>
+    <div class="secondary-entry">
+      <label for="curriculum_search"><h3>Definitions</h3></label>
+      <textarea id="curriculum_search" placeholder="Search for words or definitions to add"></textarea>
+    </div>
+    <div class="curriculum-search-results-container">
+      <ul class="curriculum-search-results">
+      </ul>
+    </div>
+    <div class="actions">
+      <span class="cancel">
+        <a href="#" data-id="add-word-modal">Cancel</a>
+      </span>
+      <button id="add-cta" class="submit-word">
+        Add
+      </button>
+    </div>
+  </div>
+</div>

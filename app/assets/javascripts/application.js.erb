@@ -221,7 +221,6 @@ $(document).ready(function(){
 	});
 
 	$('.search-bar').on('keyup', 'input', function(event){
-		console.log(event);
 		var searchTerm = $(this).val();
 		if (searchTerm.length > 2) {
 			search(searchTerm, function(result){
@@ -234,6 +233,20 @@ $(document).ready(function(){
 			$('ul.search-results').html("");
 		}
 	})
+
+	$('#curriculum_search').on('keyup', function(event){
+		var searchTerm = $(this).val();
+		if (searchTerm.length > 2){
+			search(searchTerm, function(result){
+				$('ul.curriculum-search-results').html("");
+				_.each(result, function(el, idx, list){
+					$('ul.curriculum-search-results').append('<li>' + el.name + '</li>');
+				})
+			})
+		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
+			$('ul.curriculum-search-results').html("");
+		}
+	});
 
 	var search = function(keyword, callback){
 		$.ajax({
