@@ -379,7 +379,7 @@ button#add-sub-cta:hover{
   margin: 30px 0 0 0;
 }
 
-.add-definition-modal, .add-word-modal{
+.add-definition-modal, .add-word-modal, .email-curriculum-modal{
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -389,17 +389,17 @@ button#add-sub-cta:hover{
   width: 100%;
 }
 
-.add-definition-modal .form, .add-word-modal .form{
+.add-definition-modal .form, .add-word-modal .form, .email-curriculum-modal .form{
   z-index: 1001;
   padding: 100px 0 0 450px;
   width: 600px;
 }
 
-.add-definition-modal .form div, .add-word-modal .form div{
+.add-definition-modal .form div, .add-word-modal .form div, .email-curriculum-modal .form div{
   padding: 10px 0 0 0;
 }
 
-.add-definition-modal input, .add-definition-modal textarea, .add-word-modal input, .add-word-modal textarea{
+.add-definition-modal input, .add-definition-modal textarea, .add-word-modal input, .add-word-modal textarea, .email-curriculum-modal input, .email-curriculum-modal textarea{
   width: 600px;
   border: none;
   height: 60px;
@@ -407,7 +407,8 @@ button#add-sub-cta:hover{
   outline: none;
 }
 
-.add-definition-modal input:focus, .add-definition-modal textarea:focus, .add-word-modal input:focus, .add-word-modal textarea:focus{
+.add-definition-modal input:focus, .add-definition-modal textarea:focus, .add-word-modal input:focus, .add-word-modal textarea:focus,
+  .email-curriculum-modal input:focus, .email-curriculum-modal textarea:focus{
   background: #f4fcff;
 }
 
@@ -419,7 +420,11 @@ button#add-sub-cta:hover{
   border-bottom: 1px solid #cccccc;
 }
 
-.add-definition-modal .actions, .add-word-modal .actions{
+.email-curriculum-modal .emails{
+  border-bottom: 1px solid #cccccc;
+}
+
+.add-definition-modal .actions, .add-word-modal .actions, .email-curriculum-modal .actions{
   float: right;
 }
 
@@ -513,6 +518,10 @@ button#add-sub-cta:hover{
   padding: 20px 0 0 0;
   float: right;
   color: #D4D4D4;
+}
+
+.email-curriculum-button{
+  float: right;
 }
 
 /* Entity Show */

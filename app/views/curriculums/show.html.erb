@@ -1,10 +1,12 @@
 <div class="content">
   <div class="content-top group">
     <div class="content-title">
-      <%= @curriculum.name %>
+      <%= @curriculum.name %> (<%= @definitions.count %> definitions)
     </div>
-    <div class="curriculum-entity-count">
-      <h3><%= @definitions.count %> Definitions</h3>
+    <div class="email-curriculum-button" id="curriculum-id" data-id="<%= @curriculum.id %>">
+      <button id="add-cta" class="email-curriculum" data-id="email-curriculum-modal">
+        Email Curriculum
+      </button>
     </div>
   </div>
   <div class="content-body group">
@@ -12,3 +14,4 @@
       <%= render partial: "curriculum_definition", collection: @definitions, as: :definition %>
     </div>
 </div>
+<%= render 'email_curriculum_modal' %>

@@ -83,6 +83,12 @@ $(document).ready(function(){
   	openModal(modal);
   })
 
+  $('.container').on('click', 'button.email-curriculum', function(event){
+  	event.preventDefault();
+  	modal = $(this).attr('data-id');
+  	openModal(modal);
+  })
+
   $('.cancel').on('click', 'a', function(event){
   	event.preventDefault();
   	var modal = $(this).attr('data-id')
@@ -148,6 +154,34 @@ $(document).ready(function(){
   		error: function(jqxhr, status, error){
   		}
   	})
+	})
+
+	$('.email-curriculum-modal').on('click', '.email-curriculum', function(event){
+		event.preventDefault();
+		$modal = $('.email-curriculum-modal');
+
+		emailEmails = $modal.find('input#email_emails').val();
+		emailBody = $modal.find('textarea#email_body').val();
+		curriculumId = $('#curriculum-id').attr("data-id");
+
+		$.ajax({
+			url: '/curriculums/' + curriculumId + '/email',
+			type: 'POST',
+			data: {
+				email_addresses: emailEmails,
+				email_body: emailBody,
+				curriculum_id: curriculumId
+			},
+			success: function(data, status, jqxhr){
+				closeModal('email-curriculum-modal');
+				clearForm('email-curriculum-modal');
+			},
+			error: function(jqxhr, status, error){
+	  		console.log(jqxhr);
+  			console.log(status);
+  			console.log(error);		
+			}
+		})
 	})
 
   var closeModal = function(modalClass){

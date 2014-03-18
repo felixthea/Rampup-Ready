@@ -67,19 +67,18 @@ class CurriculumsController < ApplicationController
   end
 
   def email
-    @curriculum = Curriculum.find(params[:id])
+    @curriculum = Curriculum.find(params[:curriculum_id])
+    return unless @curriculum.company_id == current_co.id
 
     body = params[:email_body]
-    emails_str = params[:recipient][:emails]
+    emails_str = params[:email_addresses]
     emails = emails_str.split(",").map { |email| email.strip }
 
     emails.each do |email|
       msg = CurriculumMailer.curriculum_email(email, current_user, @curriculum, body)
       msg.deliver!
     end
-    
-    flash[:notice] = ["Curriculum emailed successfully."]
 
-    redirect_to curriculum_url(@curriculum)
+    render json: { message: "Success", status: 200}
   end
 end
