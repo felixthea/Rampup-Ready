@@ -89,6 +89,12 @@ $(document).ready(function(){
   	openModal(modal);
   })
 
+  $('.container').on('click', 'button.add-curriculum', function(event){
+    event.preventDefault();
+    modal = $(this).attr('data-id');
+    openModal(modal);
+  })
+
   $('.cancel').on('click', 'a', function(event){
   	event.preventDefault();
   	var modal = $(this).attr('data-id')
@@ -240,10 +246,20 @@ $(document).ready(function(){
 			search(searchTerm, function(result){
 				$('ul.curriculum-search-results').html("");
 				_.each(result, function(el, idx, list){
-					$('ul.curriculum-search-results').append('<li>' + el.name + '</li>');
+          _.each(el.definitions, function(definition){
+            $('ul.curriculum-search-results').addClass('search-results-with-overflow');
+            $('ul.curriculum-search-results').append('<li class="curriculum-search-result group" data-id="' + definition.id + '">' 
+              + '<div class="curr-sr-info"><div class="curr-sr-word">' + el.name + '</div>'
+              + '<div class="curr-sr-definition">' + definition.body + '</div>'
+              + '</div>'
+              + '<div class="add-to-curriculum"><button class="add-to-curriculum" data-id="' + definition.id + '">Add</button>' + '</div>' 
+              + '</li>'
+            );
+          })
 				})
 			})
 		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
+      $('ul.curriculum-search-results').removeClass('search-results-with-overflow');
 			$('ul.curriculum-search-results').html("");
 		}
 	});

@@ -178,8 +178,8 @@ input.word-search:focus{
 }
 
 .curriculum-search-results-container{
-  position: absolute;
-  background: red;
+  position: fixed;
+  background: white;
 }
 
 ul.curriculum-search-results{
@@ -187,8 +187,30 @@ ul.curriculum-search-results{
   list-style: none;
 }
 
+.search-results-with-overflow{
+  height: 250px;
+  overflow: auto;
+}
+
 ul.curriculum-search-results li{
   text-align: left;
+}
+
+.curr-sr-info{
+  float: left;
+}
+
+div.add-to-curriculum{
+  float: right;
+}
+
+li.curriculum-search-result {
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 20px 0;
+}
+
+.curr-sr-info{
+  width: 900px;
 }
 
 ul.search-results{
