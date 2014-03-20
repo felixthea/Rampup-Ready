@@ -294,6 +294,35 @@ $(document).ready(function(){
     $('ul.curriculum-search-results').html("");
   })
 
+  $('.submit-curriculum').on('click', function(event){
+    event.preventDefault();
+
+    var name = $('textarea#curriculum_name').val();
+    var description = $('textarea#curriculum_description').val();
+    var definitions = $('li.curriculum-selected');
+    var definitionIds = [];
+
+    _.each(definitions, function(el, idx, list){
+      definitionIds.push($(el).attr("id"));
+    });
+
+    $.ajax({
+      url: '/curriculums',
+      type: 'POST',
+      data: {
+        name: name,
+        description: description,
+        definition_ids: definitionIds
+      },
+      success: function(data, textStatus, jqxhr){
+        console.log(data);
+      },
+      error: function(jqxhr, status, error){
+        console.log('error');
+      }
+    })
+  });
+
 	var search = function(keyword, callback){
 		$.ajax({
 			url: '/search',

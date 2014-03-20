@@ -1,5 +1,5 @@
 class Curriculum < ActiveRecord::Base
-  attr_accessible :user_id, :name, :curriculum_definition_id, :description, :definition_ids, :make_private
+  attr_accessible :user_id, :name, :curriculum_definition_id, :description, :definition_ids, :make_private, :company_id
 
   validates :user_id, :name, :description, :definitions, presence: true
 
