@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131220153112) do
+ActiveRecord::Schema.define(:version => 20140315160113) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "curriculum_definitions", :force => true do |t|
     t.integer  "definition_id"
@@ -36,12 +42,14 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
   add_index "curriculum_faves", ["user_id"], :name => "index_curriculum_faves_on_user_id"
 
   create_table "curriculums", :force => true do |t|
-    t.integer  "user_id",                  :null => false
-    t.string   "name",                     :null => false
+    t.integer  "user_id",                                     :null => false
+    t.string   "name",                                        :null => false
     t.integer  "curriculum_definition_id"
-    t.string   "description",              :null => false
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "description",                                 :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.boolean  "make_private",             :default => false
+    t.integer  "company_id"
   end
 
   add_index "curriculums", ["curriculum_definition_id"], :name => "index_curriculums_on_curriculum_definition_id"
@@ -61,10 +69,11 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
   create_table "definitions", :force => true do |t|
     t.integer  "word_id",        :null => false
     t.integer  "user_id",        :null => false
-    t.string   "body",           :null => false
+    t.text     "body",           :null => false
     t.integer  "subdivision_id", :null => false
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "company_id"
   end
 
   add_index "definitions", ["subdivision_id"], :name => "index_definitions_on_subdivision_id"
@@ -72,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
   add_index "definitions", ["word_id"], :name => "index_definitions_on_word_id"
 
   create_table "examples", :force => true do |t|
-    t.string   "body",          :null => false
+    t.text     "body",          :null => false
     t.integer  "definition_id", :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
@@ -115,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   create_table "taggings", :force => true do |t|
@@ -132,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
@@ -166,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20131220153112) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
   add_index "words", ["name"], :name => "index_words_on_name", :unique => true

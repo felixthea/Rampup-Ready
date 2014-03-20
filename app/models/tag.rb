@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :company_id
 
   validates :name, presence: true, uniqueness: true
 
@@ -11,6 +11,7 @@ class Tag < ActiveRecord::Base
   )
 
   has_many :tagged_definitions, through: :taggings, source: :definition
+  belongs_to :company
 
   include PgSearch
   multisearchable against: :name

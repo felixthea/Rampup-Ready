@@ -1,20 +1,82 @@
-<div class="container-body group">
-  <h2><%= @word.name %></h2>
-  <div class="related-words">
-    <%= render 'related_words' %>
-  </div>
-  <div class="word-defs">
-    <h3>Definitions</h3>
-    <div class="definitions">
-      <ol>
-        <%= render @definitions %>
-      </ol>
+<div class="content">
+  <div class="content-top group">
+    <div class="content-title">
+      <%= @word.name %>
+    </div>
+    <div class="add-to-curriculum-button">
+      <button id="add-cta">
+        Add to Curriculum
+      </button>
     </div>
   </div>
-  <div class="new-defs-form">
-    <%= render '/definitions/new_defs' %>
+  <div class="content-body group">
+    <div class="content-main">
+      <%= render @definitions %>
+      <div class="add-a-definition-button">
+        <button id="add-sub-cta" class="add-definition" data-id="add-definition-modal">
+          Add a Definition
+        </button>
+      </div>
+    </div>
+    <div class="content-sidebar">
+      <h3>Tags</h3>
+      <ul>
+        <% @word_tags.each do |tag| %>
+          <li>
+            <%= tag.name %>
+            <!-- @TODO: turn clicking on the tag name to search for words with the same tag -->
+          </li>
+        <% end %>
+      </ul>
+      <br>
+      <h3>Related Words</h3>
+      <ul>
+        <% @related_words.each do |word| %>
+          <li>
+            <%= link_to word.name, word_url(word.id) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-	<div class="notify-new-definitions">
-		<a href="#">Notify me when new definitions are added</a>
-	</div>
+</div>
+<div class="add-definition-modal hidden" data-id="<%= @word.id %>">
+  <div class="form">
+    <div class="definition-word">
+      <h1><%= @word.name %></h1>
+    </div>
+    <div class="definition_body">
+      <label for="definition_body"><h2>Definition</h2></label>
+      <textarea name="definition[body]" id="definition_body" type="text" placeholder="Type definition here"></textarea>
+    </div>
+    <div class="example">
+      <label for="example_body"><h3>Example (optional)</h3></label>
+      <textarea name="example[body]" id="example_body" placeholder="Type example here"></textarea>
+    </div>
+    <div class="tags">
+      <label for="definition_tag_ids"><h3>Tags (optional)</h3></label>
+      <select name="definition[tag_ids][]" multiple data-placeholder="Select Tags" id="definition_tag_ids">
+        <% @tags.each do |tag| %>
+          <option value="<%= tag.id %>"><%= tag.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="subdivisions">
+      <label for="subdivision_id"><h3>Department (optional)</h3></label>
+      <select name="subdivision_id" id="subdivision_id">
+        <option value="0">Uncategorized</option>
+        <% @subdivisions.each do |subdivision| %>
+          <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="actions">
+      <span class="cancel">
+        <a href="#" data-id="add-definition-modal">Cancel</a>
+      </span>
+      <button id="add-cta" class="submit-definition">
+        Add
+      </button>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,17 @@
-<div class="curriculums-wrapper">
-  <h2>Curriculums</h2>
-  <ul>
-    <% @curriculums.each do |curriculum| %>
-      <li>
-        <%= link_to curriculum.name, curriculum_url(curriculum.id) %> (<%= pluralize(curriculum.definitions.length, "definition") %>)
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to "Create Curriculum", new_curriculum_url %>
+<div class="content">
+  <div class="content-top group">
+    <nav class="content-nav">
+    </nav>
+    <div class="add-new-button">
+      <button id="add-cta" class="add-curriculum" data-id="add-curriculum-modal">
+        Add a Curriculum
+      </button>
+    </div>
+  </div>
+  <div class="content-body group">
+    <div class="content-main-curriculums">
+      <%= render @curriculums %>
+    </div>
+  </div>
 </div>
+<%= render 'add_curriculum_modal' %>

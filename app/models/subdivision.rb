@@ -1,5 +1,5 @@
 class Subdivision < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :company_id
 
   validates :name, presence: true
 
@@ -16,4 +16,6 @@ class Subdivision < ActiveRecord::Base
     foreign_key: :subdivision_id,
     primary_key: :id
   )
+
+  belongs_to :company
 end

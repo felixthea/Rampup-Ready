@@ -15,11 +15,11 @@
  */
 
 
-body, header, h1, h2, h3, div, nav ul, nav li, p{
+body, header, h1, h2, h3, div, p, ul, li{
   margin:0;
   padding:0;
   border:0;
-  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-family: "Helvetica Neue";
   font-size: 12px;
 }
 
@@ -29,10 +29,15 @@ h1{
 
 h2{
   font-size: 1.5em;
+  color: #373737;
 }
 
 h3{
   font-size: 1.17em;
+}
+
+p{
+  color: #A9A9A9;
 }
 
 .group:after{
@@ -41,510 +46,584 @@ h3{
   clear: both;
 }
 
-body{
-  background: #4e7ca0;
-}
-
-.social{
-  background: #3F627D;
-}
-
-.social-wrapper{
-  width: 325px;
-  margin: auto;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.social-wrapper button{
-  background: #ed6523;
-  color: white;
-  border: none;
-  border-bottom: 2px solid black;
-}
-
-button, .submit{
-  background: #ed6523;
-  color: white;
-  border: none;
-  border-bottom: 2px solid black;
-}
-
-button:hover, .submit:hover{
-	background: #ccc;
-	color: black;
-	cursor: pointer;
-}
-
 .hidden{
-  display:none;
-}
-
-.black_overlay{
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  z-index: 1;
-  opacity: 0.6;
 }
 
-.notices{
-  float: left;
-  position: fixed;
-  top:0;
-  left:0;
-  background: #FFC652;
-  color: #9E3200;
-  border: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  font-weight: bold;
-}
-
-.mark-favorite, .mark-unfavorite, .delete-definition, .favorite-curriculum-button, .unfavorite-curriculum-button{
-  background: #ed6523;
-  color: white;
-  border: none;
-  border-bottom: 2px solid black;
-}
-
-#website-description{
-	font-size: 20px;
-	text-align: center;
-	margin-bottom: 50px;
-	color: #454545;
-}
-
-#website-description p{
-	font-size: 18px;
-}
-
-header{
-  background: #4e7ca0;
-  width: 1000px;
-  margin: auto;
-  margin-top: 50px;
-  font-size: 12px;
-}
-
-header .logo a{
-	font-size: 48px;
-	color: white;
-	text-decoration: none;
-}
-
-
-header .top-header-left{
-  float: left;
-  width: 200px;
-}
-
-header .top-header-right{
-  margin-top: 60px;
-  float: right;
-  width: 600px;
-}
-
-header .sign-in-up-out{
-  margin-top: 1px;
-  float: right;
-}
-
-header .sign-in-up-out p {
-  float: left;
-  color: white;
-}
-
-header .sign-in-up-out .button-to {
-  float: left;
-}
-
-header .search{
-  float: right;
-}
-
-.bottom-header nav {
-	float: right;
-}
-
-.bottom-header > nav > ul{
-  float: right;
-}
-
-.bottom-header > nav > ul > li {
-  list-style-type: none;
-  background: #40627C;
-  float: left;
-  margin: 1px;
-  padding: 5px;
-  position: relative;
-}
-
-.bottom-header > nav > ul > li:last-child{
-  margin-right:0;
-}
-
-.bottom-header > nav > ul > li > a {
-  text-decoration: none;
-  color: white;
-  display: block;
-}
-
-.bottom-header > nav > ul > li:hover .inbox-options{
-	display: block;
-	position: absolute;
-}
-
-.bottom-header .inbox-options{
-  float: right;
-}
-
-.bottom-header .inbox-options li{
-	list-style-type: none;
-  float: left;
-  padding: 2px 7px 2px 7px;
-}
-
-.bottom-header .inbox-options li a{
-  text-decoration: none;
-  color: #9E3200;
-  font-weight: bold;
-}
-/*
-.bottom-header .inbox-options li:nth-child(1){
-  border-top:none;
-}*/
-
-.bottom-header .bottom-nav{
-  float: right;
-  width: 1000px;
-  background: #FFC652;
-}
-
-.compose-message-modal{
-  position: absolute;
-  width: 500px;
-  height: 200px;
-  top: 25px;
-  left: 200px;
-  background: #fffbce;
-  border: 1px solid #FFC652;
-  padding: 20px;
-}
-
-.add-first-definition-modal{
-  position: absolute;
-  width: 500px;
-  height: auto;
-  top: 25px;
-  left: 200px;
-  background: #fffbce;
-  border: 1px solid #FFC652;
-  padding: 20px;
+body{
+  background: #ffffff;
 }
 
 .container{
-  background: white;
-  margin: auto;
-  width: 1000px;
-  position: relative;
+  padding: 20px;
+  width: 1380px;
+  /*background: red;*/
 }
 
-.container > .container-body{
-  padding: 40px;
-  margin-bottom: 50px;
-}
-
-.container > .container-body > .related-words{
-  float: left;
-  width: 170px;
-  height: 100%;
-}
-
-.container > .container-body > .new-defs-form{
-  float: right;
-  width: 200px;
-}
-
-.new-defs-form ul {
-  margin: 0;
-  padding: 0;
-}
-
-.container > .container-body > .word-defs{
-  float: left;
-  width: 540px;
-  margin-right: 10px;
-}
-
-
-
-.def-footer > form{
-  float: left;
-  padding-left: 5px;
-}
-
-/*Footer*/
-footer{
-  width: 1000px;
-  margin: auto;
-  background: #FFC652;
-  margin-bottom: 50px;
-}
-
-/*Words*/
-
-.word{
-  float: left;
-}
-
-.vote-info{
-  float: right;
-}
-
-.vote-info > .upvote, .downvote, .total-votes{
-  float: left;
-}
-
-.upvote, .downvote, .next-definition{
-  background: #476a90;
-  color: #FBFFEA;
+button{
+  background: #008FC7;
   border: none;
-  border-bottom: 2px solid black;
-}
-
-.upvote:hover, .downvote:hover, .mark-favorite:hover, .mark-unfavorite:hover, .delete-definition:hover, .next-definition:hover {
+  color: white;
   cursor: pointer;
 }
 
-.words-wrapper{
-  padding: 40px;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+/* Layout Top */
+.top{
+  /*background: blue;*/
+  margin: 0 0 30px 0;
 }
 
-.add-words-form {
+.nav{
+  width: 1000px;
+  margin: 0 190px 0 190px;
+  /*background: yellow;*/
+}
+
+.nav-left{
+  width: 400px;
+  float: left;
+}
+
+.nav-right{
+  width: 400px;
   float: right;
-  width: 280px;
 }
 
-.add-words-form h2{
+.logo{
+  float: left;
+  height: 50px;
+  width: 200px;
+  padding: 10px 0 0 0;
+}
+
+.logo p a{
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #333333;
+}
+
+.links{
+  height: 50px;
+  float: left;
+  margin-left: 50px;
+}
+
+.links ul{
+  list-style: none;
+}
+
+.links ul li{
+  float: left;
+  height: 50px;
+  margin: 15px 0 0 0;
+}
+
+.links a{
+  margin: 0 20px 0 0;
+}
+
+.user-info{
+  float: right;
+}
+
+.name{
+  float: left;
+  margin: 10px 10px 0 0;
+}
+
+.avatar{
+  float: left;
+}
+
+/* Layout Search */
+.search{
+  height: 180px;
+  background: #333333;
+  text-align: center;
+}
+
+.search-icon{
+  float: left;
+  margin: 60px 0 0 180px;
+}
+
+.search-bar{
+  float: left;
+  margin: 0 0 0 20px;
+}
+
+input.word-search{
+  margin: 15px 0 0 0;
+  width: 850px;
+  height: 150px;
+  font-size: 56px;
+  border: none;
+  background: none;
+  color: #A9A9A9;
+}
+
+input.word-search:focus{
+  outline: none;
+  color: white;
+}
+
+.search-results-container{
+  left: 20px;
+  top: 290px;
+  position: absolute;
+  width: 1380px;
+  z-index: 1001;
+  background: #333333;
+}
+
+.curriculum-search-results-container{
+  position: fixed;
+  background: white;
+}
+
+ul.curriculum-search-results{
+  width: 1000px;
+  background: white;
+  list-style: none;
+}
+
+.search-results-with-overflow{
+  height: 250px;
+  overflow: auto;
+}
+
+ul.curriculum-search-results li{
+  text-align: left;
+}
+
+.curriculum-selected-definitions{
+  height: 250px;
+  overflow: auto;
+}
+
+.curriculum-selected-definitions{
+  list-style: none;
+}
+
+.curr-sr-info{
+  float: left;
+}
+
+div.action-to-curriculum{
+  margin: 20px 0 0 0;
+  float: right;
+}
+
+li.curriculum-search-result, li.curriculum-selected {
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 20px 0;
+}
+
+button.add-to-curriculum , button.remove-from-curriculum{
+  background: none;
+  color: #444444;
+}
+
+button.add-to-curriculum{
+  font-size: 30px;
+  font-weight: bold;
+  color: #0090c7;
+}
+
+button.remove-from-curriculum{
+  font-size: 20px;
+  font-weight: bold;
+  color: #cccccc;
+  font-family: Arial;
+}
+
+.secondary-entry{
+  position: relative;
+}
+
+.cancel-search{
+  position: absolute;
+  top: 45px;
+  left: 950px;
+  font-family: Arial;
+  font-size: 20px;
+  color: black;
+  background: none;
+}
+
+.curr-sr-info{
+  width: 900px;
+}
+
+ul.search-results{
+  width: 850px;
+  list-style: none;
+  margin: 0 0 0 270px;
+}
+
+ul.search-results li{
+  text-align: left;
+  margin: 0 0 20px 0;
+}
+
+.search-results a{
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+.search-results a:visited{
+  color: white;
+}
+
+/* Layout Main */
+.main{
+  /*background: yellow;*/
+}
+
+.content{
+  width: 1000px;
+  margin: 0 190px 0 190px;
+  /*background: teal;*/
+}
+
+.content-boxes{
+  height: 300px;
+  padding: 20px 0 20px 0;
+  /*background: blue;*/
+}
+
+.content-box{
+  width: 300px;
+  float: left;
+  /*background: purple;*/
+  margin-right: 50px;
+}
+
+.content-box:nth-child(3){
+  margin: 0;
+}
+
+.content-box-pic{
+  height: 160px;
+  /*background: #cccccc;*/
+  text-align: center;
+}
+
+.content-box-text{
+  margin: 20px 0 0 0;
+  height: 80px;
+  /*background: green;*/
+}
+
+.add-words-box{
+  height: 60px;
+  padding: 20px 0 20px 0;
+  /*background: maroon;*/
+}
+
+.add-words-text{
+  float: left;
+  width: 800px;
+}
+
+.add-words-button{
+  float: right;
+}
+
+/* Layout Footer */
+footer{
+  background: #E5E5E5;
+  margin: 50px 0 0 0;
+  height: 100px;
+}
+
+/* Static Main Page */
+button#add-cta{
+  padding: 15px 25px 15px 25px;
+  font-size: 14px;
+  border-bottom: 3px solid #0066CC;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+button#add-cta:hover{
+  background: #0066CC;
+  border-bottom: 3px solid #0066CC;
+}
+
+button#add-sub-cta{
+  background: #E5E5E5;
+  border: none;
+  color: #565656;
+  padding: 15px 25px 15px 25px;
+  font-size: 14px;
+  border-bottom: 3px solid #bababa;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+button#add-sub-cta:hover{
+  background: #bababa;
+}
+
+.add-words-box{
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+.content-nav{
+  float: left;
+  margin: 30px 0 0 0;
+}
+
+.add-new-button{
+  float: right;
+}
+
+.content-top{
+  padding: 30px 0 30px 0;
+  border-bottom: 1px solid gray;
+}
+
+.content-body{
+  padding: 30px 0 30px 0;
+}
+
+.content-main{
+  float: left;
+  width: 700px;
+}
+
+.content-main-curriculums{
+}
+
+.content-sidebar{
   float: right;
   width: 300px;
 }
 
-.words-list{
-  float: left;
-  width: 620px;
+/* Main Page Sidebar */
+.content-sidebar ul, .content-sidebar h3{
+  margin: 0 0 0 100px;
 }
 
-.words-list .word {
-  width: 620px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.word-info .word-name {
-  float: left;
-}
-
-.word-info .delete-word{
-  float: left;
-}
-
-.words-list .word .one-definition {
-  float: left;
-  width: 475px;
-}
-
-.words-list .word .one-definition li{
+.content-sidebar ul li{
   list-style: none;
 }
 
-.words-list .word form {
+/* Word */
+.word, .curriculum{
+  padding: 30px 0 20px 0;
+}
+
+.word:nth-child(1), .curriculum:nth-child(1){
+  padding-top: 0;
+}
+
+.entity-name{
+  padding: 0 0 20px 0;
+}
+
+.entity-name a{
+  text-decoration: none;
+}
+
+.entity-description{
+  padding: 0 0 20px 0;
+}
+
+.entity-more-info{
+  color: #9C9C9C;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.curriculum-name{
   float: left;
-  margin-left: 5px;
 }
 
-#new-def-form li {
-  list-style: none;
+.entity-count{
+  float: right;
+  padding: 0 30px 0 0;
+  color: #D4D4D4;
+}
+.add-to-curriculum-button, .remove-from-curriculum{
+  float: right;
 }
 
-nav.word-pages{
+.add-a-definition-button{
+  float: right;
+  margin: 30px 0 0 0;
+}
+
+.add-definition-modal, .add-word-modal, .email-curriculum-modal, .add-modal{
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  height: 100%;
+  width: 100%;
+}
+
+.add-definition-modal .form, .add-word-modal .form, .email-curriculum-modal .form{
+  z-index: 1001;
+  padding: 100px 0 0 450px;
+  width: 600px;
+}
+
+.add-modal .form{
+  z-index: 1001;
+  padding: 50px 0 0 130px;
+  width: 1000px;
+}
+
+.add-definition-modal .form div, .add-word-modal .form div, .email-curriculum-modal .form div, .add-modal .form div{
+  padding: 10px 0 0 0;
+}
+
+.add-definition-modal input, .add-definition-modal textarea, .add-word-modal input, .add-word-modal textarea, .email-curriculum-modal input, .email-curriculum-modal textarea{
+  width: 600px;
+  border: none;
+  height: 60px;
+  font-size: 16px;
+  outline: none;
+}
+
+.add-modal input, .add-modal textarea{
+  width: 1000px;
+  border: none;
+  height: 60px;
+  font-size: 16px;
+  outline: none;
+}
+
+.add-definition-modal input:focus, .add-definition-modal textarea:focus, .add-word-modal input:focus, .add-word-modal textarea:focus,
+  .email-curriculum-modal input:focus, .email-curriculum-modal textarea:focus, .add-modal input:focus, .add-modal textarea:focus{
+  background: #f4fcff;
+}
+
+.add-definition-modal .definition_body, .tags, .example{
+  border-bottom: 1px solid #cccccc;
+}
+
+.add-word-modal .word .definition_body, .tags, .example{
+  border-bottom: 1px solid #cccccc;
+}
+
+.email-curriculum-modal .emails{
+  border-bottom: 1px solid #cccccc;
+}
+
+.add-modal .title, .add-modal .secondary-entry{
+  border-bottom: 1px solid #cccccc;
+}
+
+.add-definition-modal .actions, .add-word-modal .actions, .email-curriculum-modal .actions, .add-modal .actions{
+  float: right;
+}
+
+.cancel a{
+  color: #0066CC;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 0 10px 0 0;
+}
+
+/* Definition */
+.definition{
+  border-bottom: 1px solid #cccccc;
+  padding: 0 0 20px 0;
+  margin: 30px 0 0 0;
+}
+
+.definition:nth-child(1){
+  margin: 0;
+}
+
+.definition-content{
+  float: left;
+  width: 600px;
+}
+
+.definition-body{
+  padding: 0 0 10px 0;
+}
+
+.definition-examples{
+  padding: 0 0 10px 0;
+}
+
+.definition-tags{
+  padding: 0 0 10px 0;
+  color: #9C9C9C;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.definition-options{
+  padding: 0 0 10px 0;
+}
+
+.definition-votes{
+  vertical-align:top;
+  float: right;
+  height: 50px;
   text-align: center;
 }
 
-/*User and Sessions*/
-
-.new-session-wrapper{
-  padding: 40px;
+.upvote-arrow{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 10px 15px 10px;
+  border-color: transparent transparent #dbdbdb transparent;
 }
 
-.forgot-password-wrapper{
-  padding: 40px;
+.upvote-arrow:hover{
+  border-color: transparent transparent #bababa transparent;
+  cursor: pointer;
 }
 
-.sign-up-wrapper{
-  padding: 40px;
+.downvote-arrow{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 15px 10px 0 10px;
+  border-color: #dbdbdb transparent transparent transparent;
+  margin: 15px 0 0 0;
 }
 
-.set-new-password-wrapper{
-	padding: 40px;
+.downvote-arrow:hover{
+  border-color: #bababa transparent transparent transparent;
+  cursor: pointer;
 }
 
-/*Subdivisions*/
-
-.subdivisions-wrapper{
-  padding: 40px;
+.total-score{
+  padding: 0;
+  margin: 0 0 0 5px;
 }
 
-.subdivision-wrapper{
-  padding: 40px;
+.definition-word a{
+  text-decoration: none;
 }
 
-.word li{
-  list-style: none;
+.curriculum-entity-count{
+  padding: 20px 0 0 0;
+  float: right;
+  color: #D4D4D4;
 }
 
-/*Curriculums*/
-
-.curriculums-wrapper{
-  padding: 40px;
+.email-curriculum-button{
+  float: right;
 }
 
-.new-curriculum-wrapper{
-  padding: 40px;
+/* Entity Show */
+.content-title{
+  font-size: 38px;
+  float: left;
 }
 
-.curriculum-wrapper{
-  padding: 40px ;
-}
-
-.results-list li {
-	cursor: move;
-}
-
-.curriculum-details{
-	width: 400px;
-	float: right;
-}
-
-.add-definitions-drop{
-	background: #ccc;
-	border: 2px solid #4e7ca0;
-	width: 360px;
-	height: 300px;
-	overflow: auto;
-	float: left;
-	padding: 20px;
-}
-
-.search-and-results{
-	width: 400px;
-	float: left;
-}
-
-.drag-and-drop-message{
-	font-size: 36px;
-	text-align: center;
-	margin-top: 100px;
-}
-
-.light-up-droppable{
-	background: #FFC652;
-}
-
-/*Tags*/
-
-.tags-wrapper{
-  padding: 40px;
-}
-
-.tags-wrapper form{
-  display: inline-block;
-}
-
-/*Bulk New*/
-
-.bulk-new-wrapper{
-  padding: 40px;
-}
-
-/*Sent Messages*/
-
-.sent-messages-wrapper{
-  padding: 40px;
-}
-
-/*Received Messages*/
-
-.received-messages-wrapper{
-  padding: 40px;
-}
-
-.message-wrapper{
-  padding: 40px;
-}
-
-/*New Message*/
-
-.new-message-wrapper{
-  padding: 40px;
-}
-
-/*Favorites*/
-
-.favorites-wrapper{
-  padding: 40px;
-}
-
-/*Tags*/
-.tag-wrapper{
-  padding: 40px;
-}
-
-.tag-pages{
-  text-align: center;
-}
-
-/*Results*/
-.results-wrapper{
-  padding: 40px;
-}
-
-#mc_embed_signup{
-/*	clear:left; */
-	font:14px Helvetica,Arial,sans-serif; 
-	color: white;
-  width: 650px;
-  margin: auto;
-	text-align: center;
-}
-
-.sign-up-fields-wrapper{
-	padding-top: 10px;
-	padding-bottom: 10px;
-	width: 350px;
-	margin:auto;
-}
-
-.mc-field-group{
-	float: left;
-}
-
-button#subscribe{
-	float: left;
-}
-
-#mc_embed_signup p:first-child{
-	padding-top: 5px;
-}
-
-#mc_embed_signup p{
-	padding-bottom: 5px;
-}

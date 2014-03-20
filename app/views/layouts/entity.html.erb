@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RampUpReady.com</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <%= render 'shared/top' %>
+    <div class="main">
+      <%= yield %>
+    </div>
+    <footer>
+    </footer>
+  </div>
+</body>
+</html>
+
+<script>
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>')
+  var channel = pusher.subscribe("messages")
+  channel.bind('new', function(data){
+    $.ajax({
+      url: '/notify_recipient',
+      data: {recipient_id: data.recipient_id },
+      type: 'get',
+      dataType: 'json',
+      success: function(data, response, xhr){
+        if (data.current_user === "true") {
+          $('.nav-bar-inbox a').html("Inbox" + data.message_count);
+          $('div.notices').empty();
+          $('div.notices').fadeIn();
+          $('div.notices').removeClass('hidden');
+          $('div.notices').append("You've received a new message!");
+          window.setTimeout(function() {
+            $('div.notices').fadeOut();
+          }, 3000)
+        }
+      }
+    })
+  })
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47836173-1', 'rampupready.com');
+  ga('send', 'pageview');
+
+</script>

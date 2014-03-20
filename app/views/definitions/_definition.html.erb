@@ -1,71 +1,28 @@
-<li id="<%= definition.id %>">
-  <% have_permission = (definition.user_id == current_user.id || current_user.admin == true) %>
-  <div class="def-container">
-    <div class="def-header group">
-      <div class="word">
-      <h4><%= definition.word.name %></h4>
-      </div>
-      <div class="vote-info group">
-	<% if user_logged_in %>
-    <button class="upvote" data-id=<%= definition.id %>>Upvote</button>
-    <button class="downvote" data-id=<%= definition.id %>>Downvote</button>
-	<% end %>
-        <div class="total-votes">
-          <ul>
-            <li id="total-score">Total: <%= definition.total_score %></li>
-            <li id="sum-upvotes">Up: <%= definition.sum_upvotes %></li>
-            <li id="sum-downvotes">Down: <%= definition.sum_downvotes %></li>
-          </ul>
-           <br>
-        </div>
-      </div>
+<div class="definition group" id="<%= definition.id %>">
+  <div class="definition-content">
+    <div class="definition-body">
+      <%= definition.body %>
     </div>
-    <div class="def-body">
-      <div class="definition">
-        <p><%= definition.body %></p>
-        <div class="hidden" id="inline-edit-definition-body-<%= definition.id %>">
-          <form action="<%= definition_url(definition.id) %>" method="post" class="inline-update-definition" data-remote="true">
-            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-            <input type="hidden" name="_method" value="put">
-            <textarea rows="5" cols="50" name="definition[body]"><%= definition.body %></textarea>
-            <br>
-            <input type="submit" value="Update Definition" class="submit">
-            <button class="cancel">Cancel</button>
-          </form>
-        </div>
-      </div>
-      <div class="examples">
-        Examples:
-        <ul>
-          <% definition.examples.each do |example| %>
-            <li>
-               <%= example.body %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="tags">
-        Tags:
-        <% definition.tags.each do |tag| %>
-          <%= link_to tag.name, tag_url(tag.id) %>
-        <% end %>
-      </div>
+    <div class="definition-examples">
+      <% unless definition.examples.empty? %>
+        Example: <%= definition.examples[0].body %>
+      <% end %>
     </div>
-    <div class="def-footer group">
-      <% if have_permission %>
-        <%= link_to "Edit", edit_definition_url(definition.id) %>
-      <% end %>
-      <%= link_to "Send Definition", email_definition_url(definition.id) %>
-      <% if have_permission %>
-        <button class="delete-definition" data-id=<%= definition.id %>>Delete</button>
-      <% end %>
-      <% if current_user.definition_faves.any? { |definition_fave| definition_fave.definition_id == definition.id } %>
-        <button class="mark-favorite hidden" data-id=<%= definition.id %>>Mark as Favorite</button>
-        <button class="mark-unfavorite" data-id=<%= definition.id %>>Unfavorite</button>
+    <div class="definition-tags">
+      <% if definition.tags %>
+        <% tags = definition.tags %>
+        <%= render partial: 'tags/tag', collection: tags, spacer_template: 'shared/comma' %>
       <% else %>
-        <button class="mark-favorite" data-id=<%= definition.id %>>Mark as Favorite</button>
-        <button class="mark-unfavorite hidden" data-id=<%= definition.id %>>Unfavorite</button>
+        No tags, yet.
       <% end %>
+    </div>
+    <div class="definition-options">
+      ADD AS FAVORITE / DELETE / EDIT / ETC.
     </div>
   </div>
-</li>
+  <div class="definition-votes">
+    <div class="upvote-arrow" data-id=<%= definition.id %>></div>
+    <br><span id="total-score"><%= definition.total_score %></span><br>
+    <div class="downvote-arrow" data-id=<%= definition.id %>></div>
+  </div>
+</div>

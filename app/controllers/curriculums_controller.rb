@@ -4,12 +4,16 @@ class CurriculumsController < ApplicationController
   before_filter :require_curriculum_creator_or_admin!, only: [:edit, :update, :destroy]
 
   def index
-    @curriculums = Curriculum.all
+    @my_curriculums = Curriculum.find_all_by_user_id(current_user.id)
+    @public_curriculums = Curriculum.where('company_id = ? AND make_private = ?', current_co.id, false)
+    @public_curriculums.reject! { |public_curriculum| @my_curriculums.include?(public_curriculum) } 
+    @curriculums = @my_curriculums + @public_curriculums
     render :index
   end
 
   def show
     @curriculum = Curriculum.find(params[:id])
+    @definitions = @curriculum.definitions
     render :show
   end
 
@@ -21,11 +25,14 @@ class CurriculumsController < ApplicationController
 
   def create
     params[:curriculum][:user_id] = current_user.id
+    params[:curriculum][:company_id] = current_co.id
+    params[:curriculum][:definition_ids].uniq!
+
     @curriculum = Curriculum.new(params[:curriculum])
 
     if request.xhr?
       if @curriculum.save
-        render json: @curriculum
+        render partial: 'curriculum', locals: { curriculum: @curriculum }
       else
         render json: @curriculum.errors.full_messages, status: 422
       end
@@ -62,17 +69,18 @@ class CurriculumsController < ApplicationController
   end
 
   def email
-    @curriculum = Curriculum.find(params[:id])
-    recipient = User.find_by_email(params[:recipient][:email])
-    if recipient
-      msg = CurriculumMailer.curriculum_email(recipient, current_user, @curriculum)
-      msg.deliver!
-      flash[:notice] = ["Curriculum emailed successfully."]
+    @curriculum = Curriculum.find(params[:curriculum_id])
+    return unless @curriculum.company_id == current_co.id
 
-      redirect_to curriculum_url(@curriculum)
-    else
-      flash[:errors] = ["User not found.  Please create an account for the user."]
-      render :show
+    body = params[:email_body]
+    emails_str = params[:email_addresses]
+    emails = emails_str.split(",").map { |email| email.strip }
+
+    emails.each do |email|
+      msg = CurriculumMailer.curriculum_email(email, current_user, @curriculum, body)
+      msg.deliver!
     end
+
+    render json: { message: "Success", status: 200}
   end
 end

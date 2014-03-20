@@ -15,7 +15,7 @@ Workwiki::Application.routes.draw do
     resources :definitions, only: [:create, :index]
   end
 
-  resources :definitions, only: [:show, :edit, :destroy, :update, :create] do
+  resources :definitions, only: [:edit, :destroy, :update, :create] do
     member do
       post 'upvote', :to => 'votes#create_upvote'
       post 'downvote', :to => 'votes#create_downvote'
@@ -24,7 +24,6 @@ Workwiki::Application.routes.draw do
       get 'email', :to => 'definitions#new_email_definition'
       post 'favorite', to: 'definition_faves#favorite'
       delete 'unfavorite', to: 'definition_faves#unfavorite'
-      # post 'create_from_modal', to: 'definitions#create_from_modal'
     end
   end
 
@@ -50,6 +49,6 @@ Workwiki::Application.routes.draw do
   get 'set_new_password', to: 'users#set_new_password'
   post 'update_password', to: 'users#update_password'
   resource :search, only: [:new, :create, :destroy]
-  root to: "words#index"
+  root to: "static_pages#index"
   get 'notify_recipient', to: 'inbound#notify_recipient'
 end

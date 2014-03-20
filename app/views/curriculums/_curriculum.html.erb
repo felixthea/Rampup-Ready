@@ -1,0 +1,20 @@
+<div class="curriculum" id="<%= curriculum.id %>">
+  <div class="entity-name group">
+    <div class="curriculum-name">
+      <h2><%= link_to curriculum.name, curriculum_url(curriculum.id) %></h2>
+    </div>
+    <div class="entity-count">
+      <h3><%= curriculum.definitions.count %> Definitions</h3>
+    </div>
+  </div>
+  <div class="entity-description">
+    <p>
+      <% unless curriculum.description.blank? %>
+        <%= curriculum.description %>
+      <% end %>
+    </p>
+  </div>
+  <div class="entity-more-info">
+    Created by <%= curriculum.user.email %>
+  </div>
+</div>

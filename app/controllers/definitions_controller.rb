@@ -3,24 +3,25 @@ class DefinitionsController < ApplicationController
   before_filter :require_current_user!, only: [:new, :create]
   before_filter :require_author_or_admin!, only: [:edit, :update, :destroy]
 
-  def show
-    @definition = Definition.find(params[:id])
-    render :show
-  end
-
   def new
     @definition = Definition.new
   end
 
   def create
-    def_body = params[:definition][:body]
-    subdivision_id = params[:definition][:subdivision_id]
     word_id = params[:word_id]
     word = Word.find(word_id)
+
+    redirect_to new_sessions_url if word.company_id != current_co.id
+
+    def_body = params[:definition_body]
+    subdivision_id = params[:subdivision_id]
+    
     user_id = current_user.id
-    tag_ids = params[:definition][:tag_ids]
-    @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids)
-    @definition.examples.new(params[:example])
+    tag_ids = params[:definition_tags]
+    company_id = current_co.id
+    @definition = Definition.new(body: def_body, subdivision_id: subdivision_id, word_id: word_id, user_id: user_id, tag_ids: tag_ids, company_id: company_id)
+    
+    @definition.examples.new(params[:definition_example]) unless params[:definition_example][:body].empty?
 
     if request.xhr? && params[:from_modal] == "true"
       if @definition.save
@@ -48,6 +49,9 @@ class DefinitionsController < ApplicationController
 
   def edit
     @definition = Definition.find(params[:id])
+
+    redirect_to new_session_url if @definition.word.company_id != current_co.id
+
     @subdivisions = Subdivision.all
     @example = @definition.examples[0]
     @tags = Tag.all
@@ -69,10 +73,10 @@ class DefinitionsController < ApplicationController
     else
       ActiveRecord::Base.transaction do
         @definition.update_attributes(params[:definition])
-        @example.update_attributes(params[:example])
+        @example.update_attributes(params[:example]) if params[:example]
       end
 
-      if @definition.valid? && @example.valid?
+      if @definition.valid? && (params[:example].blank? || @example.valid?)
         flash[:notice] = ["Definitition updated for #{@definition.word.name}"]
         redirect_to word_url(@definition.word.id)
       else
@@ -90,11 +94,15 @@ class DefinitionsController < ApplicationController
     word = definition.word
     definition.destroy
 
-    if request.xhr?
-      render json: {status: 200}
+    if word.company_id == current_co.id
+      if request.xhr?
+        render json: {status: 200}
+      else
+        flash[:notice] = ["Definition deleted from #{word.name}."]
+        redirect_to word_url(word)
+      end
     else
-      flash[:notice] = ["Definition deleted from #{word.name}."]
-      redirect_to word_url(word)
+      redirect_to new_sessions_url
     end
 
   end

@@ -1,0 +1,109 @@
+<div class="content">
+	<div class="content-boxes">
+		<div class="content-box">
+			<div class="content-box-pic">
+				<%= image_tag "new-curriculum.png", size: "128x128" %>
+			</div>
+			<div class="content-box-text">
+				<h3>
+					New Curriculums
+				</h3>
+				<ul>
+					<% @new_curriculums.each do |curriculum| %>
+						<li>
+							<%= link_to curriculum.name, curriculum_url(curriculum.id) %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div class="content-box">
+			<div class="content-box-pic">
+				<%= image_tag "new-definition.png", size: "128x128" %>
+			</div>
+			<div class="content-box-text">
+				<h3>
+					New Definitions
+				</h3>
+				<ul>
+					<% @new_definitions.each do |definition| %>
+						<li>
+							<%= link_to definition.word.name, word_url(definition.word.id) %>
+							<br>
+							<%= definition.body[0..45].gsub(/\s\w+\s*$/, '...') %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<div class="content-box">
+			<div class="content-box-pic">
+				<%= image_tag "new-word.png", size: "128x128" %>
+			</div>
+			<div class="content-box-text">
+				<h3>
+					New Words
+				</h3>
+				<ul>
+					<% @new_words.each do |word| %>
+						<li>
+							<%= link_to word.name, word_url(word.id) %>
+						</li>
+					<% end %>
+				</ul>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="add-words-box group">
+		<p class="add-words-text">
+			Did you learn a new word and want to share it with your teammates?  Add the word!  If you heard a new word, but don't know the definition, add the word and if one of your colleagues knows the definition they will help you out by adding the definition.
+		</p>
+		<div class="add-words-button">
+			<button id="add-cta" class="add-word" data-id="add-word-modal">
+				Add a Word
+			</button>
+		</div>
+	</div>
+</div>
+<div class="add-word-modal hidden">
+  <div class="form">
+  	<div class="word">
+  		<label for="word_name"><h2>Word</h2></label>
+  		<input type="text" id="word_name" name="word[name]" placeholder="Type word here">
+  	</div>
+    <div class="definition_body">
+      <label for="definition_body"><h2>Definition</h2></label>
+      <textarea name="definition[body]" id="definition_body" type="text" placeholder="Type definition here"></textarea>
+    </div>
+    <div class="example">
+      <label for="example_body"><h3>Example (optional)</h3></label>
+      <textarea name="example[body]" id="example_body" placeholder="Type example here"></textarea>
+    </div>
+     <div class="subdivisions">
+      <label for="subdivision_id"><h3>Department (optional)</h3></label>
+      <select name="subdivision_id" id="subdivision_id">
+        <option value="0">Uncategorized</option>
+        <% @subdivisions.each do |subdivision| %>
+          <option value="<%= subdivision.id %>"><%= subdivision.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="tags">
+      <label for="definition_tag_ids"><h3>Tags (optional)</h3></label>
+      <select name="definition[tag_ids][]" multiple data-placeholder="Select Tags" id="definition_tag_ids">
+        <% @tags.each do |tag| %>
+          <option value="<%= tag.id %>"><%= tag.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="actions">
+      <span class="cancel">
+        <a href="#" data-id="add-word-modal">Cancel</a>
+      </span>
+      <button id="add-cta" class="submit-word">
+        Add
+      </button>
+    </div>
+  </div>
+</div>

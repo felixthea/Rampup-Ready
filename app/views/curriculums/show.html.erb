@@ -1,31 +1,17 @@
-<div class="curriculum-wrapper">
-  <h2><%= @curriculum.name %></h2>
-  <br>
-    <%= @curriculum.description %>
-  <br>
-  <br>
-  Definitions
-  <ul>
-    <% @curriculum.definitions.each do |definition| %>
-      <li>
-        <%= link_to definition.word.name, word_url(definition.word.id) %>: <%= definition.body %>
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to "Edit", edit_curriculum_url(@curriculum.id) if (current_user.id == @curriculum.user_id || current_user.admin == true)%>
-  <br>
-  <br>
-  <form action="<%= email_curriculum_url(params[:id]) %>" method="post" data-remote="true" class="email-curriculum-form">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label for="recipient_email">Email:</label>
-    <input type="text" name="recipient[email]" id="recipient_email">
-    <input type="Submit" value="Send Curriculum" class="submit">
-  </form>
-  <% if current_user.favorite_curriculums.any?{ |fave_curriculum| fave_curriculum.id == @curriculum.id } %>
-    <%= button_to "Mark as Favorite", favorite_curriculum_url(@curriculum.id), remote: true, form_class: "favorite-curriculum hidden", class: "favorite-curriculum-button" %>
-    <%= button_to "Unfavorite", unfavorite_curriculum_url(@curriculum.id), remote: true, form_class: "unfavorite-curriculum", class: "favorite-curriculum-button", method: :delete %>
-  <% else %>
-    <%= button_to "Mark as Favorite", favorite_curriculum_url(@curriculum.id), remote: true, form_class: "favorite-curriculum", class: "favorite-curriculum-button" %>
-    <%= button_to "Unfavorite", unfavorite_curriculum_url(@curriculum.id), remote: true, form_class: "unfavorite-curriculum hidden", class: "favorite-curriculum-button", method: :delete %>
-  <% end %>
+<div class="content">
+  <div class="content-top group">
+    <div class="content-title">
+      <%= @curriculum.name %> (<%= @definitions.count %> definitions)
+    </div>
+    <div class="email-curriculum-button" id="curriculum-id" data-id="<%= @curriculum.id %>">
+      <button id="add-cta" class="email-curriculum" data-id="email-curriculum-modal">
+        Email Curriculum
+      </button>
+    </div>
+  </div>
+  <div class="content-body group">
+    <div class="content-main">
+      <%= render partial: "curriculum_definition", collection: @definitions, as: :definition %>
+    </div>
 </div>
+<%= render 'email_curriculum_modal' %>

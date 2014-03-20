@@ -1,20 +1,29 @@
-<div class="words-wrapper group">
-  <div class="add-words-form group">
-    <h2>Add Word</h2>
-    <form action="<%= words_url %>" method="post" data-remote="true" id="new-word-form">
-      <label for="word_name">Word:</label>
-      <input type="text" name="word[name]" id="word_name">
-      <input type="submit" class="submit" value="Add Word">
-    </form>
-		<br>
-		<strong>Build a curriculum</strong> that you can send to another member of your team.  <%= link_to "Click Here!", new_curriculum_url %>
+<div class="content">
+  <div class="content-top group">
+    <nav class="content-nav">
+      <%= paginate @words %>
+    </nav>
+    <div class="add-new-button">
+      <button id="add-cta" class="add-word" data-id="add-word-modal">
+        Add a Word
+      </button>
+    </div>
   </div>
-  <div class="words-list">
-    <h2>Words</h2>
-    <div class="words">
-      <nav class="word-pages"><%= paginate @words %></nav>
+  <div class="content-body group">
+    <div class="content-main">
       <%= render @words %>
-      <nav class="word-pages"><%= paginate @words %></nav>
+      <%= paginate @words %>
+    </div>
+    <div class="content-sidebar">
+      <h3>Recently Added</h3>
+      <ul>
+        <% @recent.each do |word| %>
+          <li>
+            <%= link_to word.name, word_url(word.id) %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
+<%= render 'words/add_word_modal' %>

@@ -60,6 +60,10 @@ class UsersController < ApplicationController
     rescue Exception => e
       render json: e.message
     else
+      new_users.each do |new_user|
+        msg = NotificationMailer.admin_sign_up_user_email(new_user, current_user, new_user.password)
+        msg.deliver!
+      end
       render json: "Users were saved."
     end
   end
