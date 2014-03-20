@@ -241,6 +241,7 @@ $(document).ready(function(){
 	})
 
 	$('#curriculum_search').on('keyup', function(event){
+    $('.cancel-search').removeClass('hidden');
 		var searchTerm = $(this).val();
 		if (searchTerm.length > 2){
 			search(searchTerm, function(result){
@@ -252,7 +253,7 @@ $(document).ready(function(){
               + '<div class="curr-sr-info"><div class="curr-sr-word">' + el.name + '</div>'
               + '<div class="curr-sr-definition">' + definition.body + '</div>'
               + '</div>'
-              + '<div class="action-to-curriculum"><button class="add-to-curriculum" data-id="' + definition.id + '">Add</button>' + '</div>' 
+              + '<div class="action-to-curriculum"><button class="add-to-curriculum" data-id="' + definition.id + '">+</button>' + '</div>' 
               + '</li>'
             );
           })
@@ -261,16 +262,36 @@ $(document).ready(function(){
 		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
       $('ul.curriculum-search-results').removeClass('search-results-with-overflow');
 			$('ul.curriculum-search-results').html("");
+      $('.cancel-search').addClass('hidden');
 		}
 	});
 
   $('ul.curriculum-search-results').on('click', 'button.add-to-curriculum', function(event){
     var defId = $(this).attr("data-id");
-    // var $definition = $('li' + defId).find('.curr-sr-info');
     var $definition = $('li#' + defId);
-    $definition.find('div.action-to-curriculum').html('<button class="remove-from-curriculum" data-id="' + defId + '">Remove</button>');
+    $definition.attr("class", "curriculum-selected group");
+    $definition.find('div.action-to-curriculum').html('<button class="remove-from-curriculum" data-id="' + defId + '">X</button>');
     $('.curriculum-selected-definitions').append($definition);
     $('ul.curriculum-search-results li').remove('#' + defId);
+    $('.def-count').trigger('change');
+  });
+
+  $('.def-count').on('change', function(event){
+    $('span.def-count').html("(" + $('li.curriculum-selected').length + ")");
+  });
+
+  $('ul.curriculum-selected-definitions').on('click', 'button.remove-from-curriculum', function(event){
+    event.preventDefault();
+    var defId = $(this).attr("data-id");
+    $('.curriculum-selected-definitions li').remove('#' + defId);  
+  });
+
+  $('.cancel-search').on('click', function(event){
+    event.preventDefault();
+    $('#curriculum_search').val("");
+    $(this).addClass('hidden');
+    $('ul.curriculum-search-results').removeClass('search-results-with-overflow');
+    $('ul.curriculum-search-results').html("");
   })
 
 	var search = function(keyword, callback){

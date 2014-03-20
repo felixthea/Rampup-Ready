@@ -19,7 +19,7 @@ body, header, h1, h2, h3, div, p, ul, li{
   margin:0;
   padding:0;
   border:0;
-  font-family: Verdana,Arial,Helvetica,sans-serif;
+  font-family: "Helvetica Neue";
   font-size: 12px;
 }
 
@@ -184,6 +184,7 @@ input.word-search:focus{
 
 ul.curriculum-search-results{
   width: 1000px;
+  background: white;
   list-style: none;
 }
 
@@ -201,7 +202,7 @@ ul.curriculum-search-results li{
   overflow: auto;
 }
 
-.curriculum-selected-definitions ul{
+.curriculum-selected-definitions{
   list-style: none;
 }
 
@@ -214,9 +215,41 @@ div.action-to-curriculum{
   float: right;
 }
 
-li.curriculum-search-result {
+li.curriculum-search-result, li.curriculum-selected {
   border-bottom: 1px solid #cccccc;
   padding: 0 0 20px 0;
+}
+
+button.add-to-curriculum , button.remove-from-curriculum{
+  background: none;
+  color: #444444;
+}
+
+button.add-to-curriculum{
+  font-size: 30px;
+  font-weight: bold;
+  color: #0090c7;
+}
+
+button.remove-from-curriculum{
+  font-size: 20px;
+  font-weight: bold;
+  color: #cccccc;
+  font-family: Arial;
+}
+
+.secondary-entry{
+  position: relative;
+}
+
+.cancel-search{
+  position: absolute;
+  top: 45px;
+  left: 950px;
+  font-family: Arial;
+  font-size: 20px;
+  color: black;
+  background: none;
 }
 
 .curr-sr-info{
@@ -311,8 +344,8 @@ button#add-cta{
   padding: 15px 25px 15px 25px;
   font-size: 14px;
   border-bottom: 3px solid #0066CC;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 
 button#add-cta:hover{
@@ -416,7 +449,7 @@ button#add-sub-cta:hover{
   padding: 0 30px 0 0;
   color: #D4D4D4;
 }
-.add-to-curriculum-button, .rmove-from-curriculum{
+.add-to-curriculum-button, .remove-from-curriculum{
   float: right;
 }
 
