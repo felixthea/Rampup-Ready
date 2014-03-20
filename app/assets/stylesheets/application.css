@@ -196,11 +196,21 @@ ul.curriculum-search-results li{
   text-align: left;
 }
 
+.curriculum-selected-definitions{
+  height: 250px;
+  overflow: auto;
+}
+
+.curriculum-selected-definitions ul{
+  list-style: none;
+}
+
 .curr-sr-info{
   float: left;
 }
 
-div.add-to-curriculum{
+div.action-to-curriculum{
+  margin: 20px 0 0 0;
   float: right;
 }
 
@@ -406,7 +416,7 @@ button#add-sub-cta:hover{
   padding: 0 30px 0 0;
   color: #D4D4D4;
 }
-.add-to-curriculum-button{
+.add-to-curriculum-button, .rmove-from-curriculum{
   float: right;
 }
 
@@ -433,7 +443,7 @@ button#add-sub-cta:hover{
 
 .add-modal .form{
   z-index: 1001;
-  padding: 120px 0 0 130px;
+  padding: 50px 0 0 130px;
   width: 1000px;
 }
 

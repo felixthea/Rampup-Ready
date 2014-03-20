@@ -248,11 +248,11 @@ $(document).ready(function(){
 				_.each(result, function(el, idx, list){
           _.each(el.definitions, function(definition){
             $('ul.curriculum-search-results').addClass('search-results-with-overflow');
-            $('ul.curriculum-search-results').append('<li class="curriculum-search-result group" data-id="' + definition.id + '">' 
+            $('ul.curriculum-search-results').append('<li class="curriculum-search-result group" id="' + definition.id + '">' 
               + '<div class="curr-sr-info"><div class="curr-sr-word">' + el.name + '</div>'
               + '<div class="curr-sr-definition">' + definition.body + '</div>'
               + '</div>'
-              + '<div class="add-to-curriculum"><button class="add-to-curriculum" data-id="' + definition.id + '">Add</button>' + '</div>' 
+              + '<div class="action-to-curriculum"><button class="add-to-curriculum" data-id="' + definition.id + '">Add</button>' + '</div>' 
               + '</li>'
             );
           })
@@ -263,6 +263,15 @@ $(document).ready(function(){
 			$('ul.curriculum-search-results').html("");
 		}
 	});
+
+  $('ul.curriculum-search-results').on('click', 'button.add-to-curriculum', function(event){
+    var defId = $(this).attr("data-id");
+    // var $definition = $('li' + defId).find('.curr-sr-info');
+    var $definition = $('li#' + defId);
+    $definition.find('div.action-to-curriculum').html('<button class="remove-from-curriculum" data-id="' + defId + '">Remove</button>');
+    $('.curriculum-selected-definitions').append($definition);
+    $('ul.curriculum-search-results li').remove('#' + defId);
+  })
 
 	var search = function(keyword, callback){
 		$.ajax({
