@@ -26,12 +26,13 @@ class CurriculumsController < ApplicationController
   def create
     params[:curriculum][:user_id] = current_user.id
     params[:curriculum][:company_id] = current_co.id
+    params[:curriculum][:definition_ids].uniq!
 
     @curriculum = Curriculum.new(params[:curriculum])
 
     if request.xhr?
       if @curriculum.save
-        render json: @curriculum
+        render partial: 'curriculum', locals: { curriculum: @curriculum }
       else
         render json: @curriculum.errors.full_messages, status: 422
       end

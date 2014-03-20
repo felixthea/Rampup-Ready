@@ -317,7 +317,11 @@ $(document).ready(function(){
         }
       },
       success: function(data, textStatus, jqxhr){
-        console.log(data);
+        $('div.content-main-curriculums').prepend(data);
+        clearForm('add-curriculum-modal');
+        closeModal('add-curriculum-modal');
+        $('ul.curriculum-search-results').html("");
+        $('span.def-count').html("(0)");
       },
       error: function(jqxhr, status, error){
         console.log('error');
