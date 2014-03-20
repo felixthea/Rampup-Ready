@@ -310,9 +310,11 @@ $(document).ready(function(){
       url: '/curriculums',
       type: 'POST',
       data: {
-        name: name,
-        description: description,
-        definition_ids: definitionIds
+        curriculum: {
+          name: name,
+          description: description,
+          definition_ids: definitionIds
+        }
       },
       success: function(data, textStatus, jqxhr){
         console.log(data);

@@ -24,13 +24,10 @@ class CurriculumsController < ApplicationController
   end
 
   def create
-    @curriculum = Curriculum.new(
-      user_id: current_user.id,
-      company_id: current_co.id,
-      name: params[:name],
-      description: params[:description],
-      definition_ids: params[:definition_ids]
-      )
+    params[:curriculum][:user_id] = current_user.id
+    params[:curriculum][:company_id] = current_co.id
+
+    @curriculum = Curriculum.new(params[:curriculum])
 
     if request.xhr?
       if @curriculum.save
