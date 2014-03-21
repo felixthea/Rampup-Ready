@@ -67,6 +67,12 @@ button{
   cursor: pointer;
 }
 
+.log-out{
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
 /* Layout Top */
 .top{
   /*background: blue;*/
@@ -134,6 +140,7 @@ button{
 
 .avatar{
   float: left;
+  margin: 5px 0 0 0;
 }
 
 /* Layout Search */
