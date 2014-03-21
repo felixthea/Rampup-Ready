@@ -20,7 +20,9 @@
         </div>
         <div class="avatar">
           <!-- <%= image_tag "user-4.png" %> -->
-          <%= button_to "Log Out", session_url, method: :delete, class: 'log-out' %>
+          <% if current_user %>
+            <%= button_to "Log Out", session_url, method: :delete, class: 'log-out' %>
+          <% end %>
         </div>
       </div>
     </div>
