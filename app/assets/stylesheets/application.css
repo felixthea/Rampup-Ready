@@ -200,7 +200,7 @@ ul.curriculum-search-results{
 }
 
 .search-results-with-overflow{
-  height: 250px;
+  height: 190px;
   overflow: auto;
 }
 
@@ -209,7 +209,7 @@ ul.curriculum-search-results li{
 }
 
 .curriculum-selected-definitions{
-  height: 250px;
+  height: 190px;
   overflow: auto;
 }
 
