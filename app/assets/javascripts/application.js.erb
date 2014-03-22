@@ -241,7 +241,7 @@ $(document).ready(function(){
 			search(searchTerm, function(result){
 				$('ul.search-results').html("");
 				_.each(result, function(el, idx, list){
-					$('ul.search-results').append('<li><a href="/words/' + el.id + '">' + el.name + '</a></li>');
+					$('ul.search-results').append('<li><a href="/words/' + el.id + '?query=' + searchTerm + '">' + el.name + '</a></li>');
 				})
 			})
 		} else if ((searchTerm.length === 0) && (event.charCode === 0)){

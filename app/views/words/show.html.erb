@@ -1,5 +1,8 @@
 <script type="text/javascript">
-  mixpanel.track("Visit words#show");
+  begIdx = document.location.search.indexOf("=") + 1;
+  mixpanel.track("Visit words#show", {
+    "searchTerm": document.location.search.substring(begIdx)
+  });
 </script>
 <div class="content">
   <div class="content-top group">
