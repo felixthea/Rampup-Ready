@@ -25,8 +25,8 @@ var searchPlaceholder = "What would you like to learn?";
 $(document).ready(function(){
 
   $('.word-search').on('focus', function(event){
-    var $inputBox = $(this);
-
+    var $inputBox = $(this);  
+    mixpanel.track("Clicked word search box");
     $inputBox.attr("placeholder", "");
   });
 
@@ -238,7 +238,11 @@ $(document).ready(function(){
 		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
 			$('ul.search-results').html("");
 		}
-	})
+	});
+
+  mixpanel.track_links("ul.search-results", "Click word search results link", {
+    "referrer": document.referrer
+  });
 
 	$('#curriculum_search').on('keyup', function(event){
     $('.cancel-search').removeClass('hidden');
