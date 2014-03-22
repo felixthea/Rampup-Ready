@@ -85,6 +85,7 @@ $(document).ready(function(){
   	event.preventDefault();
   	modal = $(this).attr('data-id');
   	openModal(modal);
+    mixpanel.track("Click Add Word button");
   })
 
   $('.container').on('click', 'button.email-curriculum', function(event){
@@ -132,6 +133,8 @@ $(document).ready(function(){
   			console.log(error);
   		}
   	})
+
+    mixpanel.track("Click submit definition button");
   })
 
 	$('.add-word-modal').on('click', '.submit-word', function(event){
@@ -164,6 +167,7 @@ $(document).ready(function(){
   		error: function(jqxhr, status, error){
   		}
   	})
+    mixpanel.track("Click submit word button");
 	})
 
 	$('.email-curriculum-modal').on('click', '.email-curriculum', function(event){
@@ -192,6 +196,7 @@ $(document).ready(function(){
   			console.log(error);		
 			}
 		})
+    mixpanel.track("Click email curriculum button");
 	})
 
   var closeModal = function(modalClass){
@@ -243,10 +248,6 @@ $(document).ready(function(){
 			$('ul.search-results').html("");
 		}
 	});
-
-  mixpanel.track_links("ul.search-results li", "Click word search results link", {
-    "referrer": document.referrer
-  });
 
 	$('#curriculum_search').on('keyup', function(event){
     $('.cancel-search').removeClass('hidden');
@@ -335,6 +336,7 @@ $(document).ready(function(){
         console.log('error');
       }
     })
+    mixpanel.track("Click submit curriculum button");
   });
 
 	var search = function(keyword, callback){
@@ -350,4 +352,16 @@ $(document).ready(function(){
 			}
 		})
 	};
+
+  mixpanel.track_links("ul.search-results li", "Click word search results link", {
+    "referrer": document.referrer
+  });
+
+  mixpanel.track_links(".pagination span a", "Navigate to more pages on index page", {
+    "referrer": document.referrer
+  });
+
+  mixpanel.track_links(".related-words li a", "Click on related word", {
+    "referrer": document.referrer
+  });
 });
