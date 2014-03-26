@@ -57,6 +57,7 @@ body{
 .container{
   padding: 20px;
   width: 1380px;
+  margin: auto;
   /*background: red;*/
 }
 
