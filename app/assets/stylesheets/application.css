@@ -81,6 +81,7 @@ button{
 /* Layout Top */
 .top{
   /*background: blue;*/
+  width: 100%;
   margin: 0 0 30px 0;
 }
 
@@ -151,6 +152,7 @@ button{
 /* Layout Search */
 .search{
   height: 180px;
+  width: 100%;
   background: #333333;
   text-align: center;
 }
@@ -292,6 +294,7 @@ ul.search-results li{
 /* Layout Main */
 .main{
   /*background: yellow;*/
+  width: 100%;
 }
 
 .content{
