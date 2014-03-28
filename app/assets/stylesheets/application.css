@@ -153,6 +153,7 @@ button{
 .search{
   height: 180px;
   width: 100%;
+  position: relative;
   background: #333333;
   text-align: center;
 }
@@ -183,8 +184,7 @@ input.word-search:focus{
 }
 
 .search-results-container{
-  left: 20px;
-  top: 290px;
+  top: 180px;
   position: absolute;
   width: 1380px;
   z-index: 1001;
