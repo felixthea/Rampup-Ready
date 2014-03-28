@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  begIdx = document.location.search.indexOf("=") + 1;
+  mixpanel.track("Visit words#show", {
+    "searchTerm": document.location.search.substring(begIdx)
+  });
+</script>
 <div class="content">
   <div class="content-top group">
     <div class="content-title">
@@ -30,7 +36,7 @@
       </ul>
       <br>
       <h3>Related Words</h3>
-      <ul>
+      <ul class="related-words">
         <% @related_words.each do |word| %>
           <li>
             <%= link_to word.name, word_url(word.id) %>

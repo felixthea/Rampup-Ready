@@ -8,7 +8,7 @@ class Word < ActiveRecord::Base
     current_word_definitions = self.definitions
     all_tags = []
     related_words = []
-    all_words = Word.where('company_id = ?', current_co.id).first(10)
+    all_words = Word.where('company_id = ?', current_co.id)
 
     current_word_definitions.each do |definition|
       all_tags += definition.tags

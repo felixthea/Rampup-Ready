@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    render :new
+    render :new, layout: "entity"
   end
 
   def create
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user.nil?
       flash.now[:errors] = ["Invalid username or password."]
-      render :new
+      render :new, layout: "entity"
     else
       log_user_in!(user)
     end
@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_user_out!
-    render :new
+    render :new, layout: "entity"
   end
 end

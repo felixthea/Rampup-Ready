@@ -5,27 +5,15 @@
 		<br>
 		<h2>Rampup Ready makes it super easy for employees to learn vital industry and company words</h2>
 		<p>You get a private company dictionary where your employees educate each other by contributing definitions and building curriculums.</p>
-	</div>
-  <h2>Log In</h2>
+  <br><br>
+  <h2>Log In:</h2>
   <form action="<%= session_url %>" method="post">
     <label for="user_email">Email:</label>
     <input type="text" id="user_email" name="user[email]">
-		<br>
     <label for="user_password">Password:</label>
     <input type="password" id="user_password" name="user[password]">
-		<br>
     <input type="submit" value="Sign In">
   </form>
   <%= link_to "Forgot Password?", forgot_password_url %>
-  <br><br>
-  <form action="<%= session_url %>" method="post">
-		<input type="hidden" name="user[email]" value="demouser@gmail.com">
-		<input type="hidden" name="user[password]" value="password">
-		<input type="submit" value="Demo Login">
-	</form>
-	<form action="<%= session_url %>" method="post">
-		<input type="hidden" name="user[email]" value="demoadmin@gmail.com">
-		<input type="hidden" name="user[password]" value="password">
-		<input type="submit" value="Demo Admin Login">
-	</form>
+  </div>
 </div>

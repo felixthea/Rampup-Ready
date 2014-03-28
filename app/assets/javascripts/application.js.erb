@@ -1,0 +1,367 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
+//= require underscore-min
+//= require_tree .
+//= require jquery.serializeJSON.js
+//= require pusher.min.js
+//= require chosen-jquery
+
+(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+mixpanel.init("8ebc3cea244553fa1b36781f5d2858d0");
+
+var searchPlaceholder = "What would you like to learn?";
+
+$(document).ready(function(){
+
+  $('.word-search').on('focus', function(event){
+    var $inputBox = $(this);  
+    mixpanel.track("Clicked word search box");
+    $inputBox.attr("placeholder", "");
+  });
+
+  $('.word-search').on('blur', function(event){
+    var $inputBox = $(this);
+    $inputBox.val("");
+    $inputBox.attr("placeholder", searchPlaceholder);
+    setTimeout(function(){
+    	$('ul.search-results').html("");
+    },200);
+  });
+
+  $('.content-main').on('click', '.upvote-arrow', function(event){
+  	var definitionId = $(event.target).attr("data-id");
+
+  	$.ajax({
+  		url: '/definitions/' + definitionId + '/upvote',
+  		type: 'POST',
+  		success: function(response){
+  			flashNotice("Upvoted!");
+  			updateVoteCount(definitionId, response);
+  		},
+  		error: function(response){
+  			flashNotice(response.responseText);
+  		}
+  	});
+  });
+
+  $('.content-main').on('click', '.downvote-arrow', function(event){
+  	var definitionId = $(event.target).attr("data-id");
+
+  	$.ajax({
+  		url: '/definitions/' + definitionId + '/downvote',
+  		type: 'POST',
+  		success: function(response){
+  			flashNotice("Downvoted!");
+  			updateVoteCount(definitionId, response);
+  		},
+  		error: function(response){
+  			flashNotice(response.responseText);
+  		}
+  	});
+  });
+
+  $('.main').on('click', 'button.add-definition', function(event){
+  	event.preventDefault();
+  	modal = $(this).attr('data-id');
+  	openModal(modal);
+  });
+
+  $('.container').on('click', 'button.add-word', function(event){
+  	event.preventDefault();
+  	modal = $(this).attr('data-id');
+  	openModal(modal);
+    mixpanel.track("Click Add Word button");
+  })
+
+  $('.container').on('click', 'button.email-curriculum', function(event){
+  	event.preventDefault();
+  	modal = $(this).attr('data-id');
+  	openModal(modal);
+  })
+
+  $('.container').on('click', 'button.add-curriculum', function(event){
+    event.preventDefault();
+    modal = $(this).attr('data-id');
+    openModal(modal);
+  })
+
+  $('.cancel').on('click', 'a', function(event){
+  	event.preventDefault();
+  	var modal = $(this).attr('data-id')
+  	clearForm(modal);
+  	closeModal(modal);
+  });
+
+  $('.add-definition-modal').on('click', '.submit-definition', function(event){
+  	event.preventDefault();
+  	$modal = $('.add-definition-modal');
+  	$lastDef = $('.definition').last();
+
+  	wordId = $modal.attr("data-id");
+  	definitionBody = $modal.find('textarea#definition_body').val();
+  	definitionExample = $modal.find('textarea#example_body').val();
+  	definitionTags = $modal.find('select#definition_tag_ids').val();
+  	subdivisionId = $modal.find('select#subdivision_id').val();
+
+  	$.ajax({
+  		url: '/definitions',
+  		type: 'POST',
+  		data: { word_id: wordId, definition_body: definitionBody, definition_example: { body: definitionExample }, definition_tags: definitionTags, subdivision_id: subdivisionId },
+  		success: function(data, status, jqxhr){
+  			$lastDef.after(data);
+  			closeModal('add-definition-modal');
+  			clearForm('add-definition-modal');
+  		},
+  		error: function(jqxhr, status, error){
+  			console.log(jqxhr);
+  			console.log(status);
+  			console.log(error);
+  		}
+  	})
+
+    mixpanel.track("Click submit definition button");
+  })
+
+	$('.add-word-modal').on('click', '.submit-word', function(event){
+		event.preventDefault();
+		$modal = $('.add-word-modal');
+
+		wordName = $modal.find('input#word_name').val();
+		definitionBody = $modal.find('textarea#definition_body').val();
+		definitionExample = $modal.find('textarea#example_body').val();
+		definitionTags = $modal.find('select#definition_tag_ids').val();
+  	subdivisionId = $modal.find('select#subdivision_id').val();
+
+  	$.ajax({
+  		url: '/words',
+  		type: 'POST',
+  		data: {
+  			word_name: wordName,
+  			definition_body: definitionBody,
+  			definition_example: {
+  				body: definitionExample
+  			},
+  			definition_tags: definitionTags,
+  			subdivision_id: subdivisionId
+  		},
+  		success: function(data, status, jqxhr){
+  			closeModal('add-word-modal');
+  			clearForm('add-word-modal');
+  			window.location.href = '/words/' + data;
+  		},
+  		error: function(jqxhr, status, error){
+  		}
+  	})
+    mixpanel.track("Click submit word button");
+	})
+
+	$('.email-curriculum-modal').on('click', '.email-curriculum', function(event){
+		event.preventDefault();
+		$modal = $('.email-curriculum-modal');
+
+		emailEmails = $modal.find('input#email_emails').val();
+		emailBody = $modal.find('textarea#email_body').val();
+		curriculumId = $('#curriculum-id').attr("data-id");
+
+		$.ajax({
+			url: '/curriculums/' + curriculumId + '/email',
+			type: 'POST',
+			data: {
+				email_addresses: emailEmails,
+				email_body: emailBody,
+				curriculum_id: curriculumId
+			},
+			success: function(data, status, jqxhr){
+				closeModal('email-curriculum-modal');
+				clearForm('email-curriculum-modal');
+			},
+			error: function(jqxhr, status, error){
+	  		console.log(jqxhr);
+  			console.log(status);
+  			console.log(error);		
+			}
+		})
+    mixpanel.track("Click email curriculum button");
+	})
+
+  var closeModal = function(modalClass){
+  	$('.' + modalClass).addClass('hidden');
+  };
+
+  var openModal = function(modalClass){
+  	$('.' + modalClass).removeClass('hidden');
+  };
+
+  var clearForm = function(modalClass) {
+  	$modal = $('.'+ modalClass)
+  	$modal.find('textarea').val('');
+  	$modal.find('input').val('');
+  	$modal.find("option:selected").removeAttr("selected");
+  	$modal.find('select').trigger('chosen:updated');
+  	console.log('cleared ' + modalClass);
+  };
+
+  var updateVoteCount = function (definitionId, response) {
+    var total = response.total
+    var upvotes = response.upvotes
+    var downvotes = response.downvotes
+    $('div#' + definitionId).find('#total-score').html(total);
+  };
+
+  var flashNotice = function (msg) {
+  	console.log(msg);
+  };
+
+  $('#definition_tag_ids').chosen({
+  	width: "100%"
+	});
+
+	$('#subdivision_id').chosen({
+		width: "100%"
+	});
+
+	$('.search-bar').on('keyup', 'input', function(event){
+		var searchTerm = $(this).val();
+		if (searchTerm.length > 2) {
+			search(searchTerm, function(result){
+				$('ul.search-results').html("");
+				_.each(result, function(el, idx, list){
+					$('ul.search-results').append('<li><a href="/words/' + el.id + '?query=' + searchTerm + '">' + el.name + '</a></li>');
+				})
+			})
+		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
+			$('ul.search-results').html("");
+		}
+	});
+
+	$('#curriculum_search').on('keyup', function(event){
+    $('.cancel-search').removeClass('hidden');
+		var searchTerm = $(this).val();
+		if (searchTerm.length > 2){
+			search(searchTerm, function(result){
+				$('ul.curriculum-search-results').html("");
+				_.each(result, function(el, idx, list){
+          _.each(el.definitions, function(definition){
+            $('ul.curriculum-search-results').addClass('search-results-with-overflow');
+            $('ul.curriculum-search-results').append('<li class="curriculum-search-result group" id="' + definition.id + '">' 
+              + '<div class="curr-sr-info"><div class="curr-sr-word">' + el.name + '</div>'
+              + '<div class="curr-sr-definition">' + definition.body + '</div>'
+              + '</div>'
+              + '<div class="action-to-curriculum"><button class="add-to-curriculum" data-id="' + definition.id + '">+</button>' + '</div>' 
+              + '</li>'
+            );
+          })
+				})
+			})
+		} else if ((searchTerm.length === 0) && (event.charCode === 0)){
+      $('ul.curriculum-search-results').removeClass('search-results-with-overflow');
+			$('ul.curriculum-search-results').html("");
+      $('.cancel-search').addClass('hidden');
+		}
+	});
+
+  $('ul.curriculum-search-results').on('click', 'button.add-to-curriculum', function(event){
+    var defId = $(this).attr("data-id");
+    var $definition = $('li#' + defId);
+    $definition.attr("class", "curriculum-selected group");
+    $definition.find('div.action-to-curriculum').html('<button class="remove-from-curriculum" data-id="' + defId + '">X</button>');
+    $('.curriculum-selected-definitions').append($definition);
+    $('ul.curriculum-search-results li').remove('#' + defId);
+    $('.def-count').trigger('change');
+  });
+
+  $('.def-count').on('change', function(event){
+    $('span.def-count').html("(" + $('li.curriculum-selected').length + ")");
+  });
+
+  $('ul.curriculum-selected-definitions').on('click', 'button.remove-from-curriculum', function(event){
+    event.preventDefault();
+    var defId = $(this).attr("data-id");
+    $('.curriculum-selected-definitions li').remove('#' + defId);  
+  });
+
+  $('.cancel-search').on('click', function(event){
+    event.preventDefault();
+    $('#curriculum_search').val("");
+    $(this).addClass('hidden');
+    $('ul.curriculum-search-results').removeClass('search-results-with-overflow');
+    $('ul.curriculum-search-results').html("");
+  })
+
+  $('.submit-curriculum').on('click', function(event){
+    event.preventDefault();
+
+    var name = $('textarea#curriculum_name').val();
+    var description = $('textarea#curriculum_description').val();
+    var definitions = $('li.curriculum-selected');
+    var definitionIds = [];
+
+    _.each(definitions, function(el, idx, list){
+      definitionIds.push($(el).attr("id"));
+    });
+
+    $.ajax({
+      url: '/curriculums',
+      type: 'POST',
+      data: {
+        curriculum: {
+          name: name,
+          description: description,
+          definition_ids: definitionIds
+        }
+      },
+      success: function(data, textStatus, jqxhr){
+        $('div.content-main-curriculums').prepend(data);
+        clearForm('add-curriculum-modal');
+        closeModal('add-curriculum-modal');
+        $('ul.curriculum-search-results').html("");
+        $('span.def-count').html("(0)");
+      },
+      error: function(jqxhr, status, error){
+        console.log('error');
+      }
+    })
+    mixpanel.track("Click submit curriculum button");
+  });
+
+	var search = function(keyword, callback){
+		$.ajax({
+			url: '/search',
+			type: 'post',
+			data: { keyword: keyword },
+			success: function(data, textStatus, jqXHR){
+				callback(data.results)
+			},
+			error: function() {
+				console.log("error")
+			}
+		})
+	};
+
+  mixpanel.track_links("ul.search-results li", "Click word search results link", {
+    "referrer": document.referrer
+  });
+
+  mixpanel.track_links(".pagination span a", "Navigate to more pages on index page", {
+    "referrer": document.referrer
+  });
+
+  mixpanel.track_links(".related-words li a", "Click on related word", {
+    "referrer": document.referrer
+  });
+});

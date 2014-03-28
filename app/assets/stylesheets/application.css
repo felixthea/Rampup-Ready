@@ -29,7 +29,7 @@ h1{
 
 h2{
   font-size: 1.5em;
-  color: #373737;
+  color: #444444;
 }
 
 h3{
@@ -37,7 +37,7 @@ h3{
 }
 
 p{
-  color: #A9A9A9;
+  color: #444444;
 }
 
 .group:after{
@@ -65,6 +65,16 @@ button{
   border: none;
   color: white;
   cursor: pointer;
+}
+
+.log-out{
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#website-description{
+  text-align: center;
 }
 
 /* Layout Top */
@@ -134,6 +144,7 @@ button{
 
 .avatar{
   float: left;
+  margin: 5px 0 0 0;
 }
 
 /* Layout Search */
@@ -189,7 +200,7 @@ ul.curriculum-search-results{
 }
 
 .search-results-with-overflow{
-  height: 250px;
+  height: 190px;
   overflow: auto;
 }
 
@@ -198,7 +209,7 @@ ul.curriculum-search-results li{
 }
 
 .curriculum-selected-definitions{
-  height: 250px;
+  height: 190px;
   overflow: auto;
 }
 
