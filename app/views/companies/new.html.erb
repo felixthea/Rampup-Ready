@@ -1,4 +1,8 @@
-companies#new
+<html>
+<head>
+  <%= render '/shared/head' %>
+</head>
+<%= render 'shared/top' %>
 <form action="<%= companies_url %>" method="post">
 	<label for="user_email">Your email address:</label>
 	<input type="text" name="user[email]" id="user_email">
@@ -14,3 +18,4 @@ companies#new
 	<br>
 	<input type="Submit" value="Start my free trial">
 </form>
+</html>
