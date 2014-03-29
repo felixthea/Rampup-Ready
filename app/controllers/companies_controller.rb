@@ -5,11 +5,15 @@ class CompaniesController < ApplicationController
 
 	def create
 		@company = Company.new(params[:company])
-		fail
+		@subdivision = @company.subdivisions.new(name: "General")
+		@user = @subdivision.employees.new(params[:user])
+
 		if @company.save
-			redirect_to @company
+			render "Company, subdivision and user created."
 		else
-			render :new
+			all_errors = []
+			all_errors = all_errors + @company.errors.full_messages + @subdivision.errors.full_messages + @user.errors.full_messages
+      render json: all_errors, status: 422
 		end
 	end
 

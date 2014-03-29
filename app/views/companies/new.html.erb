@@ -1,5 +1,5 @@
 companies#new
-<form>
+<form action="<%= companies_url %>" method="post">
 	<label for="user_email">Your email address:</label>
 	<input type="text" name="user[email]" id="user_email">
 	<br>
@@ -12,5 +12,5 @@ companies#new
 	<label for="company_name">Company or Organization:</label>
 	<input type="text" name="company[name]" id="company_name">
 	<br>
-	<input type="button" value="Start my free trial">
+	<input type="Submit" value="Start my free trial">
 </form>

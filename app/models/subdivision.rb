@@ -7,7 +7,8 @@ class Subdivision < ActiveRecord::Base
     :employees,
     class_name: "User",
     foreign_key: :subdivision_id,
-    primary_key: :id
+    primary_key: :id,
+    inverse_of: :subdivision
   )
 
   has_many(
