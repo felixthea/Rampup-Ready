@@ -8,6 +8,7 @@ Workwiki::Application.routes.draw do
     end
   end
 
+  resources :companies, only: [:new, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]
