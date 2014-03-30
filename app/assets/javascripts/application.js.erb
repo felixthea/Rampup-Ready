@@ -339,18 +339,30 @@ $(document).ready(function(){
     mixpanel.track("Click submit curriculum button");
   });
 
-$('.invite-form-container').on('click', 'button#add-sub-cta', function(event){
-  event.preventDefault();
-  var name = $('#invite_name').val()
-  var email = $('#invite_email').val()
-  var count = $('.invited-list').find('span').length
+  $('.invite-form-container').on('click', 'button#add-sub-cta', function(event){
+    event.preventDefault();
+    var name = $('#invite_name').val()
+    var email = $('#invite_email').val()
+    var count = $('.invited-list').find('span').length
 
-  if (count > 0){
-    $('.invited-list').append(', <span data-id="' + email + '">' + name);
-  } else {
-    $('.invited-list').append('<span data-id="' + email + '">' + name);
-  }
-})
+    if (count > 0){
+      $('.invited-list').append(', <span data-id="' + email + '">' + name);
+    } else {
+      $('.invited-list').append('<span data-id="' + email + '">' + name);
+    }
+  })
+
+  $('.invite-email').on('click', 'button#add-cta', function(event){
+    event.preventDefault();
+    var inviteds = $('.invited-list').find('span');
+    var invitedEmails = [];
+
+    _.each(inviteds, function(invited, idx, list){
+      invitedEmails.push($(invited).attr('data-id'))
+    })
+
+    console.log(invitedEmails);
+  })
 
 	var search = function(keyword, callback){
 		$.ajax({
