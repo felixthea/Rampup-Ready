@@ -11,10 +11,12 @@ class CompaniesController < ApplicationController
 		if @company.save
 			log_user_in!(@user)
 		else
-			fail
 			all_errors = []
-			all_errors = all_errors + @company.errors.full_messages + @subdivision.errors.full_messages + @user.errors.full_messages
-      render json: all_errors, status: 422
+			@company.errors.messages.except!(:subdivisions)
+			all_errors = all_errors + @company.errors.full_messages + @user.errors.full_messages
+      # render json: all_errors, status: 422
+      flash.now[:errors] = all_errors
+      render :new, layout: "sales"
 		end
 	end
 

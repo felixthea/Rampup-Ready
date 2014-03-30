@@ -293,7 +293,6 @@ ul.search-results li{
 
 /* Layout Main */
 .main{
-  /*background: yellow;*/
   width: 100%;
 }
 
@@ -701,4 +700,25 @@ form#company-signup input:focus{
 
 form#company-signup button{
   float: right;
+}
+
+.company-signup-errors{
+  margin: 0 0 0 20px;
+}
+
+.notices{
+  background: #0090c7;
+  color: white;
+  width: 200px;
+  min-width: 200px;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: 1px solid black;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
 }

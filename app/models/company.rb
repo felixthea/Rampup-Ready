@@ -1,6 +1,8 @@
 class Company < ActiveRecord::Base
   attr_accessible :name
 
+  validates :name, presence: { message: "of company or organization can't be blank" }
+
   has_many(
   	:subdivisions,
   	class_name: "Subdivision",
