@@ -9,8 +9,9 @@ class CompaniesController < ApplicationController
 		@user = @subdivision.employees.new(params[:user])
 
 		if @company.save
-			render "Company, subdivision and user created."
+			log_user_in!(@user)
 		else
+			fail
 			all_errors = []
 			all_errors = all_errors + @company.errors.full_messages + @subdivision.errors.full_messages + @user.errors.full_messages
       render json: all_errors, status: 422

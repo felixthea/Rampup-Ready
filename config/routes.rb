@@ -52,4 +52,6 @@ Workwiki::Application.routes.draw do
   resource :search, only: [:new, :create, :destroy]
   root to: "static_pages#index"
   get 'notify_recipient', to: 'inbound#notify_recipient'
+
+  resources :static_pages, only: [:index]
 end
