@@ -343,8 +343,13 @@ $('.invite-form-container').on('click', 'button#add-sub-cta', function(event){
   event.preventDefault();
   var name = $('#invite_name').val()
   var email = $('#invite_email').val()
+  var count = $('.invited-list').find('span').length
 
-  $('.invited-list').append(', <span data-id="' + email + '">' + name);
+  if (count > 0){
+    $('.invited-list').append(', <span data-id="' + email + '">' + name);
+  } else {
+    $('.invited-list').append('<span data-id="' + email + '">' + name);
+  }
 })
 
 	var search = function(keyword, callback){
