@@ -361,6 +361,7 @@ button#add-cta{
   border-bottom: 3px solid #0066CC;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  margin: 0 0 10px 0;
 }
 
 button#add-cta:hover{
@@ -642,3 +643,62 @@ button#add-sub-cta:hover{
   float: left;
 }
 
+/*Company Creation*/
+.signup-container{
+  margin:auto;
+}
+.signup-header{
+  text-align: center;
+  margin: auto;
+  color: #444444;
+}
+
+.signup-header h1{
+  margin: 0 0 5px 0;
+}
+
+.company-signup-form-container{
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+  width: 400px;
+  border: 1px solid #cccccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.company-signup-form{
+  margin: auto;
+  padding: 20px 0 0 0;
+  width: 310px;
+  color: #444444;
+}
+
+form#company-signup label{
+  font-weight: bold;
+}
+
+form#company-signup input{
+  font-size: 18px;
+  margin: 5px 0 20px 0;
+  width: 300px;
+  height: 25px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+form#company-signup input:focus{
+  -moz-box-shadow: 2px 2px 3px #666;
+  -webkit-box-shadow: 2px 2px 3px #666;
+  box-shadow: 2px 2px 3px #666;
+}
+
+form#company-signup button{
+  float: right;
+}
