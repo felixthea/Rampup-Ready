@@ -339,6 +339,14 @@ $(document).ready(function(){
     mixpanel.track("Click submit curriculum button");
   });
 
+$('.invite-form-container').on('click', 'button#add-sub-cta', function(event){
+  event.preventDefault();
+  var name = $('#invite_name').val()
+  var email = $('#invite_email').val()
+
+  $('.invited-list').append(', <span data-id="' + email + '">' + name);
+})
+
 	var search = function(keyword, callback){
 		$.ajax({
 			url: '/search',

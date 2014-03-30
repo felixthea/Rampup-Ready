@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
 		@user = @subdivision.employees.new(params[:user])
 
 		if @company.save
-			log_user_in!(@user)
+			log_user_in!(@user, invite_url)
 		else
 			all_errors = []
 			@company.errors.messages.except!(:subdivisions)

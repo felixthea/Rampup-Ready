@@ -127,5 +127,4 @@ class UsersController < ApplicationController
       render :set_new_password
     end
   end
-
 end

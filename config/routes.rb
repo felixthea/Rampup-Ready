@@ -55,4 +55,6 @@ Workwiki::Application.routes.draw do
   get 'notify_recipient', to: 'inbound#notify_recipient'
 
   resources :static_pages, only: [:index]
+  get 'invite', to: 'invites#new'
+  post 'invite', to: 'invites#create'
 end

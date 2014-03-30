@@ -1,0 +1,49 @@
+<%= render 'shared/top' %>
+<div class="invite-container">
+	<div class="invite-header">
+		<h1>Let's enlist some folks from your company to help you out.</h1>
+		<h3>Invite champions from different departments to contribute definitions to the glossary.</h3>
+	</div>
+	<div class="invite-form-container">
+		<form id="invite">
+			<table width="100%">
+				<tr>
+					<td>
+						<label for="invite_name">Full name:</label>
+					</td>
+					<td>
+						<label for="invite_email">Email:</label>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="invite[name]" id="invite_name">
+					</td>
+					<td>
+						<input type="text" name="invite[email]" id="invite_email">
+					</td>
+					<td>
+						<button id="add-sub-cta">Add</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div class="invited-list">
+			To: 
+		</div>
+		<div class="invite-email">
+			<textarea id="invite-email">Hi,
+ 
+I'm putting together the <%= current_co.name %> glossary and would really appreciate it if you could help contribute some words and definitions you use on a day-to-day basis that other employees should know.
+ 
+Click this link to help contribute words and definitions.
+ 
+Thanks for your help!
+ 
+<%= current_user.name %></textarea>
+		<button id="add-cta">Invite</button>
+		</div>
+	</div>
+</div>
