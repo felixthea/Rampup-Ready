@@ -7,9 +7,13 @@ module SessionsHelper
     current_user.company
   end
 
-  def log_user_in!(user)
+  def log_user_in!(user, redirect=nil)
     session[:session_token] = user.reset_session_token!
-    redirect_to static_pages_url
+    if redirect
+      redirect_to redirect
+    else
+      redirect_to static_pages_url
+    end
   end
 
   def log_user_out!
