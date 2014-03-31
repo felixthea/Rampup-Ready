@@ -4,5 +4,6 @@ class InvitesController < ApplicationController
 	end
 
 	def create
+		render json: JSON.parse(params[:invite_JSON][0])
 	end
 end
