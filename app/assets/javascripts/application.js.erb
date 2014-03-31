@@ -345,6 +345,8 @@ $(document).ready(function(){
     var email = $('#invite_email').val()
     var count = $('.invited-list').find('span').length
 
+    $('form#invite')[0].reset();
+    $('#invite_name').focus();
     inviteInfo = { name: name, email: email }
 
     if (count > 0){

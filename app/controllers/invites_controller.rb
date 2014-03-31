@@ -8,10 +8,11 @@ class InvitesController < ApplicationController
 	end
 
 	def rsvp
-		signup_token = params[:signup]
-		@name = params[:name] if params[:name]
+		@full_name = params[:name] if params[:name]
 		@email = params[:email] if params[:email]
-		@company = Company.find_by_signup_token(signup_token)
+		@inviter = params[:inviter] if params[:inviter]
+		@company = Company.find_by_signup_token(params[:signup])
+		@first_name = @full_name.split(" ")[0]
 
 		if @company
 			render :rsvp, layout: "sales"

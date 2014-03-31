@@ -16,13 +16,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    company = Company.find_by_signup_token(params[:company][:signup_token])
+    params[:user][:subdivision_id] = company.subdivisions.first.id
     @user = User.new(params[:user])
     if @user.save
       log_user_in!(@user)
     else
-      flash.now[:errors] = [@user.errors.full_messages]
+      flash[:errors] = @user.errors.full_messages
       @user = User.new
-      render :new
+      redirect_to :back
     end
   end
 
