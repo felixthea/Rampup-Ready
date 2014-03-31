@@ -8,6 +8,8 @@ Workwiki::Application.routes.draw do
     end
   end
 
+  resources :companies, only: [:new, :create, :destroy]
+  get "start", to: "companies#new"
   resource :session, only: [:new, :create, :destroy]
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]
@@ -51,4 +53,9 @@ Workwiki::Application.routes.draw do
   resource :search, only: [:new, :create, :destroy]
   root to: "static_pages#index"
   get 'notify_recipient', to: 'inbound#notify_recipient'
+
+  resources :static_pages, only: [:index]
+  get 'invite', to: 'invites#new'
+  post 'invite', to: 'invites#create'
+  get 'invite/rsvp', to: 'invites#rsvp'
 end

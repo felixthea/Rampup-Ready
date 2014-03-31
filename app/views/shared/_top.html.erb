@@ -1,4 +1,4 @@
-<div class="top">
+<div class="top">  
   <div class="nav group">
     <div class="nav-left">
       <div class="logo">
@@ -8,8 +8,11 @@
       </div>
       <div class="links">
         <ul>
-          <li><%= link_to 'Words', words_url %></li>
-          <li><%= link_to 'Curriculums', curriculums_url %></li>
+          <% if current_user %>
+            <li><%= link_to 'Words', words_url %></li>
+            <li><%= link_to 'Curriculums', curriculums_url %></li>
+            <li><a href="#">Invite Employees</a></li>
+          <% end %>
         </ul>
       </div>
     </div>
