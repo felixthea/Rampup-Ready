@@ -57,4 +57,5 @@ Workwiki::Application.routes.draw do
   resources :static_pages, only: [:index]
   get 'invite', to: 'invites#new'
   post 'invite', to: 'invites#create'
+  get 'invite/rsvp', to: 'invites#rsvp'
 end
