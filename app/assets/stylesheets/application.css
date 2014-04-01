@@ -755,6 +755,7 @@ textarea#invite-email{
 
 .cc-checkbox{
   float: left;
+  margin: 15px 0 0 0;
 }
 
 #invite #add-sub-cta{
@@ -763,6 +764,15 @@ textarea#invite-email{
 
 .invite-actions{
   float: right;
+}
+
+.invite-actions #add-cta{
+  float: left;
+}
+
+.invite-actions .skip-action{
+  margin: 18px 20px 0 0;
+  float: left;
 }
 
 .invited-list{
