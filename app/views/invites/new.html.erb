@@ -46,13 +46,22 @@
 				<%= current_user.name.split(" ")[0] %>
 			</div>
 			<!-- <textarea id="invite-email" disabled></textarea> -->
-			<div class="cc-checkbox">
-				<input type="checkbox" name="checkbox" id="cc-me" value="true">
-				<label for="cc-me">CC me</label>
+			<div class="group">
+				<div class="cc-checkbox">
+					<input type="checkbox" name="checkbox" id="cc-me" value="true">
+					<label for="cc-me">CC me</label>
+				</div>
+				<div class="invite-actions">
+					<span class="skip-action"><%= link_to 'Skip', root_url %></span>
+					<button id="add-cta">Invite</button>
+				</div>
 			</div>
-			<div class="invite-actions">
-				<span class="skip-action"><%= link_to 'Skip', root_url %></span>
-				<button id="add-cta">Invite</button>
+			<div class="invite-url">
+				Or you can send out this invite link:
+				<div class="invite-url-field">
+					<input type="text" value="http://rampupready.com">
+					<button>Copy</button>
+				</div>
 			</div>
 		</div>
 	</div>
