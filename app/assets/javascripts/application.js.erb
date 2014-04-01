@@ -339,6 +339,48 @@ $(document).ready(function(){
     mixpanel.track("Click submit curriculum button");
   });
 
+  $('.invite-form-container').on('click', 'button#add-sub-cta', function(event){
+    event.preventDefault();
+    var name = $('#invite_name').val()
+    var email = $('#invite_email').val()
+    var count = $('.invited-list').find('span').length
+
+    $('form#invite')[0].reset();
+    $('#invite_name').focus();
+    inviteInfo = { name: name, email: email }
+
+    if (count > 0){
+      $('.invited-list').append(", <span data-id='" + JSON.stringify(inviteInfo) + "'>" + name + "</span>");
+    } else {
+      $('.invited-list').append("<span data-id='" + JSON.stringify(inviteInfo) + "'>" + name + "</span>");
+    }
+  });
+
+  $('.invite-email').on('click', 'button#add-cta', function(event){
+    event.preventDefault();
+
+    var inviteds = $('.invited-list').find('span');
+    var invitedJSON = [];
+
+    _.each(inviteds, function(invited, idx, list){
+      invitedJSON.push($(invited).attr('data-id'));
+    })
+
+    $.ajax({
+      url: '/invite',
+      type: 'POST',
+      data: {
+        invite_JSON: invitedJSON
+      },
+      success: function(data, textStatus, jqXHR){
+        console.log(data);
+      },
+      error: function(jqxhr, status, error){
+        console.log(error);
+      }
+    });
+  });
+
 	var search = function(keyword, callback){
 		$.ajax({
 			url: '/search',

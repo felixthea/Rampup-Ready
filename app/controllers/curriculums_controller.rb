@@ -2,6 +2,7 @@ class CurriculumsController < ApplicationController
 
   before_filter :require_current_user!
   before_filter :require_curriculum_creator_or_admin!, only: [:edit, :update, :destroy]
+  before_filter :require_company!
 
   def index
     @my_curriculums = Curriculum.find_all_by_user_id(current_user.id)
@@ -82,5 +83,11 @@ class CurriculumsController < ApplicationController
     end
 
     render json: { message: "Success", status: 200}
+  end
+
+  private
+
+  def require_company!
+    redirect_to new_session_url if Curriculum.find(params[:id]).company_id != current_co.id
   end
 end

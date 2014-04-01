@@ -1,0 +1,40 @@
+<%= render 'shared/top' %>
+<div class="signup-container">
+	<div class="signup-header">
+		<h1>Hi<%= ", " + @first_name if @first_name %>!</h1>
+		<h3>Thanks for helping <%= @inviter %> set up <%= @company.name %>'s glossary.</h3>
+		<br><br>
+		<h2>First, please sign up below.</h2>
+	</div>
+	<div class="company-signup-form-container">
+		<div class="company-signup-errors">
+			<% if flash[:errors] %>
+		    <ul>
+		      <% flash[:errors].each do |msg| %>
+		        <li>
+		          <%= msg %>
+		        </li>
+		      <% end %>
+		    </ul>
+		  <% end %>
+		</div>
+		<div class="company-signup-form group">
+			<form action="<%= users_url %>" method="post" id="company-signup">
+				<label for="user_email">Your email address:</label>
+				<br>
+				<input type="text" name="user[email]" id="user_email" value="<%= @email if @email%>">
+				<br>
+				<label for="user_password">Your password:</label>
+				<br>
+				<input type="password" name="user[password]" id="user_password">
+				<br>
+				<label for="user_name">Your full name:</label>
+				<br>
+				<input type="text" name="user[name]" id="user_name" value="<%= @full_name if @full_name %>">
+				<br>
+				<input type="hidden" name="company[signup_token]" id="company_signup_token" value="<%= @company.signup_token %>">
+				<button id="add-cta">Sign up</button>
+			</form>
+		</div>
+	</div>
+</div>

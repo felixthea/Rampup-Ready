@@ -1,10 +1,10 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password_digest, :subdivision_id, :session_token, :password, :admin, :forgot_password_token
+  attr_accessible :email, :password_digest, :subdivision_id, :session_token, :password, :admin, :forgot_password_token, :name
   attr_accessor :password
 
-  validates :email, :password_digest, :subdivision_id, :session_token,
+  validates :email, :password_digest, :subdivision, :session_token, :name,
             presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :admin, inclusion: { in: [true, false] }

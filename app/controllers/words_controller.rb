@@ -54,7 +54,6 @@ class WordsController < ApplicationController
       )
     end
 
-
     if request.xhr?
       if @word.save
         render json: @word.id
