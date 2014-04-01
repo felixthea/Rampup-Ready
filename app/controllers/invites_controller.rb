@@ -1,10 +1,33 @@
+require "addressable/template"
+
 class InvitesController < ApplicationController
 	def new
 		render :new, layout: "sales"
 	end
 
 	def create
-		render json: JSON.parse(params[:invite_JSON][0])
+		invitees = params[:invite_JSON]
+
+		# render json: JSON.parse(invitees[0])
+
+		invitees.each do |invitee|
+			inviteeInfo = JSON.parse(invitee)
+			name = inviteeInfo["name"].split(" ")[0]
+			email = inviteeInfo["email"]
+			inviter = current_user.name.split(" ")[0]
+			# invite_link = Addressable::Template.new("http://rampupready.com/invite/rsvp{?query*}/")
+			# invite_link.expand({
+			# 	"query" => {
+			# 		'name' => name,
+			# 		'inviter' => inviter,
+			# 		'email' => email
+			# 	}
+			# })
+			invite_link = "/invite/rsvp?signup=" + current_co.signup_token + "&name=" + name + "&inviter=" + inviter + "&email=" + email
+
+			msg = InviteMailer.invite_employee_email(name, email, current_co.name, inviter, invite_link)
+			msg.deliver!
+		end
 	end
 
 	def rsvp
