@@ -741,8 +741,28 @@ textarea#invite-email{
   margin: 0 0 20px 0;
 }
 
+.invite-email .note{
+  font-size: 14px;
+  width: 560px;
+  height: 200px;
+  background: #fbffd1;
+  padding: 20px;
+  margin: 0 0 10px 0;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.cc-checkbox{
+  float: left;
+}
+
 #invite #add-sub-cta{
   margin: 0 0 15px 0;
+}
+
+.invite-actions{
+  float: right;
 }
 
 .invited-list{
