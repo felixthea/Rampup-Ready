@@ -35,4 +35,8 @@ class InvitesController < ApplicationController
 			redirect_to root_url
 		end
 	end
+
+	def employees
+		render :employees, layout: "sales"
+	end
 end
