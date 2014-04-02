@@ -1,5 +1,6 @@
 class InvitesController < ApplicationController
 	def new
+		@invite_url = "http://rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&inviter=" + current_user.name.split(" ")[0]
 		render :new, layout: "sales"
 	end
 
@@ -26,7 +27,7 @@ class InvitesController < ApplicationController
 		@email = params[:email] if params[:email]
 		@inviter = params[:inviter] if params[:inviter]
 		@company = Company.find_by_signup_token(params[:signup])
-		@first_name = @full_name.split(" ")[0]
+		@first_name = @full_name.split(" ")[0] if @full_name
 
 		if @company
 			render :rsvp, layout: "sales"

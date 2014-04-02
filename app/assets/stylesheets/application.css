@@ -787,7 +787,8 @@ textarea#invite-email{
 
 .invite-url-field input{
   float: left;
-  width: 500px;
+  /*width: 500px;*/
+  width: 100%;
   font-size: 14px;
   margin: 5px 0 20px 0;
   height: 15px;
@@ -805,6 +806,7 @@ textarea#invite-email{
   border: none;
   background: #cccccc;
   color: #444444;
+  margin: 8px 25px 0 0;
 }
 
 .invited-list{
