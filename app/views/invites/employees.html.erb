@@ -1,2 +1,74 @@
 <%= render 'shared/top' %>
-employees
+<div class="invite-container">
+	<div class="invite-header">
+		<h1>Invite your people.</h1>
+		<h3>Enter your employees info below and we'll send them an email invite.  They can start using the glossary right away.</h3>
+	</div>
+	<div class="invite-form-container">
+		<form id="invite">
+			<table width="100%">
+				<tr>
+					<td>
+						<label for="invite_name">Full name:</label>
+					</td>
+					<td>
+						<label for="invite_email">Email:</label>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="invite[name]" id="invite_name">
+					</td>
+					<td>
+						<input type="text" name="invite[email]" id="invite_email">
+					</td>
+					<td>
+						<div class="invite-emp-actions">
+							<button id="add-cta">Invite</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div class="invited-list">
+			<ul class="invitees">
+				<li>
+					<ul class="group">
+						<li class="invitees-name invitees-header">
+							Name
+						</li>
+						<li class="invitees-email invitees-header">
+							Email
+						</li>
+						<li class="invitees-signedup invitees-header">
+							Signed Up?
+						</li>
+					</ul>
+				</li>
+				<li>
+					<ul class="group">
+						<li class="invitees-name">
+							Felix Thea
+						</li>
+						<li class="invitees-email">
+							fthea@mediamath.com
+						</li>
+						<li class="invitees-signedup">
+							Yes
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="invite-email group">
+			<div class="invite-url">
+				Or you can send out this invite link:
+				<div class="invite-url-field">
+					<input type="text" value="<%= @invite_url %>">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

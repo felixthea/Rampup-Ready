@@ -383,6 +383,28 @@ $(document).ready(function(){
     });
   });
 
+  $('.invite-emp-actions').on('click', 'button', function(event){
+    event.preventDefault();
+    var name = $('#invite_name').val();
+    var email = $('#invite_email').val();
+    
+    $.ajax({
+      url: '/invite',
+      type: 'POST',
+      data: {
+        invite_JSON: { name: name, email: email },
+        cc: false
+      },
+      success: function(data, textStatus, jqHXR){
+        $html = '<li><ul class="group"><li class="invitees-name">Felix Thea</li><li class="invitees-email">fthea@mediamath.com</li><li class="invitees-signedup">Yes</li></ul></li>'
+        $('ul.invitees').append($html);
+      },
+      error: function(jqxhr, status, error){
+        console.log(error);
+      }
+    })
+  })
+
 	var search = function(keyword, callback){
 		$.ajax({
 			url: '/search',
