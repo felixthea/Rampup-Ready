@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
 	def create
 		@company = Company.new(params[:company])
 		@subdivision = @company.subdivisions.new(name: "General")
+		params[:user][:admin] = true
 		@user = @subdivision.employees.new(params[:user])
 
 		if @company.save
