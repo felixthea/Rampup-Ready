@@ -22,11 +22,12 @@ class InviteMailer < ActionMailer::Base
     end
   end
 
-  def invite_employee_email(employee_name, employee_email, company_name, invite_link)
+  def invite_employee_email(employee_name, employee_email, company_name, invite_link, inviter_name)
     @employee_name = employee_name
     @employee_email = employee_email
     @company_name = company_name
     @invite_link = invite_link
+    @inviter_name = inviter_name
 
     mail(
       to: @employee_email,
