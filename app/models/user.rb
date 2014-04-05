@@ -80,6 +80,17 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def self.find_all_by_company_id(company_id)
+    users = []
+    subdivisions = Subdivision.find_all_by_company_id(company_id)
+
+    subdivisions.each do |subdivision|
+      users += User.find_all_by_subdivision_id(subdivision.id)
+    end
+
+    users
+  end
+
   private
 
   def ensure_session_token

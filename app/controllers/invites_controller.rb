@@ -37,7 +37,12 @@ class InvitesController < ApplicationController
 		end
 	end
 
-	def employees
+	def new_employees
+		# @invited_employees = Invites.find_all_by_company_id(current_co.id)
 		render :employees, layout: "sales"
+	end
+
+	def create_employees
+		render json: params[:invite_JSON]
 	end
 end

@@ -58,5 +58,6 @@ Workwiki::Application.routes.draw do
   get 'invite', to: 'invites#new'
   post 'invite', to: 'invites#create'
   get 'invite/rsvp', to: 'invites#rsvp'
-  get 'invite/employees', to: 'invites#employees'
+  get 'invite/employees', to: 'invites#new_employees'
+  post 'invite/employees', to: 'invites#create_employees'
 end

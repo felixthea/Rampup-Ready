@@ -389,14 +389,14 @@ $(document).ready(function(){
     var email = $('#invite_email').val();
     
     $.ajax({
-      url: '/invite',
+      url: '/invite/employees',
       type: 'POST',
       data: {
         invite_JSON: { name: name, email: email },
         cc: false
       },
       success: function(data, textStatus, jqHXR){
-        $html = '<li><ul class="group"><li class="invitees-name">Felix Thea</li><li class="invitees-email">fthea@mediamath.com</li><li class="invitees-signedup">Yes</li></ul></li>'
+        $html = '<li><ul class="group"><li class="invitees-name">' + name + '</li><li class="invitees-email">' + email + '</li><li class="invitees-signedup">Not Yet</li></ul></li>'
         $('ul.invitees').append($html);
       },
       error: function(jqxhr, status, error){
