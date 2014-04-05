@@ -398,9 +398,10 @@ $(document).ready(function(){
       success: function(data, textStatus, jqHXR){
         $html = '<li><ul class="group"><li class="invitees-name">' + name + '</li><li class="invitees-email">' + email + '</li><li class="invitees-signedup">Not Yet</li></ul></li>'
         $('ul.invitees').append($html);
+        flashNotice("Employee invited!");
       },
       error: function(jqxhr, status, error){
-        console.log(error);
+        flashNotice("Invite was not sent, please check if the employee has already been invited.");
       }
     })
   })

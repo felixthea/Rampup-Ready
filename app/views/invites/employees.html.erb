@@ -47,26 +47,32 @@
 						</li>
 					</ul>
 				</li>
+				<% @invited_employees.each do |emp| %>
 				<li>
 					<ul class="group">
 						<li class="invitees-name">
-							Felix Thea
+							<%= emp.name %>
 						</li>
 						<li class="invitees-email">
-							fthea@mediamath.com
+							<%= emp.email %>
 						</li>
 						<li class="invitees-signedup">
-							Yes
+							<% if emp.sign_up_status == true %>
+								Yes
+							<% else %>
+								Not Yet
+							<% end %>
 						</li>
 					</ul>
 				</li>
+				<% end %>
 			</ul>
 		</div>
 		<div class="invite-email group">
 			<div class="invite-url">
 				Or you can send out this invite link:
 				<div class="invite-url-field">
-					<input type="text" value="<%= @invite_url %>">
+					<input type="text" value="something">
 				</div>
 			</div>
 		</div>

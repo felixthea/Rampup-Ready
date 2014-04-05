@@ -5,22 +5,21 @@ class InvitesController < ApplicationController
 	end
 
 	def create
-		render json: params[:invite_JSON]
-		# invitees = params[:invite_JSON]
-		# cc_inviter = params[:cc]
+		invitees = params[:invite_JSON]
+		cc_inviter = params[:cc]
 
-		# invitees.each do |invitee|
-		# 	inviteeInfo = JSON.parse(invitee)
-		# 	name = inviteeInfo["name"].split(" ")[0]
-		# 	email = inviteeInfo["email"]
-		# 	inviter = current_user.name.split(" ")[0]
-		# 	inviter_email = current_user.email
+		invitees.each do |invitee|
+			inviteeInfo = JSON.parse(invitee)
+			name = inviteeInfo["name"].split(" ")[0]
+			email = inviteeInfo["email"]
+			inviter = current_user.name.split(" ")[0]
+			inviter_email = current_user.email
 
-		# 	invite_link = "/invite/rsvp?signup=" + current_co.signup_token + "&name=" + name + "&inviter=" + inviter + "&email=" + email
+			invite_link = "/invite/rsvp?signup=" + current_co.signup_token + "&name=" + name + "&inviter=" + inviter + "&email=" + email
 
-		# 	msg = InviteMailer.invite_employee_email(name, email, current_co.name, inviter, invite_link, cc_inviter, inviter_email)
-		# 	msg.deliver!
-		# end
+			msg = InviteMailer.invite_help_email(name, email, current_co.name, inviter, invite_link, cc_inviter, inviter_email)
+			msg.deliver!
+		end
 	end
 
 	def rsvp
@@ -38,11 +37,32 @@ class InvitesController < ApplicationController
 	end
 
 	def new_employees
-		# @invited_employees = Invites.find_all_by_company_id(current_co.id)
+		@invited_employees = Invite.find_all_by_company_id(current_co.id)
 		render :employees, layout: "sales"
 	end
 
 	def create_employees
-		render json: params[:invite_JSON]
+		name = params[:invite_JSON][:name]
+		email = params[:invite_JSON][:email]
+
+		invite = Invite.new(email: email, name: name, company_id: current_co.id)
+		invite_link = "/signup?signup=" + current_co.signup_token + "&name=" + name + "&email=" + email
+
+		if invite.save
+			msg = InviteMailer.invite_employee_email(name, email, current_co.name, invite_link)
+			msg.deliver!
+			render json: { message: "success" }, status: 200
+		else
+			render json: { message: "invite failed" }, status: 422
+		end
+	end
+
+	def employee_signup
+		@full_name = params[:name] if params[:name]
+		@email = params[:email] if params[:email]
+		@company = Company.find_by_signup_token(params[:signup])
+		@first_name = @full_name.split(" ")[0] if @full_name
+
+		render :employee_signup, layout: "sales"
 	end
 end

@@ -7,5 +7,7 @@ class CreateInvites < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :invites, [:email, :company_id], unique: true
   end
 end
