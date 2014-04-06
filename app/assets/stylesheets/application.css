@@ -852,3 +852,58 @@ ul.invitees li ul li{
 .invitees-header{
   font-size: 1.17em;
 }
+
+.sign-up-text{
+  float: left;
+  margin: 8px 8px 0 0;
+}
+
+.sign-up-form{
+  float: left;
+}
+
+.sign-up-form input{
+  height: 20px;
+  width: 200px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
+  margin: 0 5px 0 0;
+}
+
+.nav-right-offer a{
+  margin: 8px 0 0 0;
+  float: left;
+}
+
+.nav-left-offer{
+  width: 300px;
+  float: left;
+}
+
+.nav-right-offer{
+  width: 600px;
+  float: right;
+  margin: 15px 0 0 0;
+}
+
+.nav-right-offer button{
+  margin: 0 5px 0 0;
+  padding: 6px 10px 6px 10px;
+  font-size: 12px;
+  border-bottom: 2px solid #0066CC;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0 10px 10px 0;
+}
+
+.nav-right-offer button:hover{
+  background: #0066CC;
+  border-bottom: 3px solid #0066CC;
+}

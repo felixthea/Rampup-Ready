@@ -61,4 +61,5 @@ Workwiki::Application.routes.draw do
   get 'invite/employees', to: 'invites#new_employees'
   post 'invite/employees', to: 'invites#create_employees'
   get '/signup', to: 'invites#employee_signup'
+  get '/offer', to: 'static_pages#offer'
 end
