@@ -934,7 +934,7 @@ img.testimonial{
 }
 
 hr{
-  margin: 50px 0 50px 0;
+  margin: 30px 0 30px 0;
   border: 0;
   height: 2px;
   background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
@@ -942,3 +942,47 @@ hr{
   background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
   background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 }
+
+.benefits{
+  width: 1000px;
+  text-align: center;
+  color: #444444;
+}
+
+.benefits-headline{
+  width: 750px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.benefits-headline h1{
+  width: 750px;
+  font-size: 28px;
+}
+
+.benefit-statements{
+  margin: auto;
+  width: 800px;
+  border: 1px solid #dddddd;
+}
+
+.benefit-statement{
+  background: #f2f2f2;
+  /*margin-bottom: 10px;*/
+  padding: 15px 5px 10px 5px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.benefit-icon{
+  float: left;
+  width: 20px;
+  margin: 0 10px 0 0;
+}
+
+.benefit-content{
+  float: left;
+  font-size: 16px;
+}
+
+.benefit-statement:nth-child(3){
+  border-bottom:none;
