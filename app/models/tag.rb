@@ -13,7 +13,4 @@ class Tag < ActiveRecord::Base
   has_many :tagged_definitions, through: :taggings, source: :definition
   belongs_to :company
 
-  include PgSearch
-  multisearchable against: :name
-
 end

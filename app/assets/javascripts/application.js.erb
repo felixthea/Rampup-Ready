@@ -389,7 +389,10 @@ $(document).ready(function(){
 			success: function(data, textStatus, jqXHR){
 				callback(data.results)
 			},
-			error: function() {
+			error: function(jqxhr, status, error) {
+        console.log(jqxhr);
+        console.log(status);
+        console.log(error);
 				console.log("error")
 			}
 		})
