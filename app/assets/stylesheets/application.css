@@ -986,3 +986,51 @@ hr{
 
 .benefit-statement:nth-child(3){
   border-bottom:none;
+}
+
+.walkthrough{
+  margin: 50px 0 0 0;
+  width: 1000px;
+}
+
+.feature{
+  width: 800px;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.feature-left{
+  float: left;
+  width: 400px;
+  height: 250px;
+}
+
+.pic-placeholder{
+  width: 300px;
+  height: 250px;
+  background: green;
+}
+
+.feature-right{
+  float: right;
+  width: 400px;
+  height: 250px;
+}
+
+.feature-right .pic-placeholder{
+  float: right;
+}
+
+.feature-left .pic-placeholder {
+  float: left;
+}
+
+.feature-text{
+  height: 250px;
+  vertical-align: middle;
+  color: #444444;
+}
+
+.feature-text p{
+  font-size: 20px;
+}
