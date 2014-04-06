@@ -1,5 +1,7 @@
 class SearchesController < ApplicationController
 
+  before_filter :require_current_user!
+
   def create
     @keyword = params[:keyword]
     @word_results = []
@@ -7,13 +9,16 @@ class SearchesController < ApplicationController
     PgSearch.multisearch(@keyword).each do |result|
       if result.searchable_type == "Word"
         word = Word.find(result.searchable_id)
-        @word_results << word unless @word_results.include?(word)
       elsif result.searchable_type == "Definition"
         word = Definition.find(result.searchable_id).word
-        @word_results << word unless @word_results.include?(word)
-      elsif result.searchable_type == "Tag"
-        @tag_results << Tag.find(result.searchable_id)
+      else
+        word = nil
       end
+
+      if word && !@word_results.include?(word) && word.company_id && word.company_id == current_co.id
+        @word_results << word
+      end
+
     end
     
     if request.xhr?
