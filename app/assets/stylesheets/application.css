@@ -887,7 +887,6 @@ ul.invitees li ul li{
 }
 
 .nav-right-offer{
-  width: 600px;
   float: right;
   margin: 15px 0 0 0;
 }
@@ -906,4 +905,40 @@ ul.invitees li ul li{
 .nav-right-offer button:hover{
   background: #0066CC;
   border-bottom: 3px solid #0066CC;
+}
+
+.headline{
+  margin: auto;
+  width: 750px;
+  text-align: center;
+  color: #444444;
+}
+
+.headline p{
+  font-size: 20px;
+}
+
+.headline h1{
+  font-size: 40px;
+}
+
+.testimonials{
+  margin: 20px 0 0 0;
+}
+
+img.testimonial{
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  border: 3px solid #444444;
+}
+
+hr{
+  margin: 50px 0 50px 0;
+  border: 0;
+  height: 2px;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 }
