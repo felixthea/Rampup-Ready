@@ -984,37 +984,35 @@ hr{
   font-size: 16px;
 }
 
-.benefit-statement:nth-child(3){
+.benefit-statement:nth-last-child(1){
   border-bottom:none;
 }
 
 .walkthrough{
   margin: 50px 0 0 0;
-  width: 1000px;
+  width: 1050px;
 }
 
 .feature{
-  width: 800px;
+  width: 1050px;
   margin: auto;
   margin-bottom: 100px;
 }
 
-.feature-left{
-  float: left;
-  width: 400px;
-  height: 250px;
+.feature:nth-child(5){
+  margin-bottom: 0px;
 }
 
-.pic-placeholder{
-  width: 300px;
-  height: 250px;
-  background: green;
+.feature-left{
+  float: left;
+  width: 500px;
+  height: 320px;
 }
 
 .feature-right{
   float: right;
-  width: 400px;
-  height: 250px;
+  width: 500px;
+  height: 320px;
 }
 
 .feature-right .pic-placeholder{
@@ -1031,6 +1029,50 @@ hr{
   color: #444444;
 }
 
+.feature-text h1{
+  font-size: 24px;
+}
+
 .feature-text p{
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.feature-img{
+  border: 1px solid black;
+}
+
+.what-you-get, .sign-up-offer{
+  width: 1000px;
+  text-align: center;
+  color: #444444;
+  margin-bottom: 40px;
+}
+
+.what-you-get-headline, .sign-up-offer-headline{
+  width: 750px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.what-you-get-headline h1, .sign-up-offer-headline h1{
+  width: 750px;
+  font-size: 28px;
+}
+
+.what-you-get-headline p, .sign-up-offer-headline p{
+  font-size: 18px;
+}
+
+.bottom-sign-up-form input{
+  font-size: 18px;
+  margin: 5px 0 20px 0;
+  width: 300px;
+  height: 38px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
 }

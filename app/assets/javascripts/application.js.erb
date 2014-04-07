@@ -387,6 +387,7 @@ $(document).ready(function(){
     event.preventDefault();
     var name = $('#invite_name').val();
     var email = $('#invite_email').val();
+    $('form#invite')[0].reset();
     
     $.ajax({
       url: '/invite/employees',
