@@ -3,6 +3,11 @@ class CompaniesController < ApplicationController
 		render :new, layout: "sales"
 	end
 
+	def start
+		@email = params[:user][:email]
+		render :new, layout: "sales"
+	end
+
 	def create
 		@company = Company.new(params[:company])
 		@subdivision = @company.subdivisions.new(name: "General")

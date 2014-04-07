@@ -20,7 +20,7 @@
 			<form action="<%= companies_url %>" method="post" id="company-signup">
 				<label for="user_email">Your email address:</label>
 				<br>
-				<input type="text" name="user[email]" id="user_email">
+				<input type="text" name="user[email]" id="user_email" value="<%= @email if @email %>">
 				<br>
 				<label for="user_password">Your password:</label>
 				<br>

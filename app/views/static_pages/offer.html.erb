@@ -230,8 +230,10 @@
       </p>
     </div>
     <div class="bottom-sign-up-form">
-      <input type="text" placeholder="Enter your email address">
-      <button id="add-cta">Sign Up</button>
+      <form action="<%= start_url %>" method="post">
+        <input type="text" placeholder="Enter your email address" name="user[email]">
+        <button id="add-cta">Sign Up</button>
+      </form>
     </div>
   </div>
 </div>
