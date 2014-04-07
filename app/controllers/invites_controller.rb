@@ -12,12 +12,13 @@ class InvitesController < ApplicationController
 
 		invitees.each do |invitee|
 			inviteeInfo = JSON.parse(invitee)
+			full_name = inviteeInfo["name"]
 			name = inviteeInfo["name"].split(" ")[0]
 			email = inviteeInfo["email"]
 			inviter = current_user.name.split(" ")[0]
 			inviter_email = current_user.email
 
-			invite_link = "http://rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&name=" + name + "&inviter=" + inviter + "&email=" + email
+			invite_link = "http://rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&name=" + full_name + "&inviter=" + inviter + "&email=" + email
 
 			msg = InviteMailer.invite_help_email(name, email, current_co.name, inviter, invite_link, cc_inviter, inviter_email)
 			msg.deliver!
@@ -29,7 +30,7 @@ class InvitesController < ApplicationController
 		@email = params[:email] if params[:email]
 		@inviter = params[:inviter] if params[:inviter]
 		@company = Company.find_by_signup_token(params[:signup])
-		@first_name = @full_name.split(" ")[0] if @full_name
+		@first_name = @full_name.split(" ")[0]	 if @full_name
 
 		if @company
 			render :rsvp, layout: "sales"
