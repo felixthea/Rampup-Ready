@@ -381,6 +381,50 @@ $(document).ready(function(){
     });
   });
 
+  $('.content-main').on('click', 'a#fave-link', function(event){
+    event.preventDefault();
+    var action = $(this).text().toLowerCase();
+    var definitionId = $(this).attr('data-id');
+    var type = action == "favorite" ? "post" : "delete";
+    var $faveSpans = $('div#' + definitionId).find('span#favorite');
+    var $unfaveSpans = $('div#' + definitionId).find('span#unfavorite');
+
+    $.ajax({
+      url: '/definitions/' + definitionId + '/' + action,
+      type: type,
+      data: {
+        id: definitionId
+      },
+      success: function(data, textStatus, jqXHR){
+        console.log(data);
+        if (action == "favorite") {
+          console.log("1");
+          _.each($faveSpans, function(faveSpan, idx, list){
+            console.log(faveSpan);
+            $(faveSpan).addClass('hidden');
+          })
+
+          _.each($unfaveSpans, function(unfaveSpan, idx, list){
+            console.log(unfaveSpan);
+            $(unfaveSpan).removeClass('hidden');
+          })
+        } else {
+          console.log("2");
+          _.each($faveSpans, function(faveSpan, idx, list){
+            $(faveSpan).removeClass('hidden');
+          })
+
+          _.each($unfaveSpans, function(unfaveSpan, idx, list){
+            $(unfaveSpan).addClass('hidden');
+          })
+        }
+      },
+      error: function(jqxhr, status, error){
+        console.log(error);
+      }
+    })
+  })
+
 	var search = function(keyword, callback){
 		$.ajax({
 			url: '/search',
