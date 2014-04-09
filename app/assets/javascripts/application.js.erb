@@ -383,7 +383,7 @@ $(document).ready(function(){
 
   $('.content-main').on('click', 'a#fave-link', function(event){
     event.preventDefault();
-    var action = $(this).text().toLowerCase();
+    var action = $(this).attr('data-action');
     var definitionId = $(this).attr('data-id');
     var type = action == "favorite" ? "post" : "delete";
     var $faveSpan = $($('div#' + definitionId).find('span#favorite')[0]);

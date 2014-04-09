@@ -18,11 +18,11 @@
     </div>
     <div class="definition-options">
       <% if DefinitionFave.find_by_definition_id_and_user_id(definition.id, current_user.id) %>
-        <span id="unfavorite"><a href="#" data-id="<%= definition.id %>" id="fave-link">Unfavorite</a></span>
-        <span id="favorite" class="hidden"><a href="#" data-id="<%= definition.id %>" id="fave-link">Mark as Favorite</a></span>
+        <span id="unfavorite"><a href="#" data-id="<%= definition.id %>" data-action="unfavorite" id="fave-link">Unfavorite</a></span>
+        <span id="favorite" class="hidden"><a href="#" data-id="<%= definition.id %>" data-action="favorite" id="fave-link">Mark as Favorite</a></span>
       <% else %>
-        <span id="unfavorite" class="hidden"><a href="#" data-id="<%= definition.id %>" id="fave-link">Unfavorite</a></span>
-        <span id="favorite"><a href="#" data-id="<%= definition.id %>" id="fave-link">Mark as Favorite</a></span>
+        <span id="unfavorite" class="hidden"><a href="#" data-id="<%= definition.id %>" data-action="unfavorite" id="fave-link">Unfavorite</a></span>
+        <span id="favorite"><a href="#" data-id="<%= definition.id %>" data-action="favorite" id="fave-link">Mark as Favorite</a></span>
       <% end %>
     </div>
   </div>
