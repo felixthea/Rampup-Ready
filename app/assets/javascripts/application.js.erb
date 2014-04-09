@@ -386,8 +386,8 @@ $(document).ready(function(){
     var action = $(this).text().toLowerCase();
     var definitionId = $(this).attr('data-id');
     var type = action == "favorite" ? "post" : "delete";
-    var $faveSpans = $('div#' + definitionId).find('span#favorite');
-    var $unfaveSpans = $('div#' + definitionId).find('span#unfavorite');
+    var $faveSpan = $($('div#' + definitionId).find('span#favorite')[0]);
+    var $unfaveSpan = $($('div#' + definitionId).find('span#unfavorite')[0]);
 
     $.ajax({
       url: '/definitions/' + definitionId + '/' + action,
@@ -398,25 +398,11 @@ $(document).ready(function(){
       success: function(data, textStatus, jqXHR){
         console.log(data);
         if (action == "favorite") {
-          console.log("1");
-          _.each($faveSpans, function(faveSpan, idx, list){
-            console.log(faveSpan);
-            $(faveSpan).addClass('hidden');
-          })
-
-          _.each($unfaveSpans, function(unfaveSpan, idx, list){
-            console.log(unfaveSpan);
-            $(unfaveSpan).removeClass('hidden');
-          })
+          $faveSpan.addClass('hidden');
+          $unfaveSpan.removeClass('hidden');
         } else {
-          console.log("2");
-          _.each($faveSpans, function(faveSpan, idx, list){
-            $(faveSpan).removeClass('hidden');
-          })
-
-          _.each($unfaveSpans, function(unfaveSpan, idx, list){
-            $(unfaveSpan).addClass('hidden');
-          })
+          $faveSpan.removeClass('hidden');
+          $unfaveSpan.addClass('hidden');
         }
       },
       error: function(jqxhr, status, error){
