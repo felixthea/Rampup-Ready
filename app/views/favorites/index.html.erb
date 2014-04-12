@@ -1,22 +1,16 @@
 <div class="favorites-wrapper">
-  <h2>Favorite Definitions</h2>
-  <ul>
-  	<% @definition_faves.each do |definition_fave| %>
-  		<% definition = definition_fave.definition %>
-  		<% word = definition.word %>
-  		<li>
-  			<%= link_to word.name, word_url(word.id) %>: <%= definition.body %>
-  		</li>
-  	<% end %>
-  </ul>
-
-  <h2>Favorite Curriculums</h2>
-  <ul>
-  	<% @curriculum_faves.each do |curriculum_fave| %>
-  		<% curriculum = curriculum_fave.curriculum %>
-  		<li>
-  			<%= link_to curriculum.name, curriculum_url(curriculum.id) %>
-  		</li>
-  	<% end %>
-  </ul>
+  <script type="text/javascript">
+    mixpanel.track("Visit favorites#index");
+  </script>
+  <div class="content">
+    <div class="content-top group">
+    </div>
+    <div class="content-body group">
+      <div class="content-main">
+        <h2>Favorite Definitions</h2>
+        <%= render @definition_faves %>
+      </div>
+  </div>
 </div>
+
+
