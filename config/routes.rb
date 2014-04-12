@@ -1,5 +1,5 @@
 Workwiki::Application.routes.draw do
-  resources :users do
+  resources :users, except: [:edit, :update] do
     collection do
       get 'bulk_new', to: 'users#bulk_new'
       post 'bulk_add', to: 'users#bulk_add'
@@ -51,4 +51,6 @@ Workwiki::Application.routes.draw do
   resource :search, only: [:new, :create, :destroy]
   root to: "static_pages#index"
   get 'notify_recipient', to: 'inbound#notify_recipient'
+  get 'account', to: 'users#edit'
+  put 'account/update', to: 'users#update'
 end
