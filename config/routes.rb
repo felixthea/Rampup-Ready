@@ -9,7 +9,7 @@ Workwiki::Application.routes.draw do
   end
 
   resources :companies, only: [:new, :create, :destroy]
-  get "start", to: "companies#new"
+  post "start", to: "companies#start"
   resource :session, only: [:new, :create, :destroy]
   resources :subdivisions
   resources :subdivision_managements, only: [:new, :create, :destroy]
@@ -60,4 +60,8 @@ Workwiki::Application.routes.draw do
   get 'invite/rsvp', to: 'invites#rsvp'
   get 'account', to: 'users#edit'
   put 'account/update', to: 'users#update'
+  get 'invite/employees', to: 'invites#new_employees'
+  post 'invite/employees', to: 'invites#create_employees'
+  get '/signup', to: 'invites#employee_signup'
+  get '/offer', to: 'static_pages#offer'
 end
