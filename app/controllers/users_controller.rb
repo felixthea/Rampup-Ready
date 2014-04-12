@@ -110,7 +110,7 @@ class UsersController < ApplicationController
       redirect_to :root
     else
       @user = user
-      render :set_new_password
+      render :set_new_password, layout: "entity"
     end
   end
 
@@ -124,7 +124,7 @@ class UsersController < ApplicationController
     else
       flash[:errors] ||= []
       flash[:errors] += @user.errors.full_messages
-      render :set_new_password
+      render :set_new_password, layout: "entity"
     end
   end
 
