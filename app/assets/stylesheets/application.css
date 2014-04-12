@@ -91,7 +91,7 @@ button{
 }
 
 .nav-left{
-  width: 500px;
+  width: 600px;
   float: left;
 }
 
@@ -741,8 +741,72 @@ textarea#invite-email{
   margin: 0 0 20px 0;
 }
 
+.invite-email .note{
+  font-size: 14px;
+  width: 560px;
+  height: 200px;
+  background: #fbffd1;
+  padding: 20px;
+  margin: 0 0 10px 0;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.cc-checkbox{
+  float: left;
+  margin: 15px 0 0 0;
+}
+
 #invite #add-sub-cta{
   margin: 0 0 15px 0;
+}
+
+.invite-actions{
+  float: right;
+}
+
+.invite-actions #add-cta{
+  float: left;
+}
+
+.invite-actions .skip-action{
+  margin: 18px 20px 0 0;
+  float: left;
+}
+
+.invite-url{
+  width: 100%;
+  text-align: center;
+  margin: 15px 0 0 0;
+}
+
+.invite-url-field{
+  width: 100%;
+}
+
+.invite-url-field input{
+  float: left;
+  /*width: 500px;*/
+  width: 100%;
+  font-size: 14px;
+  margin: 5px 0 20px 0;
+  height: 15px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
+}
+
+.invite-url-field button{
+  float: right;
+  border: none;
+  background: #cccccc;
+  color: #444444;
+  margin: 8px 25px 0 0;
 }
 
 .invited-list{
@@ -771,4 +835,249 @@ textarea#invite-email{
 .forgot-password-wrapper{
   width: 200px;
   margin: auto;
+}
+
+ul.invitees {
+  list-style: none;
+}
+
+ul.invitees li ul li{
+  list-style:none;
+}
+
+ul.invitees li ul li{
+  float: left;
+  width: 100px;
+}
+
+.invitees-name, .invitees-email{
+  padding: 0 100px 0 0;
+}
+
+.invitees-header{
+  font-size: 1.17em;
+}
+
+.sign-up-text{
+  float: left;
+  margin: 8px 8px 0 0;
+}
+
+.sign-up-form{
+  float: left;
+}
+
+.sign-up-form input{
+  height: 20px;
+  width: 200px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
+  margin: 0 5px 0 0;
+}
+
+.nav-right-offer a{
+  margin: 8px 0 0 0;
+  float: left;
+}
+
+.nav-left-offer{
+  width: 300px;
+  float: left;
+}
+
+.nav-right-offer{
+  float: right;
+  margin: 15px 0 0 0;
+}
+
+.nav-right-offer button{
+  margin: 0 5px 0 0;
+  padding: 6px 10px 6px 10px;
+  font-size: 12px;
+  border-bottom: 2px solid #0066CC;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 0 10px 10px 0;
+}
+
+.nav-right-offer button:hover{
+  background: #0066CC;
+  border-bottom: 3px solid #0066CC;
+}
+
+.headline{
+  margin: auto;
+  width: 750px;
+  text-align: center;
+  color: #444444;
+}
+
+.headline p{
+  font-size: 20px;
+}
+
+.headline h1{
+  font-size: 40px;
+}
+
+.testimonials{
+  margin: 20px 0 0 0;
+}
+
+img.testimonial{
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  border: 3px solid #444444;
+}
+
+hr{
+  margin: 30px 0 30px 0;
+  border: 0;
+  height: 2px;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+}
+
+.benefits{
+  width: 1000px;
+  text-align: center;
+  color: #444444;
+}
+
+.benefits-headline{
+  width: 750px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.benefits-headline h1{
+  width: 750px;
+  font-size: 28px;
+}
+
+.benefit-statements{
+  margin: auto;
+  width: 800px;
+  border: 1px solid #dddddd;
+}
+
+.benefit-statement{
+  background: #f2f2f2;
+  /*margin-bottom: 10px;*/
+  padding: 15px 5px 10px 5px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.benefit-icon{
+  float: left;
+  width: 20px;
+  margin: 0 10px 0 0;
+}
+
+.benefit-content{
+  float: left;
+  font-size: 16px;
+}
+
+.benefit-statement:nth-last-child(1){
+  border-bottom:none;
+}
+
+.walkthrough{
+  margin: 50px 0 0 0;
+  width: 1050px;
+}
+
+.feature{
+  width: 1050px;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+.feature:nth-child(5){
+  margin-bottom: 0px;
+}
+
+.feature-left{
+  float: left;
+  width: 500px;
+  height: 320px;
+}
+
+.feature-right{
+  float: right;
+  width: 500px;
+  height: 320px;
+}
+
+.feature-right .pic-placeholder{
+  float: right;
+}
+
+.feature-left .pic-placeholder {
+  float: left;
+}
+
+.feature-text{
+  height: 250px;
+  vertical-align: middle;
+  color: #444444;
+}
+
+.feature-text h1{
+  font-size: 24px;
+}
+
+.feature-text p{
+  font-size: 18px;
+}
+
+.feature-img{
+  border: 1px solid black;
+}
+
+.what-you-get, .sign-up-offer{
+  width: 1000px;
+  text-align: center;
+  color: #444444;
+  margin-bottom: 40px;
+}
+
+.what-you-get-headline, .sign-up-offer-headline{
+  width: 750px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.what-you-get-headline h1, .sign-up-offer-headline h1{
+  width: 750px;
+  font-size: 28px;
+}
+
+.what-you-get-headline p, .sign-up-offer-headline p{
+  font-size: 18px;
+}
+
+.bottom-sign-up-form input{
+  font-size: 18px;
+  margin: 5px 0 20px 0;
+  width: 300px;
+  height: 38px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 4px 7px;
+  outline: 0;
+  -webkit-appearance: none;
 }

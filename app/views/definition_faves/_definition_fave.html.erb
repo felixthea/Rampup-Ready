@@ -1,0 +1,20 @@
+<% definition = definition_fave.definition %>
+<% word = definition.word %>
+<div class="word" id="<%= word.id %>">
+	<div class="entity-name">
+	  <h2><%= link_to word.name, word_url(word.id) %></h2>
+	</div>
+	<div class="entity-description">
+	  <p>
+	  	<%= definition.body %>
+	  </p>
+	</div>
+	<div class="entity-more-info">
+	  <% if definition.tags %>
+	    <% tags = definition.tags %>
+	    <%= render partial: 'tags/tag', collection: tags, spacer_template: 'shared/comma' %>
+	  <% else %>
+	    No tags, yet.
+	  <% end %>
+	</div>
+</div>
