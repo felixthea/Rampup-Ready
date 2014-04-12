@@ -11,7 +11,7 @@
           <% if current_user %>
             <li><%= link_to 'Words', words_url %></li>
             <li><%= link_to 'Curriculums', curriculums_url %></li>
-            <li><a href="#">Invite Employees</a></li>
+            <li><%= link_to 'Invite Employees', invite_employees_url if current_user.admin %></a></li>
           <% end %>
         </ul>
       </div>

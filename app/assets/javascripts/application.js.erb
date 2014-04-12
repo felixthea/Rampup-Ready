@@ -361,6 +361,7 @@ $(document).ready(function(){
 
     var inviteds = $('.invited-list').find('span');
     var invitedJSON = [];
+    var cc = $('#cc-me').val();
 
     _.each(inviteds, function(invited, idx, list){
       invitedJSON.push($(invited).attr('data-id'));
@@ -370,7 +371,8 @@ $(document).ready(function(){
       url: '/invite',
       type: 'POST',
       data: {
-        invite_JSON: invitedJSON
+        invite_JSON: invitedJSON,
+        cc: cc
       },
       success: function(data, textStatus, jqXHR){
         console.log(data);
@@ -380,6 +382,30 @@ $(document).ready(function(){
       }
     });
   });
+
+  $('.invite-emp-actions').on('click', 'button', function(event){
+    event.preventDefault();
+    var name = $('#invite_name').val();
+    var email = $('#invite_email').val();
+    $('form#invite')[0].reset();
+    
+    $.ajax({
+      url: '/invite/employees',
+      type: 'POST',
+      data: {
+        invite_JSON: { name: name, email: email },
+        cc: false
+      },
+      success: function(data, textStatus, jqHXR){
+        $html = '<li><ul class="group"><li class="invitees-name">' + name + '</li><li class="invitees-email">' + email + '</li><li class="invitees-signedup">Not Yet</li></ul></li>'
+        $('ul.invitees').append($html);
+        flashNotice("Employee invited!");
+      },
+      error: function(jqxhr, status, error){
+        flashNotice("Invite was not sent, please check if the employee has already been invited.");
+      }
+    })
+  })
 
 	var search = function(keyword, callback){
 		$.ajax({
@@ -397,6 +423,8 @@ $(document).ready(function(){
 			}
 		})
 	};
+
+  $('.company-signup-form #user_password').focus();
 
   mixpanel.track_links("ul.search-results li", "Click word search results link", {
     "referrer": document.referrer

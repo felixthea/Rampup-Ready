@@ -18,8 +18,15 @@ class UsersController < ApplicationController
   def create
     company = Company.find_by_signup_token(params[:company][:signup_token])
     params[:user][:subdivision_id] = company.subdivisions.first.id
+    invite = Invite.find_by_email_and_company_id(params[:user][:email], company.id)
+
     @user = User.new(params[:user])
     if @user.save
+      if invite
+        invite.sign_up_status = true
+        invite.save
+      end
+
       log_user_in!(@user)
     else
       flash[:errors] = @user.errors.full_messages

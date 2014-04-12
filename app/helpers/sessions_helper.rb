@@ -33,7 +33,7 @@ module SessionsHelper
   end
 
   def require_admin!
-    if current_user.admin == false || user_logged_in == false
+    if user_logged_in == false || current_user.admin == false
       flash[:errors] = ["You must be an admin."]
       redirect_to new_session_url
     end
