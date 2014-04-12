@@ -1,0 +1,32 @@
+<% if flash[:errors] %>
+  <ul>
+    <% flash[:errors].each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<form action="<%= account_update_url %>" method="post">
+	<input type="hidden" name="_method" value="put">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<table>
+		<tr>
+			<td><label for="user_email">Email:</label></td>
+			<td><%= @user.email %></td>
+		</tr>
+		<tr>
+			<td><label for="user_password">Current Password:</label></td>
+			<td><input type="password" id="user_password" name="user[password]"></td>
+		</tr>
+		<tr>
+			<td><label for="new_user_password">New Password:</label></td>
+			<td><input type="password" id="new_user_password" name="user[new_password][first]"></td>
+		</tr>
+		<tr>
+			<td><label for="confirm_new_user_password">Confirm New Password:</label></td>
+			<td><input type="password" id="confirm_new_user_password" name="user[new_password][second]"></td>
+		</tr>
+	</table>
+	<input type="submit" value="Update">
+</form>

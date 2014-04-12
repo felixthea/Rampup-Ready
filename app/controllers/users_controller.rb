@@ -112,7 +112,7 @@ class UsersController < ApplicationController
       redirect_to :root
     else
       @user = user
-      render :set_new_password
+      render :set_new_password, layout: "entity"
     end
   end
 
@@ -126,7 +126,45 @@ class UsersController < ApplicationController
     else
       flash[:errors] ||= []
       flash[:errors] += @user.errors.full_messages
-      render :set_new_password
+      render :set_new_password, layout: "entity"
     end
   end
+
+  def edit
+    @user = current_user
+    render :edit, layout: "entity"
+  end
+
+  def update
+    email = current_user.email
+    password = params[:user][:password]
+    new_pw = params[:user][:new_password][:first]
+    new_pw_conf = params[:user][:new_password][:second]
+
+    user = User.find_by_credentials(email, password)
+
+    if !user
+      flash.now[:errors] = ["Your original password is not correct.  Please try again."]
+      @user = current_user
+      render :edit, layout: "entity"
+    elsif (new_pw != new_pw_conf)
+      flash.now[:errors] = ["Your new password and new password confirmation do not match.  Please try again."]
+      @user = current_user
+      render :edit, layout: "entity"
+    elsif (new_pw.length < 6)
+      flash.now[:errors] = ["Password must be at least 6 characters."]
+      @user = current_user
+      render :edit, layout: "entity"
+    else
+      user = User.update(user.id, password: new_pw)
+      if user
+        log_user_in!(user)
+      else
+        fail
+        render :edit, layout: "entity"
+      end
+    end
+
+  end
+
 end
