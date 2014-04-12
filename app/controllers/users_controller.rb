@@ -86,7 +86,7 @@ class UsersController < ApplicationController
   end
 
   def forgot_password
-    render :forgot_password
+    render :forgot_password, layout: "entity"
   end
 
   def send_forgot_password_email

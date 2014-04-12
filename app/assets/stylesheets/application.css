@@ -767,3 +767,8 @@ textarea#invite-email{
   border-radius: 10px;
   padding: 10px;
 }
+
+.forgot-password-wrapper{
+  width: 200px;
+  margin: auto;
+}
