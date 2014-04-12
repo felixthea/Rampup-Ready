@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     else
       flash[:errors] ||= []
       flash[:errors] += user.errors.full_messages
-      render :forgot_password
+      render :forgot_password, layout: "entity"
     end
   end
 
