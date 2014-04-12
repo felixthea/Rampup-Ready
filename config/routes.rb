@@ -1,5 +1,5 @@
 Workwiki::Application.routes.draw do
-  resources :users do
+  resources :users, except: [:edit, :update] do
     collection do
       get 'bulk_new', to: 'users#bulk_new'
       post 'bulk_add', to: 'users#bulk_add'
@@ -58,4 +58,6 @@ Workwiki::Application.routes.draw do
   get 'invite', to: 'invites#new'
   post 'invite', to: 'invites#create'
   get 'invite/rsvp', to: 'invites#rsvp'
+  get 'account', to: 'users#edit'
+  put 'account/update', to: 'users#update'
 end
