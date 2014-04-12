@@ -96,10 +96,12 @@ class UsersController < ApplicationController
       msg = AuthMailer.forgot_password_email(user)
       msg.deliver!
       flash[:notice] = ["Check your email for instructions on resetting your password."]
+      fail
       redirect_to new_session_url
     else
       flash[:errors] ||= []
       flash[:errors] += user.errors.full_messages
+      fail
       render :forgot_password, layout: "entity"
     end
   end
