@@ -642,3 +642,7 @@ button#add-sub-cta:hover{
   float: left;
 }
 
+.forgot-password-wrapper{
+  width: 200px;
+  margin: auto;
+}
