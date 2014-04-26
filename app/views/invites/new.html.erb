@@ -33,17 +33,35 @@
 		<div class="invited-list">
 			To: 
 		</div>
-		<div class="invite-email">
-			<textarea id="invite-email">Hi,
- 
-I'm putting together the <%= current_co.name %> glossary and would really appreciate it if you could help contribute some words and definitions you use on a day-to-day basis that other employees should know.
- 
-Click this link to help contribute words and definitions.
- 
-Thanks for your help!
- 
-<%= current_user.name %></textarea>
-			<button id="add-cta">Invite</button>
+		<div class="invite-email group">
+			<div class="note">
+				Hi,
+				<br><br>
+				I'm putting together the <%= current_co.name %> glossary and would really appreciate it if you could help contribute some words and definitions you use on a day-to-day basis that other employees should know.
+				<br><br>
+				Click this link to help contribute words and definitions.
+				<br><br>
+				Thanks for your help!
+				<br>
+				<%= current_user.name.split(" ")[0] %>
+			</div>
+			<!-- <textarea id="invite-email" disabled></textarea> -->
+			<div class="group">
+				<div class="cc-checkbox">
+					<input type="checkbox" name="checkbox" id="cc-me" value="true">
+					<label for="cc-me">CC me</label>
+				</div>
+				<div class="invite-actions">
+					<span class="skip-action"><%= link_to 'Skip', root_url %></span>
+					<button id="add-cta">Invite</button>
+				</div>
+			</div>
+			<div class="invite-url">
+				Or you can send out this invite link:
+				<div class="invite-url-field">
+					<input type="text" value="<%= @invite_url %>">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

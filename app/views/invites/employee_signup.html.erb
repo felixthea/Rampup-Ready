@@ -1,8 +1,10 @@
 <%= render 'shared/top' %>
 <div class="signup-container">
 	<div class="signup-header">
-		<h1>Start your FREE trial today.</h1>
-		<h3>You get a free 50-word glossary, forever.  For more words, it costs only $5 per user/month.</h3>
+		<h1>Hi<%= ", " + @first_name if @first_name %>!</h1>
+		<h3>Welcome to the <%= @company.name %> glossary.</h3>
+		<br><br>
+		<h2>First, please sign up below.</h2>
 	</div>
 	<div class="company-signup-form-container">
 		<div class="company-signup-errors">
@@ -17,10 +19,14 @@
 		  <% end %>
 		</div>
 		<div class="company-signup-form group">
-			<form action="<%= companies_url %>" method="post" id="company-signup">
+			<form action="<%= users_url %>" method="post" id="company-signup">
 				<label for="user_email">Your email address:</label>
 				<br>
-				<input type="text" name="user[email]" id="user_email" value="<%= @email if @email %>">
+				<% if @email %>
+					<input type="text" name="user[email]" id="user_email" value="<%= @email %>" readonly>
+				<% else %>
+					<input type="text" name="user[email]" id="user_email">
+				<% end %>
 				<br>
 				<label for="user_password">Your password:</label>
 				<br>
@@ -28,13 +34,10 @@
 				<br>
 				<label for="user_name">Your full name:</label>
 				<br>
-				<input type="text" name="user[name]" id="user_name">
+				<input type="text" name="user[name]" id="user_name" value="<%= @full_name if @full_name %>">
 				<br>
-				<label for="company_name">Company or Organization:</label>
-				<br>
-				<input type="text" name="company[name]" id="company_name">
-				<br>
-				<button id="add-cta">Start my free trial</button>
+				<input type="hidden" name="company[signup_token]" id="company_signup_token" value="<%= @company.signup_token %>">
+				<button id="add-cta">Sign up</button>
 			</form>
 		</div>
 	</div>

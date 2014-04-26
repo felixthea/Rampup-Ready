@@ -10,4 +10,8 @@ class StaticPagesController < ApplicationController
 		@subdivisions = Subdivision.where('company_id = ?', current_co.id)
 		render :index
 	end
+
+	def offer
+		render :offer, layout: "sales"
+	end
 end
