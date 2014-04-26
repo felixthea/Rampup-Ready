@@ -1,4 +1,5 @@
 Workwiki::Application.routes.draw do
+  root to: "static_pages#index"
   resources :users, except: [:edit, :update] do
     collection do
       get 'bulk_new', to: 'users#bulk_new'
@@ -51,7 +52,6 @@ Workwiki::Application.routes.draw do
   get 'set_new_password', to: 'users#set_new_password'
   post 'update_password', to: 'users#update_password'
   resource :search, only: [:new, :create, :destroy]
-  root to: "static_pages#index"
   get 'notify_recipient', to: 'inbound#notify_recipient'
 
   resources :static_pages, only: [:index]
