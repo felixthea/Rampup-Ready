@@ -2,7 +2,7 @@ class InvitesController < ApplicationController
 	before_filter :require_admin!, only: [:new, :new_employees, :create_employees]
 
 	def new
-		@invite_url = "http://rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&inviter=" + current_user.name.split(" ")[0]
+		@invite_url = "http://" + ENV["COMPANY"] + ".rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&inviter=" + current_user.name.split(" ")[0]
 		render :new, layout: "sales"
 	end
 
@@ -18,7 +18,7 @@ class InvitesController < ApplicationController
 			inviter = current_user.name.split(" ")[0]
 			inviter_email = current_user.email
 
-			invite_link = "http://rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&name=" + full_name + "&inviter=" + inviter + "&email=" + email
+			invite_link = "http://" + ENV["COMPANY"] + ".rampupready.com/invite/rsvp?signup=" + current_co.signup_token + "&name=" + full_name + "&inviter=" + inviter + "&email=" + email
 
 			msg = InviteMailer.invite_help_email(name, email, current_co.name, inviter, invite_link, cc_inviter, inviter_email)
 			msg.deliver!
@@ -41,7 +41,7 @@ class InvitesController < ApplicationController
 
 	def new_employees
 		@invited_employees = Invite.find_all_by_company_id(current_co.id)
-		@generic_invite_link = "http://rampupready.com/signup?signup=" + current_co.signup_token
+		@generic_invite_link = "http://" + ENV["COMPANY"] + ".rampupready.com/signup?signup=" + current_co.signup_token
 		render :employees, layout: "sales"
 	end
 
@@ -50,7 +50,7 @@ class InvitesController < ApplicationController
 		email = params[:invite_JSON][:email]
 
 		invite = Invite.new(email: email, name: name, company_id: current_co.id)
-		invite_link = "http://rampupready.com/signup?signup=" + current_co.signup_token + "&name=" + name + "&email=" + email
+		invite_link = "http://" + ENV["COMPANY"] + ".rampupready.com/signup?signup=" + current_co.signup_token + "&name=" + name + "&email=" + email
 
 		if invite.save
 			msg = InviteMailer.invite_employee_email(name, email, current_co.name, invite_link, current_user.name)

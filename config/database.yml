@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
-  database: db/workwiki_development
+  database: db/axial_development
   host: localhost
 
 test:
   adapter: postgresql
-  database: db/workwiki
+  database: db/axial
   host: localhost

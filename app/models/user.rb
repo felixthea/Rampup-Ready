@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password_digest, :subdivision_id, :session_token, :password, :admin, :forgot_password_token, :name
   attr_accessor :password
 
-  validates :email, :password_digest, :subdivision, :session_token, :name,
-            presence: true
+  validates :email, :password_digest, :subdivision, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :admin, inclusion: { in: [true, false] }
   validates :email, uniqueness: true
