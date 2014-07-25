@@ -1,5 +1,6 @@
 module SessionsHelper
   def current_user
+    fail
     User.find_by_session_token(session[:session_token])
   end
 
