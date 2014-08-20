@@ -11,7 +11,7 @@ http://RampUpReady.com
 * Add words
 	* jQuery AJAX for creating words
 * Add multiple definitions per word
-	* Upvote/downvote definitions
+	* Upvote/downvote any definition
 	* Definitions can be tagged
 * Curriculum Builder
 	* jQueryUI for drag-and-drop
