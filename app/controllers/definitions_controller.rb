@@ -116,4 +116,16 @@ class DefinitionsController < ApplicationController
     @message.body = "#{@definition.word.name}: #{@definition.body}"
     render 'messages/new'
   end
+
+  def add_to_curriculum
+    curriculum = Curriculum.find(params[:curriculum_id])
+    definition = Definition.find(params[:definition_id])
+    if curriculum.definitions.exists?(id: definition.id)
+      # do nothing
+    else
+      curriculum.definitions << definition
+    end
+
+    redirect_to Word.find(params[:id])
+  end
 end

@@ -27,6 +27,7 @@ class WordsController < ApplicationController
     @related_words = @word.find_related_words(current_co)
     @word_tags = @word.find_word_tags
     @definition_faves = DefinitionFave.where('user_id = ?', current_user.id)
+    @curriculums = current_co.curriculums
 
     @definitions.sort! { |defA, defB| defB.total_score <=> defA.total_score }
     render :show, layout: "entity"

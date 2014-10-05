@@ -27,6 +27,7 @@ Workwiki::Application.routes.draw do
       get 'email', :to => 'definitions#new_email_definition'
       post 'favorite', to: 'definition_faves#favorite'
       delete 'unfavorite', to: 'definition_faves#unfavorite'
+      post 'add_to_curriculum', to: 'definitions#add_to_curriculum'
     end
   end
 

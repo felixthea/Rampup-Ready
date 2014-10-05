@@ -24,6 +24,17 @@
         <span id="unfavorite" class="hidden"><a href="#" data-id="<%= definition.id %>" data-action="unfavorite" id="fave-link">Unfavorite</a></span>
         <span id="favorite"><a href="#" data-id="<%= definition.id %>" data-action="favorite" id="fave-link">Mark as Favorite</a></span>
       <% end %>
+        <form action="<%= add_to_curriculum_definition_url %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <select name="curriculum_id">
+            <option>Add to Curriculum</option>
+            <% curriculums.each do |curriculum| %>
+              <option value="<%= curriculum.id %>"><%= curriculum.name %></option>
+            <% end %>
+          </select>
+          <input type="hidden" name="definition_id" value="<%= definition.id %>">
+          <input type="Submit" value="Add">
+        </form>
     </div>
   </div>
   <div class="definition-votes">
